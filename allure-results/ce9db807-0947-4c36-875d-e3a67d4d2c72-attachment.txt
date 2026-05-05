@@ -1,0 +1,28 @@
+⏳ Polling Mailsac API for Welcome email...
+⏳ Polling Mailsac for "Welcome email" at trademate_moselch4@mailsac.com...
+✅ Email found — Subject: "Welcome to Our Platform - Trademate!"
+📧 Welcome email body snippet:
+Wellcome to our platform Trademate!
+
+
+WELCOME,TAJWAR!
+
+Thank you for logging in to Trademate.
+
+We are excited to have you as a Homeowner.Job Post your first project today and connect with skilled professionals to get your
+repair or renovation done quickly and reliably.
+
+Go to Site [https://trademate-next-js.vercel.app]
+
+Best regards,
+TRADEMATE Team
+
+© 2026 Trademate. All rights reserved.
+✅ Welcome email confirmed in inbox! Subject: "Welcome to Our Platform - Trademate!"
+👀 Mailsac inbox is now visible — Welcome email is in the list
+✅ Opened the Welcome email inside Mailsac
+🔄 Strategy C: Reading email body via API to extract URL...
+🔗 Extracted URL from email body: https://trademate-next-js.vercel.app
+✅ sitePage navigated to: https://trademate-next-js.vercel.app
+🌐 Current URL after "Go to Site": https://trademate-next-js.vercel.app/homeowner
+✅ Successfully returned to TradeMate website!

@@ -1,0 +1,414 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\playwright.config.ts",
+    "rootDir": "C:/Users/Tajwar (Day Shift)/Desktop/All Important docs/Automation tests/Project_TradeMate_AutomationTest_2ndVersion/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Tajwar (Day Shift)/Desktop/All Important docs/Automation tests/Project_TradeMate_AutomationTest_2ndVersion/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/Tajwar (Day Shift)/Desktop/All Important docs/Automation tests/Project_TradeMate_AutomationTest_2ndVersion/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 360000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "json-test-report.json"
+        }
+      ],
+      [
+        "line",
+        null
+      ],
+      [
+        "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\allure-playwright\\dist\\cjs\\index.js",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "3way",
+    "version": "1.58.2",
+    "workers": 10,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "1_New_insertion\\Email_Test.spec.ts",
+      "file": "1_New_insertion/Email_Test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "📧 TradeMate – Full HomeOwner Email Flow",
+          "file": "1_New_insertion/Email_Test.spec.ts",
+          "line": 44,
+          "column": 15,
+          "specs": [
+            {
+              "title": "➡️ SCENARIO 1: Register as Homeowner and verify with hardcoded OTP",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 360000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 21101,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "\n📬 Test email : trademate_mosi42ly@mailsac.com\n"
+                        },
+                        {
+                          "text": "🌐 Mailsac    : https://mailsac.com/inbox/trademate_mosi42ly%40mailsac.com\n\n"
+                        },
+                        {
+                          "text": "✅ Mailsac inbox tab is open\n"
+                        },
+                        {
+                          "text": "✅ Registration page visible\n"
+                        },
+                        {
+                          "text": "✅ OTP screen visible\n"
+                        },
+                        {
+                          "text": "✅ OTP accepted — now on login page\n"
+                        },
+                        {
+                          "text": "✅ Logged in successfully — will stay logged in for all remaining tests\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Open TradeMate and go to registration page",
+                          "duration": 3736
+                        },
+                        {
+                          "title": "Fill registration form with Mailsac email and submit",
+                          "duration": 6238
+                        },
+                        {
+                          "title": "Fill hardcoded OTP (1,2,3,4) — dev environment bypass",
+                          "duration": 5039
+                        },
+                        {
+                          "title": "Login with the newly registered account",
+                          "duration": 6083
+                        }
+                      ],
+                      "startTime": "2026-05-05T10:44:21.968Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-59920-d-verify-with-hardcoded-OTP-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a07f2d81496fc2903ff4-41a598134d9c582e1a50",
+              "file": "1_New_insertion/Email_Test.spec.ts",
+              "line": 81,
+              "column": 9
+            },
+            {
+              "title": "➡️ SCENARIO 2: View Welcome email in Mailsac and click \"Go to Site\"",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 360000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10737,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_mosi42ly@mailsac.com...\n"
+                        },
+                        {
+                          "text": "✅ Found — Subject: \"Welcome to Our Platform!\"\n"
+                        },
+                        {
+                          "text": "📧 Welcome email snippet:\n🎉 Welcome, Tajwar! Your Registration is Complete\n\n\nHELLO, TAJWAR!\n\nGreat news! Your email has been successfully verified. Your account is now fully active and ready to go.\n\nAccount Type: Homeowner\n\nHi Tajwar, your Homeowner account is all set! Post your first project today and connect with skilled \n"
+                        },
+                        {
+                          "text": "✅ Welcome email in inbox — Subject: \"Welcome to Our Platform!\"\n"
+                        },
+                        {
+                          "text": "👀 Mailsac inbox visible — Welcome email is in the list\n"
+                        },
+                        {
+                          "text": "✅ Welcome email opened in Mailsac\n"
+                        },
+                        {
+                          "text": "🔄 Strategy C — reading email body via API...\n"
+                        },
+                        {
+                          "text": "🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app\n"
+                        },
+                        {
+                          "text": "✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app\n"
+                        },
+                        {
+                          "text": "🌐 URL after \"Go to Site\": https://trademate-next-js.vercel.app/homeowner\n"
+                        },
+                        {
+                          "text": "✅ Back on TradeMate — user is still logged in\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Poll Mailsac API until Welcome email arrives",
+                          "duration": 2226
+                        },
+                        {
+                          "title": "Switch to Mailsac tab and reload inbox",
+                          "duration": 2896
+                        },
+                        {
+                          "title": "Click on the Welcome email to open it",
+                          "duration": 2068
+                        },
+                        {
+                          "title": "Click \"Go to Site\" inside the Welcome email",
+                          "duration": 1601
+                        },
+                        {
+                          "title": "Confirm we are back on TradeMate website (still logged in)",
+                          "duration": 1940
+                        }
+                      ],
+                      "startTime": "2026-05-05T10:44:53.883Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-e2f41-ilsac-and-click-Go-to-Site--chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a07f2d81496fc2903ff4-df8a98835f6865a870eb",
+              "file": "1_New_insertion/Email_Test.spec.ts",
+              "line": 132,
+              "column": 9
+            },
+            {
+              "title": "➡️ SCENARIO 3: HomeOwner posts a job and views job email in Mailsac",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 360000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 33322,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ Services section visible\n"
+                        },
+                        {
+                          "text": "✅ Location confirmed — continued\n"
+                        },
+                        {
+                          "text": "✅ Job title and description filled\n"
+                        },
+                        {
+                          "text": "✅ Timeframe selected\n"
+                        },
+                        {
+                          "text": "✅ Work type selected\n"
+                        },
+                        {
+                          "text": "✅ Image uploaded\n"
+                        },
+                        {
+                          "text": "✅ Job posted successfully!\n"
+                        },
+                        {
+                          "text": "⏳ Polling Mailsac for \"Job confirmation email\" at trademate_mosi42ly@mailsac.com...\n"
+                        },
+                        {
+                          "text": "✅ Found — Subject: \"Your Job Post Is Live on Trademate site!\"\n"
+                        },
+                        {
+                          "text": "📧 Job email snippet:\nYour Job Is Live Trademate !\n\n\nHI TAJWAR,\n\nYour job post has been published and is now live.\n\nHow you'll receive quotes: Tradesmen who match your job category and postcode are notified immediately. They will review your job\ndetails and submit quotes through the Trademate platform. You will receive i\n"
+                        },
+                        {
+                          "text": "✅ Job email in inbox — Subject: \"Your Job Post Is Live on Trademate site!\"\n"
+                        },
+                        {
+                          "text": "👀 Mailsac inbox reloaded — looking for job confirmation email\n"
+                        },
+                        {
+                          "text": "✅ Job confirmation email opened in Mailsac\n"
+                        },
+                        {
+                          "text": "🔄 Strategy C — reading email body via API...\n"
+                        },
+                        {
+                          "text": "🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app\n"
+                        },
+                        {
+                          "text": "✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app\n"
+                        },
+                        {
+                          "text": "🌐 URL after \"Visit Trademate\": https://trademate-next-js.vercel.app/homeowner\n"
+                        },
+                        {
+                          "text": "✅ Back on TradeMate — user is still logged in ✅\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify all the services are visible on the home page",
+                          "duration": 1002
+                        },
+                        {
+                          "title": "Click Plumber service and confirm map location",
+                          "duration": 2787
+                        },
+                        {
+                          "title": "Fill job title and description",
+                          "duration": 1581
+                        },
+                        {
+                          "title": "Select job timeframe",
+                          "duration": 2064
+                        },
+                        {
+                          "title": "Select type of work required",
+                          "duration": 1447
+                        },
+                        {
+                          "title": "Upload job image",
+                          "duration": 439
+                        },
+                        {
+                          "title": "Upload job video and submit",
+                          "duration": 9076
+                        },
+                        {
+                          "title": "Poll Mailsac API until Job confirmation email arrives",
+                          "duration": 6572
+                        },
+                        {
+                          "title": "Switch to Mailsac tab and open job confirmation email",
+                          "duration": 4956
+                        },
+                        {
+                          "title": "Click \"Visit Trademate\" button inside the job email",
+                          "duration": 1426
+                        },
+                        {
+                          "title": "Confirm we are back on TradeMate website",
+                          "duration": 1967
+                        }
+                      ],
+                      "startTime": "2026-05-05T10:45:04.902Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-2eec9--views-job-email-in-Mailsac-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a07f2d81496fc2903ff4-8912d56e8dfafdfb9025",
+              "file": "1_New_insertion/Email_Test.spec.ts",
+              "line": 185,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-05T10:44:20.055Z",
+    "duration": 79674.62200000044,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

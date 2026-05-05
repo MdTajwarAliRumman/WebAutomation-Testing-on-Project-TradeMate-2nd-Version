@@ -1,0 +1,94 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "Trademate" [ref=e5] [cursor=pointer]:
+          - /url: /homeowner
+          - img "Trademate" [ref=e6]
+        - generic [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /homeowner
+          - link "About Us" [ref=e9] [cursor=pointer]:
+            - /url: /about-us
+          - link "Contact" [ref=e10] [cursor=pointer]:
+            - /url: /contact-us
+        - generic [ref=e11]:
+          - link "Find a surrey tradesman" [ref=e12] [cursor=pointer]:
+            - /url: /sign-up?role=homeowner
+            - button "Find a surrey tradesman" [ref=e13]
+          - link "Join as a Tradesperson" [ref=e14] [cursor=pointer]:
+            - /url: /sign-up?role=tradesman
+            - button "Join as a Tradesperson" [ref=e15]
+  - main [ref=e16]:
+    - generic [ref=e18]:
+      - img "Beautiful homes in London & Surrey" [ref=e20]
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - heading "Email verification" [level=1] [ref=e26]
+          - paragraph [ref=e27]:
+            - text: "Enter the verification code we send you on:"
+            - text: tra*****@mailsac.com
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - textbox [ref=e30]
+            - textbox [ref=e31]
+            - textbox [ref=e32]
+            - textbox [ref=e33]
+          - generic [ref=e34]:
+            - img [ref=e35]
+            - generic [ref=e38]: 00:00
+          - button "Continue" [disabled]
+        - paragraph [ref=e39]:
+          - text: Didn't receive code?
+          - button "Resend" [ref=e40] [cursor=pointer]
+  - contentinfo [ref=e41]:
+    - generic [ref=e43]:
+      - generic [ref=e44]:
+        - link "Trademate" [ref=e45] [cursor=pointer]:
+          - /url: /
+          - img "Trademate" [ref=e46]
+        - paragraph [ref=e47]: Providing a FREE simple, easy to use live job platform for access to elite verified and trusted tradesman in one single platform across London & Surrey. No Internet searching, No dodgy referrals, No timewasters - instant local trades at your fingertips when you need a job done!
+      - generic [ref=e48]:
+        - heading "Useful links" [level=3] [ref=e49]
+        - list [ref=e50]:
+          - listitem [ref=e51]:
+            - link "Home" [ref=e52] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e53]:
+            - link "Wishlist" [ref=e54] [cursor=pointer]:
+              - /url: /wishlist
+          - listitem [ref=e55]:
+            - link "Contact Us" [ref=e56] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e57]:
+            - link "Join as a Home Owner" [ref=e58] [cursor=pointer]:
+              - /url: /sign-up?role=homeowner
+          - listitem [ref=e59]:
+            - link "Join as a Tradesperson" [ref=e60] [cursor=pointer]:
+              - /url: /sign-up?role=tradesman
+      - generic [ref=e61]:
+        - heading "Legal" [level=3] [ref=e62]
+        - list [ref=e63]:
+          - listitem [ref=e64]:
+            - link "Terms of Use" [ref=e65] [cursor=pointer]:
+              - /url: /terms-of-use
+          - listitem [ref=e66]:
+            - link "Privacy Policy" [ref=e67] [cursor=pointer]:
+              - /url: /privacy-policy
+      - generic [ref=e68]:
+        - heading "Get in Touch" [level=3] [ref=e69]
+        - list [ref=e70]:
+          - listitem [ref=e71]:
+            - img [ref=e72]
+            - generic [ref=e75]: 77 Lower Camden Street, Dunlin 2
+          - listitem [ref=e76]:
+            - img [ref=e77]
+            - link "Info@clevrfox.com" [ref=e80] [cursor=pointer]:
+              - /url: mailto:Info@clevrfox.com
+    - paragraph [ref=e83]: Copyright © 2025 Clavr Fox | All Rights Reserved
+  - region "Notifications alt+T"
+  - alert [ref=e84]: Email Verification - Trademate
+```

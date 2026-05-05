@@ -1,0 +1,10 @@
+
+📬 Test email for this run : trademate_moselch4@mailsac.com
+🌐 Mailsac inbox URL       : https://mailsac.com/inbox/trademate_moselch4%40mailsac.com
+
+✅ Mailsac inbox tab opened
+✅ Registration page visible
+✅ OTP screen visible
+✅ Hardcoded OTP 1,2,3,4 filled
+✅ OTP verified — login page showing
+✅ Successfully logged in!

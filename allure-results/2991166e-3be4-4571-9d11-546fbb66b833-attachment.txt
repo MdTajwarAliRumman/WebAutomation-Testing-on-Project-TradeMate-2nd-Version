@@ -1,0 +1,8 @@
+
+📬 Test email for this run: trademate_moqobvhg@mailsac.com
+🌐 View inbox at: https://mailsac.com/inbox/trademate_moqobvhg%40mailsac.com
+
+✅ Mailsac inbox tab opened
+✅ Registration page visible
+✅ OTP input screen visible — switching to Mailsac tab...
+⏳ Waiting for email "OTP verification email" at trademate_moqobvhg@mailsac.com...

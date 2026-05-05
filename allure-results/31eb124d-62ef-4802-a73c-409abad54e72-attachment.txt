@@ -1,0 +1,21 @@
+⏳ Polling Mailsac for "Welcome email" at trademate_mosi42ly@mailsac.com...
+✅ Found — Subject: "Welcome to Our Platform!"
+📧 Welcome email snippet:
+🎉 Welcome, Tajwar! Your Registration is Complete
+
+
+HELLO, TAJWAR!
+
+Great news! Your email has been successfully verified. Your account is now fully active and ready to go.
+
+Account Type: Homeowner
+
+Hi Tajwar, your Homeowner account is all set! Post your first project today and connect with skilled 
+✅ Welcome email in inbox — Subject: "Welcome to Our Platform!"
+👀 Mailsac inbox visible — Welcome email is in the list
+✅ Welcome email opened in Mailsac
+🔄 Strategy C — reading email body via API...
+🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app
+✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app
+🌐 URL after "Go to Site": https://trademate-next-js.vercel.app/homeowner
+✅ Back on TradeMate — user is still logged in

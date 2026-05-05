@@ -1,0 +1,45 @@
+{
+    "Empty fields": {
+        "name": "",
+        "email": "",
+        "phone": "",
+        "password": "",
+        "confirmPassword": "",
+        "expectedErrors": [
+            "Username must be at least 3 characters long",
+            "Invalid email address",
+            "Phone number must be at least 10 characters long",
+            "Password must be at least 6 characters long"
+        ]
+    },
+    "Invalid email": {
+        "name": "Tajwar",
+        "email": "diver408@",
+        "phone": "1234567890",
+        "password": "12345678",
+        "confirmPassword": "12345678",
+        "expectedErrors": [
+            "Invalid email address"
+        ]
+    },
+    "Invalid phone": {
+        "name": "Tajwar",
+        "email": "dynamic",
+        "phone": "1",
+        "password": "12345678",
+        "confirmPassword": "12345678",
+        "expectedErrors": [
+            "Phone number must be at least 10 characters long"
+        ]
+    },
+    "Invalid password": {
+        "name": "Tajwar",
+        "email": "dynamic",
+        "phone": "1234567890",
+        "password": "123",
+        "confirmPassword": "12345678",
+        "expectedErrors": [
+            "Password must be at least 6 characters long"
+        ]
+    }
+}
