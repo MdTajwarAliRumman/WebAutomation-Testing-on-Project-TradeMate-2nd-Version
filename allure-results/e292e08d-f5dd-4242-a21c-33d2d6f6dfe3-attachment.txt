@@ -1,0 +1,23 @@
+✅ Home page — Services section visible
+✅ Location confirmed — continued
+✅ Title and description filled
+✅ Timeframe selected
+✅ Work type selected
+✅ Image uploaded
+✅ Job posted successfully!
+⏳ Polling Mailsac for "Job confirmation email" at trademate_motv1eyh@mailsac.com...
+✅ Found — Subject: "Welcome to Our Platform - Trademate!"
+📧 Job email snippet:
+Wellcome to our platform Trademate!
+
+
+WELCOME,TAJWAR!
+
+Thank you for logging in to Trademate.
+
+We are excited to have you as a Homeowner.Job Post your first project today and connect with skilled professionals to get your
+repair or renovation done quickly and reliably.
+
+Go to Site [https://trademate
+✅ Job email in inbox — Subject: "Welcome to Our Platform - Trademate!"
+👀 Owner inbox reloaded — looking for job live email
