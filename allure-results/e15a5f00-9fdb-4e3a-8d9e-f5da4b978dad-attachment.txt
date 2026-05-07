@@ -1,0 +1,23 @@
+✅ Tradesman logged back in successfully
+👀 Tradesman Mailsac inbox tab is now in focus (Tab 3)
+⏳ Polling Mailsac for "Account Verified Successfully" email...
+⏳ Polling Mailsac for "Admin notification / Approve account email" at trademate_movbob9i@mailsac.com...
+✅ Found — Subject: "Account Verified Successfully.Welcome to our platform Trademate !"
+📧 Admin notification email snippet:
+Welcome to Trademate — your account is live
+SoftwareTestingCompany
+
+
+HI NEWTRADEPERSON,
+
+Congratulations — your tradesman account has been approved and is now visible to homeowners on Trademate.
+
+What to expect next
+
+ * Your profile is searchable by homeowners in your service area.
+ * Relevant job l
+✅ Verification email found — Subject: "Account Verified Successfully.Welcome to our platform Trademate !"
+👀 Tradesman Mailsac inbox reloaded — verification email should be visible
+✅ "Account Verified Successfully" email opened — observing for 3 seconds
+🌐 Back on TradeMate — URL: https://trademate-next-js.vercel.app/tradesman/home
+✅ Tradesman is back on TradeMate and still logged in

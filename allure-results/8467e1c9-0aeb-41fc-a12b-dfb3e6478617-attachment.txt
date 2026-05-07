@@ -1,0 +1,6 @@
+✅ Home page — Services section visible
+✅ Location confirmed — continued
+✅ Title and description filled
+✅ Timeframe selected
+✅ Work type selected
+✅ Image uploaded

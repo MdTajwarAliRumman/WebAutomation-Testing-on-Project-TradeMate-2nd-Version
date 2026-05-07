@@ -1,0 +1,5 @@
+✅ HomeOwner confirmed still logged in — no extra login needed
+✅ My Posted Jobs page is visible
+✅ Job detail page visible — "Job Done by:" heading found
+✅ Applicant List section is now visible on screen
+✅ HomeOwner logged out successfully

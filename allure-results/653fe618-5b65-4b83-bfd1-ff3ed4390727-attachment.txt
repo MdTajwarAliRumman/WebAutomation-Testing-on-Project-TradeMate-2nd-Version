@@ -1,0 +1,9 @@
+
+📬 HomeOwner email : trademate_movbmm4f@mailsac.com
+🌐 Owner inbox     : https://mailsac.com/inbox/trademate_movbmm4f%40mailsac.com
+
+✅ HomeOwner Mailsac inbox tab is open (Tab 2)
+✅ HomeOwner registration page visible
+✅ OTP screen visible
+✅ OTP accepted — now on login page
+✅ HomeOwner logged in — stays logged in for Scenarios 2, 3, 4

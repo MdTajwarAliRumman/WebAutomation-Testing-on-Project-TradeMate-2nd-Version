@@ -1,0 +1,6 @@
+✅ Tradesman confirmed still logged in
+✅ Clicked "View Details" on first job
+✅ Trade category selected — Plumber
+✅ Map location confirmed
+✅ Tradesman profile details filled
+✅ Tradesman profile submitted successfully

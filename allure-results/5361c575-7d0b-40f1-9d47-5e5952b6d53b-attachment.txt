@@ -1,0 +1,14 @@
+✅ Admin site opened in Tab 4
+✅ Logged into admin panel
+✅ Navigated to Tradesmen list in admin panel
+
+🔍 DIAGNOSTIC — visible rows on Tradesmen page:
+  row[2]: Menu
+  row[3]: Dashboard
+  row[4]: User Management
+  row[5]: Tradesmen
+  row[6]: Homeowners
+  row[7]: Contact Us
+  row[8]: Content & Marketing
+  row[9]: Job Posts
+✅ Searched for tradesman email: trademate_mov355t5@mailsac.com

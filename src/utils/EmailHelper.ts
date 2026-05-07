@@ -16,8 +16,11 @@
  *   helper.fetchOTP(email)               — wait for & extract OTP (kept for future)
  *   helper.fetchWelcomeEmail(email)      — wait for & return the Welcome email
  *   helper.getLatestWelcomeEmailBody()   — get Welcome email body (for URL extraction)
- *   helper.fetchJobEmail(email)          — wait for & return the Job email
- *   helper.getLatestJobEmailBody()       — get Job email body (for URL extraction)
+ *   helper.fetchJobEmail(email)              — wait for & return the Job email
+ *   helper.getLatestJobEmailBody()           — get Job email body (for URL extraction)
+ *   helper.fetchAdminNotificationEmail()     — wait for admin notify / approve email (S8)
+ *   helper.fetchMatchingJobEmail()           — wait for "New Matching Job" email (S8)
+ *   helper.getLatestMatchingJobEmailBody()   — get matching job email body (URL fallback)
  * ──────────────────────────────────────────────────────────────────────────
  */
 
@@ -202,6 +205,57 @@ export class EmailHelper {
         const msg = await findLatestMessage(
             email,
             s => /job|posted|post|confirm|trademate/i.test(s)
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        return { body };
+    }
+
+    // ── Admin notification email (Scenario 8) ─────────────────────────────
+
+    /**
+     * Polls Mailsac until the Admin notification / "Approve account" email arrives.
+     * This email is sent to the Tradesman after admin reviews their registration.
+     * Subject typically contains: "admin", "approve", "verify", "registered",
+     * "compliance", or "review".
+     */
+    async fetchAdminNotificationEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /admin|approve|verify|verified|registered|compliance|review|account/i.test(s),
+            'Admin notification / Approve account email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Admin notification email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    // ── Matching Job email (Scenario 8) ───────────────────────────────────
+
+    /**
+     * Polls Mailsac until the "New Matching Job Available" email arrives.
+     * This email is sent to Tradesman when a HomeOwner posts a job matching
+     * the Tradesman's trade category.
+     * Subject typically contains: "job", "matching", "available", "apply".
+     */
+    async fetchMatchingJobEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /matching|new job|job available|apply|visit trademate/i.test(s),
+            'New Matching Job email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Matching job email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    /**
+     * Returns the body of the most recent Matching Job email without deleting it.
+     * Used by Strategy C (URL extraction fallback) when clicking "Visit Trademate to Apply".
+     */
+    async getLatestMatchingJobEmailBody(email: string): Promise<{ body: string }> {
+        const msg = await findLatestMessage(
+            email,
+            s => /matching|new job|job available|apply|visit trademate/i.test(s)
         );
         const body = await getMessageBodyText(email, msg._id);
         return { body };

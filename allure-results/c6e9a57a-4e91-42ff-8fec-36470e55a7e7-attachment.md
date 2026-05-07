@@ -1,0 +1,817 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "Trademate" [ref=e5] [cursor=pointer]:
+          - /url: /homeowner
+          - img "Trademate" [ref=e6]
+        - generic [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /homeowner
+          - link "About Us" [ref=e9] [cursor=pointer]:
+            - /url: /about-us
+          - link "Posted Jobs" [ref=e10] [cursor=pointer]:
+            - /url: /homeowner/posted-jobs
+          - link "Contact" [ref=e11] [cursor=pointer]:
+            - /url: /contact-us
+        - generic [ref=e12]:
+          - generic [ref=e13]:
+            - button "User Profile" [ref=e14]:
+              - img "User Profile" [ref=e15]
+            - link [ref=e16] [cursor=pointer]:
+              - /url: /notifications
+              - img [ref=e17]
+            - generic [ref=e20]:
+              - generic [ref=e21]: Recent Location
+              - generic [ref=e22]:
+                - img [ref=e23]
+                - generic [ref=e26]: Dhaka
+          - button "Log out" [ref=e27]
+  - main [ref=e28]:
+    - main [ref=e29]:
+      - heading "An exclusive Surrey trades platform connecting homeowners with local, verified elite tradespeople. The free smart way to hire trades." [level=1] [ref=e34]
+      - generic [ref=e36]:
+        - button "Hire a tradesperson" [ref=e39] [cursor=pointer]
+        - generic [ref=e40]:
+          - heading "3 simple steps for instant quotes" [level=2] [ref=e41]
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e45]: "1"
+              - paragraph [ref=e46]: Post your job request for FREE
+            - generic [ref=e47]:
+              - generic [ref=e49]: "2"
+              - paragraph [ref=e50]: Get connected to local trade options with a quote
+            - generic [ref=e51]:
+              - generic [ref=e53]: "3"
+              - paragraph [ref=e54]: Select the tradesperson to get the job done
+      - generic [ref=e56]:
+        - heading "Select the job or trade you require" [level=2] [ref=e57]
+        - generic [ref=e58]:
+          - button "Carpenters Carpenters" [ref=e59] [cursor=pointer]:
+            - img "Carpenters" [ref=e61]
+            - generic [ref=e62]: Carpenters
+          - button "Builder Builder" [ref=e63] [cursor=pointer]:
+            - img "Builder" [ref=e65]
+            - generic [ref=e66]: Builder
+          - button "Plumber Plumber" [ref=e67] [cursor=pointer]:
+            - img "Plumber" [ref=e69]
+            - generic [ref=e70]: Plumber
+          - button "Handy Man Handy Man" [ref=e71] [cursor=pointer]:
+            - img "Handy Man" [ref=e73]
+            - generic [ref=e74]: Handy Man
+          - button "Electrician Electrician" [ref=e75] [cursor=pointer]:
+            - img "Electrician" [ref=e77]
+            - generic [ref=e78]: Electrician
+          - button "Skip hire Skip hire" [ref=e79] [cursor=pointer]:
+            - img "Skip hire" [ref=e81]
+            - generic [ref=e82]: Skip hire
+          - button "Roofer Roofer" [ref=e83] [cursor=pointer]:
+            - img "Roofer" [ref=e85]
+            - generic [ref=e86]: Roofer
+          - button "Tiler Tiler" [ref=e87] [cursor=pointer]:
+            - img "Tiler" [ref=e89]
+            - generic [ref=e90]: Tiler
+          - button "Landscape gardener Landscape gardener" [ref=e91] [cursor=pointer]:
+            - img "Landscape gardener" [ref=e93]
+            - generic [ref=e94]: Landscape gardener
+          - button "Kitchen Refurbishment Kitchen Refurbishment" [ref=e95] [cursor=pointer]:
+            - img "Kitchen Refurbishment" [ref=e97]
+            - generic [ref=e98]: Kitchen Refurbishment
+          - button "Window Cleaner Window Cleaner" [ref=e99] [cursor=pointer]:
+            - img "Window Cleaner" [ref=e101]
+            - generic [ref=e102]: Window Cleaner
+          - button "Gas and Heating Engineer Gas and Heating Engineer" [ref=e103] [cursor=pointer]:
+            - img "Gas and Heating Engineer" [ref=e105]
+            - generic [ref=e106]: Gas and Heating Engineer
+          - button "Property Renovation Property Renovation" [ref=e107] [cursor=pointer]:
+            - img "Property Renovation" [ref=e109]
+            - generic [ref=e110]: Property Renovation
+          - button "Flooring Flooring" [ref=e111] [cursor=pointer]:
+            - img "Flooring" [ref=e113]
+            - generic [ref=e114]: Flooring
+          - button "Scaffolder Scaffolder" [ref=e115] [cursor=pointer]:
+            - img "Scaffolder" [ref=e117]
+            - generic [ref=e118]: Scaffolder
+          - button "Architectural Design Architectural Design" [ref=e119] [cursor=pointer]:
+            - img "Architectural Design" [ref=e121]
+            - generic [ref=e122]: Architectural Design
+          - button "Painting & Decorating Painting & Decorating" [ref=e123] [cursor=pointer]:
+            - img "Painting & Decorating" [ref=e125]
+            - generic [ref=e126]: Painting & Decorating
+          - button "Loft Conversion Loft Conversion" [ref=e127] [cursor=pointer]:
+            - img "Loft Conversion" [ref=e129]
+            - generic [ref=e130]: Loft Conversion
+          - button "Rubbish Clearance Rubbish Clearance" [ref=e131] [cursor=pointer]:
+            - img "Rubbish Clearance" [ref=e133]
+            - generic [ref=e134]: Rubbish Clearance
+      - generic [ref=e137]:
+        - generic [ref=e139]:
+          - heading "Enter the job location" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e142]: Start typing to find your address/postcode *
+            - group [ref=e147]:
+              - group [ref=e148]:
+                - img [ref=e149]
+              - textbox "Enter your UK postcode" [ref=e152]: WC2N 5DU
+            - paragraph [ref=e153]: Or
+            - button "Choose your location Manually" [ref=e156]
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - heading "Give your job a title" [level=2] [ref=e160]
+            - paragraph [ref=e161]: Giving your requirement a headline boosts your level of attention and interest
+            - textbox "Write headline here" [ref=e163]: Hiring A Plumber
+          - generic [ref=e164]:
+            - heading "Tell us more about the job you need doing." [level=2] [ref=e165]
+            - paragraph [ref=e166]: The more detail the quicker and more accurate the quote provided
+            - textbox "Minimum of 50 characters needs entering as min description to proceed" [ref=e168]: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        - generic [ref=e170]:
+          - heading "What timeframe do you need the job completed by?" [level=2] [ref=e171]
+          - generic [ref=e174]:
+            - button "I’m flexible on start date" [ref=e175]:
+              - generic [ref=e177]: I’m flexible on start date
+            - button "Urgent — Within next 48hrs" [ref=e178]:
+              - img [ref=e180]
+              - generic [ref=e182]: Urgent — Within next 48hrs
+            - button "Within 1-2 weeks" [ref=e183]:
+              - generic [ref=e185]: Within 1-2 weeks
+            - button "Within the month" [ref=e186]:
+              - generic [ref=e188]: Within the month
+            - button "Looking for a competitive quote for now" [ref=e189]:
+              - generic [ref=e191]: Looking for a competitive quote for now
+        - generic [ref=e193]:
+          - heading "What plumbing service is needed?" [level=2] [ref=e194]
+          - generic [ref=e197]:
+            - button "Leaking pipes" [ref=e198]:
+              - generic [ref=e200]: Leaking pipes
+            - button "Toilet & tap repair" [ref=e201]:
+              - generic [ref=e203]: Toilet & tap repair
+            - button "Bathroom installation" [ref=e204]:
+              - img [ref=e206]
+              - generic [ref=e208]: Bathroom installation
+            - button "Drainage issue" [ref=e209]:
+              - generic [ref=e211]: Drainage issue
+        - generic [ref=e213]:
+          - heading "Upload image (Optional)" [level=2] [ref=e214]
+          - generic [ref=e216]:
+            - generic [ref=e218] [cursor=pointer]:
+              - img [ref=e220]
+              - paragraph [ref=e222]: Upload file
+              - paragraph [ref=e223]: Maximum File Size 10 MB
+            - generic [ref=e224]:
+              - paragraph [ref=e225]: 1 image(s) uploaded
+              - generic [ref=e227]:
+                - img "Qa.jpg" [ref=e228]
+                - button [ref=e230]:
+                  - img [ref=e231]
+                - paragraph [ref=e234]: Qa.jpg
+        - generic [ref=e236]:
+          - heading "Upload Video (Optional)" [level=2] [ref=e237]
+          - generic [ref=e239]:
+            - generic [ref=e241] [cursor=pointer]:
+              - img [ref=e243]
+              - paragraph [ref=e245]: Upload file
+              - paragraph [ref=e246]: Maximum File Size 10 MB
+            - generic [ref=e247]:
+              - paragraph [ref=e248]: 1 video(s) uploaded
+              - generic [ref=e250]:
+                - button [ref=e252] [cursor=pointer]:
+                  - img [ref=e254]
+                - button [ref=e257]:
+                  - img [ref=e258]
+                - paragraph [ref=e261]: testVideo.mp4
+        - generic [ref=e263]:
+          - heading "Job Done By" [level=2] [ref=e264]
+          - generic [ref=e265]:
+            - generic [ref=e266]: Select a date
+            - generic [ref=e267]:
+              - button "07/05/2026" [ref=e269] [cursor=pointer]:
+                - generic [ref=e270]: 07/05/2026
+              - generic:
+                - img
+          - button "Submit" [ref=e272]
+      - generic [ref=e275]:
+        - generic [ref=e276]:
+          - generic [ref=e277]:
+            - paragraph [ref=e278]
+            - paragraph [ref=e279]:
+              - strong [ref=e280]: Are you a Homeowner?
+              - text: Find trusted tradespeople with Trademate — quickly and for free. Stop wasting time searching and comparing endless listings. With Trademate, you can post your job once and instantly get matched with verified, local tradespeople ready to help.
+              - strong [ref=e281]: Why Homeowners Love Trademate
+            - list [ref=e282]:
+              - listitem [ref=e283]: Free to Post Jobs — No hidden fees, ever.
+              - listitem [ref=e284]: Verified & Trusted Trades
+              - listitem [ref=e285]: Quick Matches — Get responses within minutes.
+              - listitem [ref=e286]: Easy Communication — Compare and connect directly.
+              - listitem [ref=e287]: Safe & Transparent — No surprises, just quality work.
+          - link "Post a Job Now" [ref=e288] [cursor=pointer]:
+            - /url: /homeowner
+            - button "Post a Job Now" [ref=e289]
+        - generic [ref=e290]:
+          - region [ref=e291]:
+            - generic [ref=e293]:
+              - group [ref=e294]:
+                - img "Homeowner benefit image 1" [ref=e296]
+              - group [ref=e297]:
+                - img "Homeowner benefit image 2" [ref=e299]
+              - group [ref=e300]:
+                - img "Homeowner benefit image 3" [ref=e302]
+          - generic [ref=e303]:
+            - button "Go to slide 1" [ref=e304]
+            - button "Go to slide 2" [ref=e305]
+            - button "Go to slide 3" [ref=e306]
+      - generic [ref=e308]:
+        - heading "Why choose us?" [level=2] [ref=e309]
+        - generic [ref=e310]:
+          - generic [ref=e311]:
+            - img "Free to use" [ref=e313]
+            - heading "Free to use" [level=3] [ref=e314]
+            - paragraph [ref=e315]: post jobs, get quotes, and compare trusted local trades at no cost.
+          - generic [ref=e316]:
+            - img "Fast response" [ref=e318]
+            - heading "Fast response" [level=3] [ref=e319]
+            - paragraph [ref=e320]: Receive instant alerts and quotes from only the best verified professionals nearby.
+          - generic [ref=e321]:
+            - img "Trusted experts only" [ref=e323]
+            - heading "Trusted experts only" [level=3] [ref=e324]
+            - paragraph [ref=e325]: every tradesperson is vetted, Checkatrade verified, and reviewed for quality.
+          - generic [ref=e326]:
+            - img "Live updates" [ref=e328]
+            - heading "Live updates" [level=3] [ref=e329]
+            - paragraph [ref=e330]: track your job progress in real time with secure in-app messaging.
+          - generic [ref=e331]:
+            - img "Convenient & reliable" [ref=e333]
+            - heading "Convenient & reliable" [level=3] [ref=e334]
+            - paragraph [ref=e335]: schedule, approve, and pay when you’re satisfied the job’s done
+          - generic [ref=e336]:
+            - img "Real live jobs, no bidding" [ref=e338]
+            - heading "Real live jobs, no bidding" [level=3] [ref=e339]
+            - paragraph [ref=e340]: Flat monthly subscription (£75/region), no per-lead costs or hidden fees.
+          - generic [ref=e341]:
+            - img "Work where you want" [ref=e343]
+            - heading "Work where you want" [level=3] [ref=e344]
+            - paragraph [ref=e345]: Choose your region(s) and expand coverage as your business grows.
+          - generic [ref=e346]:
+            - img "Steady workflow" [ref=e348]
+            - heading "Steady workflow" [level=3] [ref=e349]
+            - paragraph [ref=e350]: Access live job alerts and verified customers in your area.
+          - generic [ref=e351]:
+            - img "Build your reputation" [ref=e353]
+            - heading "Build your reputation" [level=3] [ref=e354]
+            - paragraph [ref=e355]: Earn verified ratings, reviews, and repeat business with our users
+      - generic [ref=e357]:
+        - heading "Testimonial" [level=2] [ref=e358]
+        - region [ref=e359]:
+          - generic [ref=e361]:
+            - group [ref=e362]:
+              - generic [ref=e363]:
+                - img "Jenny Wilson" [ref=e365]
+                - generic [ref=e366]:
+                  - generic [ref=e367]:
+                    - img [ref=e368]
+                    - img [ref=e370]
+                    - img [ref=e372]
+                    - img [ref=e374]
+                    - img [ref=e376]
+                  - paragraph [ref=e378]: Finding a reliable plumber used to be a headache, but this platform made it so simple. The tradesman arrived on time and fixed the leak perfectly!
+                  - paragraph [ref=e379]: Jenny Wilson
+            - group [ref=e380]:
+              - generic [ref=e381]:
+                - img "Guy Hawkins" [ref=e383]
+                - generic [ref=e384]:
+                  - generic [ref=e385]:
+                    - img [ref=e386]
+                    - img [ref=e388]
+                    - img [ref=e390]
+                    - img [ref=e392]
+                    - img [ref=e394]
+                  - paragraph [ref=e396]: As a carpenter, I appreciate how this site connects me with local homeowners. It has helped me grow my business and fill my schedule every week.
+                  - paragraph [ref=e397]: Guy Hawkins
+            - group [ref=e398]:
+              - generic [ref=e399]:
+                - img "Robert Fox" [ref=e401]
+                - generic [ref=e402]:
+                  - generic [ref=e403]:
+                    - img [ref=e404]
+                    - img [ref=e406]
+                    - img [ref=e408]
+                    - img [ref=e410]
+                    - img [ref=e412]
+                  - paragraph [ref=e414]: I used the app to find an electrician for my kitchen renovation. The reviews helped me choose the right pro, and the results were outstanding.
+                  - paragraph [ref=e415]: Robert Fox
+            - group [ref=e416]:
+              - generic [ref=e417]:
+                - img "Esther Howard" [ref=e419]
+                - generic [ref=e420]:
+                  - generic [ref=e421]:
+                    - img [ref=e422]
+                    - img [ref=e424]
+                    - img [ref=e426]
+                    - img [ref=e428]
+                    - img [ref=e430]
+                  - paragraph [ref=e432]: The vetting process gives me peace of mind. Knowing that every tradesman is verified makes a huge difference when inviting someone into my home.
+                  - paragraph [ref=e433]: Esther Howard
+            - group [ref=e434]:
+              - generic [ref=e435]:
+                - img "Cody Fisher" [ref=e437]
+                - generic [ref=e438]:
+                  - generic [ref=e439]:
+                    - img [ref=e440]
+                    - img [ref=e442]
+                    - img [ref=e444]
+                    - img [ref=e446]
+                    - img [ref=e448]
+                  - paragraph [ref=e450]: Great interface for managing quotes. I was able to compare three different builders and choose the one that fit my budget and timeline best.
+                  - paragraph [ref=e451]: Cody Fisher
+            - group [ref=e452]:
+              - generic [ref=e453]:
+                - img "Bessie Cooper" [ref=e455]
+                - generic [ref=e456]:
+                  - generic [ref=e457]:
+                    - img [ref=e458]
+                    - img [ref=e460]
+                    - img [ref=e462]
+                    - img [ref=e464]
+                    - img [ref=e466]
+                  - paragraph [ref=e468]: Our garden looks incredible after finding a landscaper through here. The communication throughout the project was seamless and professional.
+                  - paragraph [ref=e469]: Bessie Cooper
+            - group [ref=e470]:
+              - generic [ref=e471]:
+                - img "Jacob Jones" [ref=e473]
+                - generic [ref=e474]:
+                  - generic [ref=e475]:
+                    - img [ref=e476]
+                    - img [ref=e478]
+                    - img [ref=e480]
+                    - img [ref=e482]
+                    - img [ref=e484]
+                  - paragraph [ref=e486]: The payment protection feature is a game changer. It feels much safer to pay for large renovations through the platform's secure system.
+                  - paragraph [ref=e487]: Jacob Jones
+            - group [ref=e488]:
+              - generic [ref=e489]:
+                - img "Kristin Watson" [ref=e491]
+                - generic [ref=e492]:
+                  - generic [ref=e493]:
+                    - img [ref=e494]
+                    - img [ref=e496]
+                    - img [ref=e498]
+                    - img [ref=e500]
+                    - img [ref=e502]
+                  - paragraph [ref=e504]: I've tried other sites, but the quality of tradesmen here is much higher. The painting work done on my living room was clean and precise.
+                  - paragraph [ref=e505]: Kristin Watson
+            - group [ref=e506]:
+              - generic [ref=e507]:
+                - img "Albert Flores" [ref=e509]
+                - generic [ref=e510]:
+                  - generic [ref=e511]:
+                    - img [ref=e512]
+                    - img [ref=e514]
+                    - img [ref=e516]
+                    - img [ref=e518]
+                    - img [ref=e520]
+                  - paragraph [ref=e522]: The customer support team helped me resolve a minor dispute with a contractor quickly. It's nice to know someone has your back.
+                  - paragraph [ref=e523]: Albert Flores
+            - group [ref=e524]:
+              - generic [ref=e525]:
+                - img "Marvin McKinney" [ref=e527]
+                - generic [ref=e528]:
+                  - generic [ref=e529]:
+                    - img [ref=e530]
+                    - img [ref=e532]
+                    - img [ref=e534]
+                    - img [ref=e536]
+                    - img [ref=e538]
+                  - paragraph [ref=e540]: Fast, efficient, and transparent. I posted my job in the morning and had a professional tiler at my door by the afternoon. Highly recommended!
+                  - paragraph [ref=e541]: Marvin McKinney
+      - generic [ref=e545]:
+        - heading "Frequently Asked Questions" [level=2] [ref=e546]
+        - paragraph [ref=e547]: Find quick answers to common questions about posting jobs, finding tradespeople, and how our platform works.
+        - generic [ref=e548]:
+          - generic [ref=e549]:
+            - heading "How does TAXDAX help me find new clients?" [level=3] [ref=e550]:
+              - button "How does TAXDAX help me find new clients?" [expanded] [ref=e551]:
+                - text: How does TAXDAX help me find new clients?
+                - img
+            - region "How does TAXDAX help me find new clients?" [ref=e552]:
+              - generic [ref=e553]: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et felis vel nisi consectetur aliquet. Aenean vehicula, urna nec aliquet volutpat, augue turpis suscipit lacus, sit amet sodales libero odio nec mauris. Vivamus consequat, lectus a tincidunt interdum, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et felis vel nisi consectetur aliquet. Aenean vehicula, urna nec aliquet volutpat, augue turpis suscipit lacus, sit amet sodales libero odio nec mauris. Vivamus consequat, lectus a tincidunt interdum,
+          - heading "How do I manage my appointments?" [level=3] [ref=e555]:
+            - button "How do I manage my appointments?" [ref=e556]:
+              - text: How do I manage my appointments?
+              - img
+          - heading "Is there a fee to join?" [level=3] [ref=e558]:
+            - button "Is there a fee to join?" [ref=e559]:
+              - text: Is there a fee to join?
+              - img
+          - heading "How secure is the platform for document sharing?" [level=3] [ref=e561]:
+            - button "How secure is the platform for document sharing?" [ref=e562]:
+              - text: How secure is the platform for document sharing?
+              - img
+      - generic [ref=e564]:
+        - heading "Recent live jobs" [level=2] [ref=e565]
+        - generic [ref=e566]:
+          - generic [ref=e567]:
+            - generic [ref=e568]:
+              - generic [ref=e569]:
+                - generic [ref=e570]: Urgent — Within next 48hrs
+                - generic [ref=e571]: Plumber
+              - heading "Hiring A Plumber" [level=3] [ref=e572]
+              - paragraph [ref=e573]: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              - generic [ref=e574]:
+                - generic [ref=e575]:
+                  - img [ref=e576]
+                  - generic [ref=e579]: WC2N 5DU
+                - generic [ref=e580]:
+                  - img [ref=e581]
+                  - generic [ref=e584]: Posted 14 minutes ago
+            - link "View Details" [ref=e585] [cursor=pointer]:
+              - /url: /job-details/41
+              - button "View Details" [ref=e586]
+          - generic [ref=e587]:
+            - generic [ref=e588]:
+              - generic [ref=e589]:
+                - generic [ref=e590]: Urgent — Within next 48hrs
+                - generic [ref=e591]: Plumber
+              - heading "Need an experienced Plumber" [level=3] [ref=e592]
+              - paragraph [ref=e593]: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+              - generic [ref=e594]:
+                - generic [ref=e595]:
+                  - img [ref=e596]
+                  - generic [ref=e599]: WC2N 5DU
+                - generic [ref=e600]:
+                  - img [ref=e601]
+                  - generic [ref=e604]: Posted about 4 hours ago
+            - link "View Details" [ref=e605] [cursor=pointer]:
+              - /url: /job-details/28
+              - button "View Details" [ref=e606]
+          - generic [ref=e607]:
+            - generic [ref=e608]:
+              - generic [ref=e609]:
+                - generic [ref=e610]: Within 1-2 weeks
+                - generic [ref=e611]: Plumber
+              - heading "testjob" [level=3] [ref=e612]
+              - paragraph [ref=e613]: testjob testjob testjob testjob testjob v testjob testjob testjob testjob testjob v testjob testjob testjob testjob testjob v testjob testjob testjob testjob testjob v testjob testjob testjob testjob testjob v testjob testjob testjob testjob testjob v
+              - generic [ref=e614]:
+                - generic [ref=e615]:
+                  - img [ref=e616]
+                  - generic [ref=e619]: WC2N 5DU
+                - generic [ref=e620]:
+                  - img [ref=e621]
+                  - generic [ref=e624]: Posted about 22 hours ago
+            - link "View Details" [ref=e625] [cursor=pointer]:
+              - /url: /job-details/22
+              - button "View Details" [ref=e626]
+          - generic [ref=e627]:
+            - generic [ref=e628]:
+              - generic [ref=e629]:
+                - generic [ref=e630]: Urgent — Within next 48hrs
+                - generic [ref=e631]: Plumber
+              - heading "Test title job" [level=3] [ref=e632]
+              - paragraph [ref=e633]: This is a description This is a description This is a description This is a description
+              - generic [ref=e634]:
+                - generic [ref=e635]:
+                  - img [ref=e636]
+                  - generic [ref=e639]: "1100"
+                - generic [ref=e640]:
+                  - img [ref=e641]
+                  - generic [ref=e644]: Posted 2 days ago
+            - link "View Details" [ref=e645] [cursor=pointer]:
+              - /url: /job-details/16
+              - button "View Details" [ref=e646]
+      - generic [ref=e648]:
+        - heading "Popular Tradesperson" [level=2] [ref=e649]
+        - region [ref=e651]:
+          - generic [ref=e653]:
+            - group [ref=e654]:
+              - button "All" [ref=e655]
+            - group [ref=e656]:
+              - button "Flooring" [ref=e657]
+            - group [ref=e658]:
+              - button "Scaffolder" [ref=e659]
+            - group [ref=e660]:
+              - button "Carpenters" [ref=e661]
+            - group [ref=e662]:
+              - button "Builder" [ref=e663]
+            - group [ref=e664]:
+              - button "Plumber" [ref=e665]
+            - group [ref=e666]:
+              - button "Handy Man" [ref=e667]
+            - group [ref=e668]:
+              - button "Electrician" [ref=e669]
+            - group [ref=e670]:
+              - button "Skip hire" [ref=e671]
+            - group [ref=e672]:
+              - button "Roofer" [ref=e673]
+            - group [ref=e674]:
+              - button "Tiler" [ref=e675]
+            - group [ref=e676]:
+              - button "Landscape gardener" [ref=e677]
+            - group [ref=e678]:
+              - button "Kitchen Refurbishment" [ref=e679]
+            - group [ref=e680]:
+              - button "Window Cleaner" [ref=e681]
+            - group [ref=e682]:
+              - button "Gas and Heating Engineer" [ref=e683]
+            - group [ref=e684]:
+              - button "Property Renovation" [ref=e685]
+        - region [ref=e687]:
+          - generic [ref=e689]:
+            - group [ref=e690]:
+              - generic [ref=e691]:
+                - generic [ref=e692]:
+                  - img "James Miller" [ref=e694]
+                  - generic [ref=e695]:
+                    - generic [ref=e696]: 12+
+                    - generic [ref=e697]: Exp
+                - generic [ref=e698]:
+                  - generic [ref=e699]:
+                    - heading "James Miller" [level=3] [ref=e700]
+                    - img [ref=e701]
+                  - generic [ref=e704]:
+                    - generic [ref=e705]:
+                      - generic [ref=e706]:
+                        - generic [ref=e707]: "0"
+                        - img [ref=e708]
+                      - generic [ref=e710]: 0 reviews
+                    - generic [ref=e711]:
+                      - generic [ref=e712]: Expertise
+                      - generic [ref=e713]:
+                        - generic [ref=e714]: Builder
+                        - generic [ref=e715]: Handy Man
+                        - generic [ref=e716]: Window Cleaner
+            - group [ref=e717]:
+              - generic [ref=e718]:
+                - generic [ref=e719]:
+                  - img "Sarah Khan" [ref=e721]
+                  - generic [ref=e722]:
+                    - generic [ref=e723]: 7+
+                    - generic [ref=e724]: Exp
+                - generic [ref=e725]:
+                  - generic [ref=e726]:
+                    - heading "Sarah Khan" [level=3] [ref=e727]
+                    - img [ref=e728]
+                  - generic [ref=e731]:
+                    - generic [ref=e732]:
+                      - generic [ref=e733]:
+                        - generic [ref=e734]: "0"
+                        - img [ref=e735]
+                      - generic [ref=e737]: 0 reviews
+                    - generic [ref=e738]:
+                      - generic [ref=e739]: Expertise
+                      - generic [ref=e740]:
+                        - generic [ref=e741]: Kitchen Refurbishment
+                        - generic [ref=e742]: Gas and Heating Engineer
+                        - generic [ref=e743]: Scaffolder
+            - group [ref=e744]:
+              - generic [ref=e745]:
+                - generic [ref=e746]:
+                  - img "David Wilson" [ref=e748]
+                  - generic [ref=e749]:
+                    - generic [ref=e750]: 4+
+                    - generic [ref=e751]: Exp
+                - generic [ref=e752]:
+                  - generic [ref=e753]:
+                    - heading "David Wilson" [level=3] [ref=e754]
+                    - img [ref=e755]
+                  - generic [ref=e758]:
+                    - generic [ref=e759]:
+                      - generic [ref=e760]:
+                        - generic [ref=e761]: "0"
+                        - img [ref=e762]
+                      - generic [ref=e764]: 0 reviews
+                    - generic [ref=e765]:
+                      - generic [ref=e766]: Expertise
+                      - generic [ref=e767]:
+                        - generic [ref=e768]: Skip hire
+                        - generic [ref=e769]: Tiler
+                        - generic [ref=e770]: Property Renovation
+            - group [ref=e771]:
+              - generic [ref=e772]:
+                - generic [ref=e773]:
+                  - img "Michael Brown" [ref=e775]
+                  - generic [ref=e776]:
+                    - generic [ref=e777]: 10+
+                    - generic [ref=e778]: Exp
+                - generic [ref=e779]:
+                  - generic [ref=e780]:
+                    - heading "Michael Brown" [level=3] [ref=e781]
+                    - img [ref=e782]
+                  - generic [ref=e785]:
+                    - generic [ref=e786]:
+                      - generic [ref=e787]:
+                        - generic [ref=e788]: "0"
+                        - img [ref=e789]
+                      - generic [ref=e791]: 0 reviews
+                    - generic [ref=e792]:
+                      - generic [ref=e793]: Expertise
+                      - generic [ref=e794]:
+                        - generic [ref=e795]: Carpenters
+                        - generic [ref=e796]: Plumber
+                        - generic [ref=e797]: Tiler
+            - group [ref=e798]:
+              - generic [ref=e799]:
+                - generic [ref=e800]:
+                  - img "Karim Sheikh" [ref=e802]
+                  - generic [ref=e803]:
+                    - generic [ref=e804]: 5+
+                    - generic [ref=e805]: Exp
+                - generic [ref=e806]:
+                  - generic [ref=e807]:
+                    - heading "Karim Sheikh" [level=3] [ref=e808]
+                    - img [ref=e809]
+                  - generic [ref=e812]:
+                    - generic [ref=e813]:
+                      - generic [ref=e814]:
+                        - generic [ref=e815]: "0"
+                        - img [ref=e816]
+                      - generic [ref=e818]: 0 reviews
+                    - generic [ref=e819]:
+                      - generic [ref=e820]: Expertise
+                      - generic [ref=e821]:
+                        - generic [ref=e822]: Carpenters
+                        - generic [ref=e823]: Builder
+                        - generic [ref=e824]: Roofer
+            - group [ref=e825]:
+              - generic [ref=e826]:
+                - generic [ref=e827]:
+                  - img "Rahim Uddin" [ref=e829]
+                  - generic [ref=e830]:
+                    - generic [ref=e831]: 8+
+                    - generic [ref=e832]: Exp
+                - generic [ref=e833]:
+                  - generic [ref=e834]:
+                    - heading "Rahim Uddin" [level=3] [ref=e835]
+                    - img [ref=e836]
+                  - generic [ref=e839]:
+                    - generic [ref=e840]:
+                      - generic [ref=e841]:
+                        - generic [ref=e842]: "0"
+                        - img [ref=e843]
+                      - generic [ref=e845]: 0 reviews
+                    - generic [ref=e846]:
+                      - generic [ref=e847]: Expertise
+                      - generic [ref=e848]:
+                        - generic [ref=e849]: Carpenters
+                        - generic [ref=e850]: Skip hire
+                        - generic [ref=e851]: Window Cleaner
+            - group [ref=e852]:
+              - generic [ref=e853]:
+                - generic [ref=e854]:
+                  - img "Jon Smith" [ref=e856]
+                  - generic [ref=e857]:
+                    - generic [ref=e858]: 6+
+                    - generic [ref=e859]: Exp
+                - generic [ref=e860]:
+                  - generic [ref=e861]:
+                    - heading "Jon Smith" [level=3] [ref=e862]
+                    - img [ref=e863]
+                  - generic [ref=e866]:
+                    - generic [ref=e867]:
+                      - generic [ref=e868]:
+                        - generic [ref=e869]: "0"
+                        - img [ref=e870]
+                      - generic [ref=e872]: 0 reviews
+                    - generic [ref=e873]:
+                      - generic [ref=e874]: Expertise
+                      - generic [ref=e875]:
+                        - generic [ref=e876]: Electrician
+                        - generic [ref=e877]: Flooring
+                        - generic [ref=e878]: Scaffolder
+            - group [ref=e879]:
+              - generic [ref=e880]:
+                - generic [ref=e881]:
+                  - img "Sara Smith" [ref=e883]
+                  - generic [ref=e884]:
+                    - generic [ref=e885]: 6+
+                    - generic [ref=e886]: Exp
+                - generic [ref=e887]:
+                  - generic [ref=e888]:
+                    - heading "Sara Smith" [level=3] [ref=e889]
+                    - img [ref=e890]
+                  - generic [ref=e893]:
+                    - generic [ref=e894]:
+                      - generic [ref=e895]:
+                        - generic [ref=e896]: "0"
+                        - img [ref=e897]
+                      - generic [ref=e899]: 0 reviews
+                    - generic [ref=e900]:
+                      - generic [ref=e901]: Expertise
+                      - generic [ref=e902]:
+                        - generic [ref=e903]: Handy Man
+                        - generic [ref=e904]: Landscape gardener
+                        - generic [ref=e905]: Flooring
+            - group [ref=e906]:
+              - generic [ref=e907]:
+                - generic [ref=e908]:
+                  - img "John Doe" [ref=e910]
+                  - generic [ref=e911]:
+                    - generic [ref=e912]: 3+
+                    - generic [ref=e913]: Exp
+                - generic [ref=e914]:
+                  - generic [ref=e915]:
+                    - heading "John Doe" [level=3] [ref=e916]
+                    - img [ref=e917]
+                  - generic [ref=e920]:
+                    - generic [ref=e921]:
+                      - generic [ref=e922]:
+                        - generic [ref=e923]: "0"
+                        - img [ref=e924]
+                      - generic [ref=e926]: 0 reviews
+                    - generic [ref=e927]:
+                      - generic [ref=e928]: Expertise
+                      - generic [ref=e929]:
+                        - generic [ref=e930]: Electrician
+                        - generic [ref=e931]: Landscape gardener
+                        - generic [ref=e932]: Kitchen Refurbishment
+            - group [ref=e933]:
+              - generic [ref=e934]:
+                - generic [ref=e935]:
+                  - img "Ali Rahman" [ref=e937]
+                  - generic [ref=e938]:
+                    - generic [ref=e939]: 5+
+                    - generic [ref=e940]: Exp
+                - generic [ref=e941]:
+                  - generic [ref=e942]:
+                    - heading "Ali Rahman" [level=3] [ref=e943]
+                    - img [ref=e944]
+                  - generic [ref=e947]:
+                    - generic [ref=e948]:
+                      - generic [ref=e949]:
+                        - generic [ref=e950]: "0"
+                        - img [ref=e951]
+                      - generic [ref=e953]: 0 reviews
+                    - generic [ref=e954]:
+                      - generic [ref=e955]: Expertise
+                      - generic [ref=e956]:
+                        - generic [ref=e957]: Skip hire
+                        - generic [ref=e958]: Window Cleaner
+                        - generic [ref=e959]: Flooring
+            - group [ref=e960]:
+              - generic [ref=e961]:
+                - generic [ref=e962]:
+                  - img "Abdul Gani" [ref=e964]
+                  - generic [ref=e965]:
+                    - generic [ref=e966]: 1+
+                    - generic [ref=e967]: Exp
+                - generic [ref=e968]:
+                  - generic [ref=e969]:
+                    - heading "Abdul Gani" [level=3] [ref=e970]
+                    - img [ref=e971]
+                  - generic [ref=e974]:
+                    - generic [ref=e975]:
+                      - generic [ref=e976]:
+                        - generic [ref=e977]: "4.5"
+                        - img [ref=e978]
+                      - generic [ref=e980]: 2 reviews
+                    - generic [ref=e981]:
+                      - generic [ref=e982]: Expertise
+                      - generic [ref=e983]:
+                        - generic [ref=e984]: Plumber
+                        - generic [ref=e985]: Skip hire
+                        - generic [ref=e986]: Scaffolder
+  - contentinfo [ref=e987]:
+    - generic [ref=e989]:
+      - generic [ref=e990]:
+        - link "Trademate" [ref=e991] [cursor=pointer]:
+          - /url: /
+          - img "Trademate" [ref=e992]
+        - paragraph [ref=e993]: Providing a FREE simple, easy to use live job platform for access to elite verified and trusted tradesman in one single platform across London & Surrey. No Internet searching, No dodgy referrals, No timewasters - instant local trades at your fingertips when you need a job done!
+      - generic [ref=e994]:
+        - heading "Useful links" [level=3] [ref=e995]
+        - list [ref=e996]:
+          - listitem [ref=e997]:
+            - link "Home" [ref=e998] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e999]:
+            - link "Wishlist" [ref=e1000] [cursor=pointer]:
+              - /url: /wishlist
+          - listitem [ref=e1001]:
+            - link "Contact Us" [ref=e1002] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e1003]:
+            - generic [ref=e1004]: Join as a Home Owner (Already joined)
+          - listitem
+      - generic [ref=e1005]:
+        - heading "Legal" [level=3] [ref=e1006]
+        - list [ref=e1007]:
+          - listitem [ref=e1008]:
+            - link "Terms of Use" [ref=e1009] [cursor=pointer]:
+              - /url: /terms-of-use
+          - listitem [ref=e1010]:
+            - link "Privacy Policy" [ref=e1011] [cursor=pointer]:
+              - /url: /privacy-policy
+      - generic [ref=e1012]:
+        - heading "Get in Touch" [level=3] [ref=e1013]
+        - list [ref=e1014]:
+          - listitem [ref=e1015]:
+            - img [ref=e1016]
+            - generic [ref=e1019]: 77 Lower Camden Street, Dunlin 2
+          - listitem [ref=e1020]:
+            - img [ref=e1021]
+            - link "Info@clevrfox.com" [ref=e1024] [cursor=pointer]:
+              - /url: mailto:Info@clevrfox.com
+    - paragraph [ref=e1027]: Copyright © 2025 Clavr Fox | All Rights Reserved
+  - region "Notifications alt+T"
+  - alert [ref=e1028]: An exclusive Surrey trades platform connecting homeowners with local, verified elite tradespeople. The free smart way to hire trades.
+```

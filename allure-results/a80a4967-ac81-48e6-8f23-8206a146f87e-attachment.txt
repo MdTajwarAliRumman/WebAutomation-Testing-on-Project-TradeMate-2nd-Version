@@ -1,0 +1,26 @@
+✅ Admin site opened in Tab 4
+✅ Logged into admin panel
+✅ Navigated to Tradesmen list in admin panel
+✅ Tradesmen table loaded — first row (recently created Tradesman) is visible
+✅ Eye icon clicked — Tradesman record opened
+
+🔍 DIAGNOSTIC — buttons on Tradesman detail page:
+  btn: "About Page"
+  btn: "FAQ"
+  btn: "Settings"
+  btn: "Admin"
+  btn: "Update Verification"
+  btn: "Print Profile"
+  btn: "Close"
+  btn: "Save changes"
+✅ "Update Verification" button clicked
+
+🔍 DIAGNOSTIC — dropdowns/selects visible:
+  select/combo: name="status" text="Pending Review
+                                
+                                
+                   "
+✅ Selected "Verified" from native <select>
+✅ "Save Changes" clicked — Tradesman Verification Status set to "Verified"
+🌐 Back on TradeMate website: https://trademate-next-js.vercel.app/sign-in
+✅ Scenario 7 complete — Tradesman is now Verified by Admin ✅

@@ -1,0 +1,96 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link "Trademate" [ref=e5] [cursor=pointer]:
+          - /url: /tradesman/home
+          - img "Trademate" [ref=e6]
+        - generic [ref=e7]:
+          - link "Home" [ref=e8] [cursor=pointer]:
+            - /url: /tradesman/home
+          - link "About Us" [ref=e9] [cursor=pointer]:
+            - /url: /about-us
+          - link "Contact" [ref=e10] [cursor=pointer]:
+            - /url: /contact-us
+        - generic [ref=e11]:
+          - link "Find a surrey tradesman" [ref=e12] [cursor=pointer]:
+            - /url: /sign-up?role=homeowner
+            - button "Find a surrey tradesman" [ref=e13]
+          - link "Join as a Tradesperson" [ref=e14] [cursor=pointer]:
+            - /url: /sign-up?role=tradesman
+            - button "Join as a Tradesperson" [ref=e15]
+  - main [ref=e16]:
+    - generic [ref=e18]:
+      - img "Beautiful homes in London & Surrey" [ref=e20]
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - heading "Login your account" [level=1] [ref=e26]
+          - paragraph [ref=e27]: Enter your details below
+        - generic [ref=e28]:
+          - textbox "Email or Phone Number" [ref=e30]
+          - generic [ref=e32]:
+            - textbox "Password" [ref=e33]
+            - button "Show password" [ref=e34]:
+              - img [ref=e35]
+          - link "Forgot Password?" [ref=e39] [cursor=pointer]:
+            - /url: /forgot-password
+          - button "Log in" [ref=e40]
+        - generic [ref=e43]: Or
+        - button "Login with Google" [ref=e45]:
+          - img
+          - text: Login with Google
+        - paragraph [ref=e46]:
+          - text: Already have account?
+          - link "Sign Up" [ref=e47] [cursor=pointer]:
+            - /url: /sign-up
+  - contentinfo [ref=e48]:
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - link "Trademate" [ref=e52] [cursor=pointer]:
+          - /url: /
+          - img "Trademate" [ref=e53]
+        - paragraph [ref=e54]: Providing a FREE simple, easy to use live job platform for access to elite verified and trusted tradesman in one single platform across London & Surrey. No Internet searching, No dodgy referrals, No timewasters - instant local trades at your fingertips when you need a job done!
+      - generic [ref=e55]:
+        - heading "Useful links" [level=3] [ref=e56]
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Home" [ref=e59] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e60]:
+            - link "Wishlist" [ref=e61] [cursor=pointer]:
+              - /url: /wishlist
+          - listitem [ref=e62]:
+            - link "Contact Us" [ref=e63] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e64]:
+            - link "Join as a Home Owner" [ref=e65] [cursor=pointer]:
+              - /url: /sign-up?role=homeowner
+          - listitem [ref=e66]:
+            - link "Join as a Tradesperson" [ref=e67] [cursor=pointer]:
+              - /url: /sign-up?role=tradesman
+      - generic [ref=e68]:
+        - heading "Legal" [level=3] [ref=e69]
+        - list [ref=e70]:
+          - listitem [ref=e71]:
+            - link "Terms of Use" [ref=e72] [cursor=pointer]:
+              - /url: /terms-of-use
+          - listitem [ref=e73]:
+            - link "Privacy Policy" [ref=e74] [cursor=pointer]:
+              - /url: /privacy-policy
+      - generic [ref=e75]:
+        - heading "Get in Touch" [level=3] [ref=e76]
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - img [ref=e79]
+            - generic [ref=e82]: 77 Lower Camden Street, Dunlin 2
+          - listitem [ref=e83]:
+            - img [ref=e84]
+            - link "Info@clevrfox.com" [ref=e87] [cursor=pointer]:
+              - /url: mailto:Info@clevrfox.com
+    - paragraph [ref=e90]: Copyright © 2025 Clavr Fox | All Rights Reserved
+  - region "Notifications alt+T"
+  - alert [ref=e91]: Sign In - Trademate
+```

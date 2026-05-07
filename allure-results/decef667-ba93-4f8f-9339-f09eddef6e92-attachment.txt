@@ -1,0 +1,31 @@
+✅ Home page — Services section visible
+✅ Location confirmed — continued
+✅ Title and description filled
+✅ Timeframe selected
+✅ Work type selected
+✅ Image uploaded
+✅ Job posted successfully!
+⏳ Waiting 5 seconds for the job email to be generated...
+⏳ Polling Mailsac for "Job confirmation email" at trademate_movbmm4f@mailsac.com...
+✅ Found — Subject: "Your Job Post Is Live on Trademate site!"
+📧 Job email snippet:
+Your Job Is Live Trademate !
+
+
+HI TAJWAR,
+
+Your job post has been published and is now live.
+
+How you'll receive quotes: Tradesmen who match your job category and postcode are notified immediately. They will review your job
+details and submit quotes through the Trademate platform. You will receive i
+✅ Job email in inbox — Subject: "Your Job Post Is Live on Trademate site!"
+👀 Owner inbox reloaded — looking for job live email
+✅ Job email opened in Mailsac
+✅ "live" keyword confirmed in email body via Mailsac API
+🔄 Strategy C — fetching email body via API to extract URL...
+🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app
+✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app
+🌐 URL after "Visit Trademate": https://trademate-next-js.vercel.app/homeowner
+✅ Back on TradeMate — HomeOwner still logged in
+⏳ Waiting 3 seconds on TradeMate before logout...
+✅ Wait complete — ready for Scenario 4
