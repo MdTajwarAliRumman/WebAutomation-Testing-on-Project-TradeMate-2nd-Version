@@ -1,9 +1,0 @@
-
-📬 Test email : trademate_motunxl1@mailsac.com
-🌐 Mailsac    : https://mailsac.com/inbox/trademate_motunxl1%40mailsac.com
-
-✅ Mailsac inbox tab is open
-✅ Registration page visible
-✅ OTP screen visible
-✅ OTP accepted — now on login page
-✅ Logged in successfully — will stay logged in for all remaining tests

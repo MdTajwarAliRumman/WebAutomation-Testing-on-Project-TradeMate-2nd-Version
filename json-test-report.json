@@ -77,7 +77,7 @@
         {
           "title": "📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)",
           "file": "1_New_insertion/Email_Test.spec.ts",
-          "line": 64,
+          "line": 68,
           "column": 15,
           "specs": [
             {
@@ -93,17 +93,17 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 19232,
+                      "duration": 34200,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "\n📬 HomeOwner email : trademate_movbmm4f@mailsac.com\n"
+                          "text": "\n📬 HomeOwner email : trademate_mp11oi7a@mailsac.com\n"
                         },
                         {
-                          "text": "🌐 Owner inbox     : https://mailsac.com/inbox/trademate_movbmm4f%40mailsac.com\n\n"
+                          "text": "🌐 Owner inbox     : https://mailsac.com/inbox/trademate_mp11oi7a%40mailsac.com\n\n"
                         },
                         {
                           "text": "✅ HomeOwner Mailsac inbox tab is open (Tab 2)\n"
@@ -118,7 +118,49 @@
                           "text": "✅ OTP accepted — now on login page\n"
                         },
                         {
+                          "text": "⏳ Waiting 4 seconds then polling for \"Welcome to Our Platform!\" email...\n"
+                        },
+                        {
+                          "text": "⏳ Polling Mailsac for \"\"Welcome to Our Platform!\" registration email\" at trademate_mp11oi7a@mailsac.com...\n"
+                        },
+                        {
+                          "text": "✅ Found — Subject: \"Welcome to Our Platform!\"\n"
+                        },
+                        {
+                          "text": "📧 Registration email snippet:\n🎉 Welcome, Tajwar! Your Registration is Complete\n\n\nHELLO, TAJWAR!\n\nGreat news! Your email has been successfully verified. Your account is now fully active and ready to go.\n\nAccount Type: Homeowner\n\nHi Tajwar, your Homeowner account is all set! Post your first project today and connect with skilled \n"
+                        },
+                        {
+                          "text": "✅ Registration email confirmed in inbox — Subject: \"Welcome to Our Platform!\"\n"
+                        },
+                        {
+                          "text": "✅ \"Welcome to Our Platform!\" email opened and observed for 3 seconds\n"
+                        },
+                        {
+                          "text": "✅ Back on TradeMate login page — ready to login\n"
+                        },
+                        {
                           "text": "✅ HomeOwner logged in — stays logged in for Scenarios 2, 3, 4\n"
+                        },
+                        {
+                          "text": "⏳ Waiting 4 seconds then polling for \"Welcome to Our Platform - Trademate!\" email...\n"
+                        },
+                        {
+                          "text": "⏳ Polling Mailsac for \"\"Welcome to Our Platform - Trademate!\" post-login email\" at trademate_mp11oi7a@mailsac.com...\n"
+                        },
+                        {
+                          "text": "✅ Found — Subject: \"Welcome to Our Platform - Trademate!\"\n"
+                        },
+                        {
+                          "text": "📧 Post-login welcome email snippet:\nWellcome to our platform Trademate!\n\n\nWELCOME,TAJWAR!\n\nThank you for logging in to Trademate.\n\nWe are excited to have you as a Homeowner.Job Post your first project today and connect with skilled professionals to get your\nrepair or renovation done quickly and reliably.\n\nGo to Site [https://trademate\n"
+                        },
+                        {
+                          "text": "✅ Post-login welcome email confirmed in inbox — Subject: \"Welcome to Our Platform - Trademate!\"\n"
+                        },
+                        {
+                          "text": "✅ \"Welcome to Our Platform - Trademate!\" email opened and observed for 3 seconds\n"
+                        },
+                        {
+                          "text": "✅ Back on TradeMate — HomeOwner is logged in and Scenario 1 is fully complete\n"
                         }
                       ],
                       "stderr": [],
@@ -126,22 +168,46 @@
                       "steps": [
                         {
                           "title": "1. Open TradeMate and navigate to HomeOwner registration",
-                          "duration": 3791
+                          "duration": 3739
                         },
                         {
                           "title": "2. Fill registration form with Mailsac email and submit",
-                          "duration": 5265
+                          "duration": 3198
                         },
                         {
                           "title": "3. Fill hardcoded OTP (1,2,3,4) — dev environment bypass",
-                          "duration": 5091
+                          "duration": 2044
+                        },
+                        {
+                          "title": "3a. Wait for \"Welcome to Our Platform!\" registration email to arrive",
+                          "duration": 5722
+                        },
+                        {
+                          "title": "3b. Switch to Mailsac tab and open the \"Welcome to Our Platform!\" email",
+                          "duration": 5029
+                        },
+                        {
+                          "title": "3c. Switch back to TradeMate website login page",
+                          "duration": 56
                         },
                         {
                           "title": "4. Login with the newly registered HomeOwner account",
-                          "duration": 5080
+                          "duration": 4115
+                        },
+                        {
+                          "title": "4a. Wait a few seconds then poll for \"Welcome to Our Platform - Trademate!\" email",
+                          "duration": 5091
+                        },
+                        {
+                          "title": "4b. Switch to Mailsac tab and open the \"Welcome to Our Platform - Trademate!\" email",
+                          "duration": 5118
+                        },
+                        {
+                          "title": "4c. Switch back to TradeMate website (HomeOwner still logged in)",
+                          "duration": 74
                         }
                       ],
-                      "startTime": "2026-05-07T10:06:08.323Z",
+                      "startTime": "2026-05-11T10:14:17.388Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -157,7 +223,7 @@
               ],
               "id": "a07f2d81496fc2903ff4-d90ec00752bc2fc30539",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 101,
+              "line": 105,
               "column": 9
             },
             {
@@ -173,23 +239,23 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 10393,
+                      "duration": 9621,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_movbmm4f@mailsac.com...\n"
+                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_mp11oi7a@mailsac.com...\n"
                         },
                         {
-                          "text": "✅ Found — Subject: \"Welcome to Our Platform!\"\n"
+                          "text": "✅ Found — Subject: \"Welcome to Our Platform - Trademate!\"\n"
                         },
                         {
-                          "text": "📧 Welcome email snippet:\n🎉 Welcome, Tajwar! Your Registration is Complete\n\n\nHELLO, TAJWAR!\n\nGreat news! Your email has been successfully verified. Your account is now fully active and ready to go.\n\nAccount Type: Homeowner\n\nHi Tajwar, your Homeowner account is all set! Post your first project today and connect with skilled \n"
+                          "text": "📧 Welcome email snippet:\nWellcome to our platform Trademate!\n\n\nWELCOME,TAJWAR!\n\nThank you for logging in to Trademate.\n\nWe are excited to have you as a Homeowner.Job Post your first project today and connect with skilled professionals to get your\nrepair or renovation done quickly and reliably.\n\nGo to Site [https://trademate\n"
                         },
                         {
-                          "text": "✅ Welcome email in inbox — Subject: \"Welcome to Our Platform!\"\n"
+                          "text": "✅ Welcome email in inbox — Subject: \"Welcome to Our Platform - Trademate!\"\n"
                         },
                         {
                           "text": "👀 Owner inbox visible — Welcome email should be in the list\n"
@@ -218,26 +284,26 @@
                       "steps": [
                         {
                           "title": "5. Poll Mailsac API until Welcome email arrives",
-                          "duration": 2065
+                          "duration": 550
                         },
                         {
                           "title": "6. Switch to HomeOwner Mailsac tab and reload inbox",
-                          "duration": 2553
+                          "duration": 2444
                         },
                         {
                           "title": "7. Click on the Welcome email to open it",
-                          "duration": 2095
+                          "duration": 2085
                         },
                         {
                           "title": "8. Click \"Go to Site\" inside the Welcome email",
-                          "duration": 1652
+                          "duration": 1519
                         },
                         {
                           "title": "9. Confirm we are back on TradeMate (HomeOwner still logged in)",
-                          "duration": 2024
+                          "duration": 3017
                         }
                       ],
-                      "startTime": "2026-05-07T10:06:32.069Z",
+                      "startTime": "2026-05-11T10:14:55.485Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -253,7 +319,7 @@
               ],
               "id": "a07f2d81496fc2903ff4-27ce4aa1107b2600db24",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 152,
+              "line": 226,
               "column": 9
             },
             {
@@ -269,10 +335,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 37772,
+                      "duration": 33988,
                       "errors": [],
                       "stdout": [
                         {
@@ -300,7 +366,7 @@
                           "text": "⏳ Waiting 5 seconds for the job email to be generated...\n"
                         },
                         {
-                          "text": "⏳ Polling Mailsac for \"Job confirmation email\" at trademate_movbmm4f@mailsac.com...\n"
+                          "text": "⏳ Polling Mailsac for \"Job confirmation email\" at trademate_mp11oi7a@mailsac.com...\n"
                         },
                         {
                           "text": "✅ Found — Subject: \"Your Job Post Is Live on Trademate site!\"\n"
@@ -347,62 +413,62 @@
                       "steps": [
                         {
                           "title": "10. Navigate to home page — user is already logged in",
-                          "duration": 858
+                          "duration": 918
                         },
                         {
                           "title": "11. Click Plumber service and confirm map location",
-                          "duration": 3911
+                          "duration": 3523
                         },
                         {
                           "title": "12. Fill job title and description",
-                          "duration": 1646
+                          "duration": 1594
                         },
                         {
                           "title": "13. Select job timeframe",
-                          "duration": 2082
+                          "duration": 2121
                         },
                         {
                           "title": "14. Select type of work required",
-                          "duration": 1473
+                          "duration": 1477
                         },
                         {
                           "title": "15. Upload job image",
-                          "duration": 514
+                          "duration": 491
                         },
                         {
                           "title": "16. Upload job video and submit the job post",
-                          "duration": 9118
+                          "duration": 5059
                         },
                         {
                           "title": "17. Wait a few seconds for the job live email to be generated",
-                          "duration": 5038
+                          "duration": 5031
                         },
                         {
                           "title": "18. Poll Mailsac API until job live email arrives",
-                          "duration": 1334
+                          "duration": 1015
                         },
                         {
                           "title": "19. Switch to Mailsac tab and open the job email",
-                          "duration": 4556
+                          "duration": 4546
                         },
                         {
                           "title": "20. Verify \"Your Job Post Is Live on Trademate site!\" text in email",
-                          "duration": 733
+                          "duration": 603
                         },
                         {
                           "title": "21. Click \"Visit Trademate\" button inside the job email",
-                          "duration": 1460
+                          "duration": 1535
                         },
                         {
                           "title": "22. Confirm we are back on TradeMate (HomeOwner still logged in)",
-                          "duration": 2006
+                          "duration": 3042
                         },
                         {
                           "title": "23. Wait a few moments on the site before proceeding to logout",
-                          "duration": 3036
+                          "duration": 3023
                         }
                       ],
-                      "startTime": "2026-05-07T10:06:42.870Z",
+                      "startTime": "2026-05-11T10:15:05.451Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -418,7 +484,7 @@
               ],
               "id": "a07f2d81496fc2903ff4-9cf48d3ab0da125b7ae3",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 204,
+              "line": 278,
               "column": 9
             },
             {
@@ -434,10 +500,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5594,
+                      "duration": 5230,
                       "errors": [],
                       "stdout": [
                         {
@@ -461,26 +527,26 @@
                       "steps": [
                         {
                           "title": "24. Verify that HomeOwner is still logged in",
-                          "duration": 31
+                          "duration": 34
                         },
                         {
                           "title": "25. Click \"Posted Jobs\" in the nav bar and verify listing page",
-                          "duration": 450
+                          "duration": 477
                         },
                         {
                           "title": "26. Click \"View Details\" on the first posted job",
-                          "duration": 4340
+                          "duration": 4320
                         },
                         {
                           "title": "27. Scroll down to the Applicant List section",
-                          "duration": 60
+                          "duration": 45
                         },
                         {
                           "title": "28. HomeOwner logs out",
-                          "duration": 710
+                          "duration": 348
                         }
                       ],
-                      "startTime": "2026-05-07T10:07:21.634Z",
+                      "startTime": "2026-05-11T10:15:40.840Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -496,7 +562,7 @@
               ],
               "id": "a07f2d81496fc2903ff4-c5f734295e0921bffbc5",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 381,
+              "line": 455,
               "column": 9
             },
             {
@@ -512,17 +578,17 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 38219,
+                      "duration": 27153,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "\n📬 Tradesman email : trademate_movbob9i@mailsac.com\n"
+                          "text": "\n📬 Tradesman email : trademate_mp11qesq@mailsac.com\n"
                         },
                         {
-                          "text": "🌐 Tradesman inbox  : https://mailsac.com/inbox/trademate_movbob9i%40mailsac.com\n\n"
+                          "text": "🌐 Tradesman inbox  : https://mailsac.com/inbox/trademate_mp11qesq%40mailsac.com\n\n"
                         },
                         {
                           "text": "✅ Tradesman Mailsac inbox tab opened (Tab 3)\n"
@@ -543,7 +609,7 @@
                           "text": "⏳ Waiting 5 seconds for the Tradesman welcome email...\n"
                         },
                         {
-                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_movbob9i@mailsac.com...\n"
+                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_mp11qesq@mailsac.com...\n"
                         },
                         {
                           "text": "✅ Found — Subject: \"Welcome to Our Platform - Trademate!\"\n"
@@ -587,54 +653,54 @@
                       "steps": [
                         {
                           "title": "29. Generate Tradesman email and open a new Mailsac inbox tab",
-                          "duration": 1055
+                          "duration": 1023
                         },
                         {
                           "title": "30. Navigate to TradeMate home and go to Tradesperson registration",
-                          "duration": 1448
+                          "duration": 1246
                         },
                         {
                           "title": "31. Fill Tradesman registration form and submit",
-                          "duration": 6185
+                          "duration": 2127
                         },
                         {
                           "title": "32. Fill hardcoded OTP (1,2,3,4) — dev bypass",
-                          "duration": 5092
+                          "duration": 2107
                         },
                         {
                           "title": "33. Login with the newly registered Tradesman account",
-                          "duration": 6101
+                          "duration": 3097
                         },
                         {
                           "title": "34. Wait a few seconds for Tradesman welcome email to be generated",
-                          "duration": 5024
+                          "duration": 5051
                         },
                         {
                           "title": "35. Poll Mailsac API until Tradesman Welcome email arrives",
-                          "duration": 1080
+                          "duration": 1043
                         },
                         {
                           "title": "36. Switch to Tradesman Mailsac tab and reload inbox",
-                          "duration": 2426
+                          "duration": 2554
                         },
                         {
                           "title": "37. Click on the Tradesman Welcome email to open it",
-                          "duration": 2093
+                          "duration": 2104
                         },
                         {
                           "title": "38. Click \"Go to Site\" inside the Tradesman Welcome email",
-                          "duration": 1609
+                          "duration": 1787
                         },
                         {
                           "title": "39. Confirm we are back on TradeMate (Tradesman logged in)",
-                          "duration": 3041
+                          "duration": 1963
                         },
                         {
                           "title": "40. Stay on TradeMate for a few moments before finishing",
-                          "duration": 3054
+                          "duration": 3037
                         }
                       ],
-                      "startTime": "2026-05-07T10:07:27.730Z",
+                      "startTime": "2026-05-11T10:15:46.519Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -650,7 +716,7 @@
               ],
               "id": "a07f2d81496fc2903ff4-983687cff3095a1c72d7",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 435,
+              "line": 509,
               "column": 9
             },
             {
@@ -666,10 +732,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 40112,
+                      "duration": 39420,
                       "errors": [],
                       "stdout": [
                         {
@@ -714,54 +780,54 @@
                       "steps": [
                         {
                           "title": "41. Verify Tradesman is still logged in on TradeMate",
-                          "duration": 34
+                          "duration": 39
                         },
                         {
                           "title": "42. Click \"View Details\" on the first job in the listing",
-                          "duration": 89
+                          "duration": 94
                         },
                         {
                           "title": "43. Click \"Complete Registration\" and select trade category (Plumber)",
-                          "duration": 2945
+                          "duration": 2429
                         },
                         {
                           "title": "44. Set map location for the Tradesman profile",
-                          "duration": 1053
+                          "duration": 1089
                         },
                         {
                           "title": "45. Fill in Tradesman profile information",
-                          "duration": 339
+                          "duration": 367
                         },
                         {
                           "title": "46. Upload profile documents and submit the profile form",
-                          "duration": 5194
+                          "duration": 3286
                         },
                         {
                           "title": "47. Attempt to view job details — expect \"View Subscriptions Plans\" (unapproved wall)",
-                          "duration": 1992
+                          "duration": 2944
                         },
                         {
                           "title": "48. Click \"View Subscription Plans\" to navigate to subscription page",
-                          "duration": 36
+                          "duration": 269
                         },
                         {
                           "title": "49. Select subscription plan 3",
-                          "duration": 4628
+                          "duration": 5304
                         },
                         {
                           "title": "50. Fill in payment details and complete subscription purchase",
-                          "duration": 20265
+                          "duration": 20509
                         },
                         {
                           "title": "51. Navigate back to TradeMate home page after subscription",
-                          "duration": 1111
+                          "duration": 1165
                         },
                         {
                           "title": "52. Tradesman logs out (will be re-used in Scenario 8)",
-                          "duration": 2421
+                          "duration": 1914
                         }
                       ],
-                      "startTime": "2026-05-07T10:08:07.338Z",
+                      "startTime": "2026-05-11T10:16:14.851Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -777,7 +843,7 @@
               ],
               "id": "a07f2d81496fc2903ff4-6361c412e91a9ea5ea8b",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 570,
+              "line": 644,
               "column": 9
             },
             {
@@ -793,10 +859,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 18420,
+                      "duration": 18378,
                       "errors": [],
                       "stdout": [
                         {
@@ -868,38 +934,38 @@
                       "steps": [
                         {
                           "title": "53. Open admin panel in a new tab (Tab 4)",
-                          "duration": 3198
+                          "duration": 3314
                         },
                         {
                           "title": "54. Login to admin panel with admin credentials",
-                          "duration": 6036
+                          "duration": 6086
                         },
                         {
                           "title": "55. Click \"Tradesmen\" in the admin sidebar menu",
-                          "duration": 2556
+                          "duration": 2511
                         },
                         {
                           "title": "56. Observe the Tradesmen table and confirm the list is loaded",
-                          "duration": 15
+                          "duration": 19
                         },
                         {
                           "title": "57. Click the Eye-view icon in the first row to open the Tradesman record",
-                          "duration": 2645
+                          "duration": 2466
                         },
                         {
                           "title": "58. Click \"Update Verification\" button",
-                          "duration": 1276
+                          "duration": 1281
                         },
                         {
                           "title": "59. Select \"Verified\" from the Verification Status dropdown",
-                          "duration": 2664
+                          "duration": 2672
                         },
                         {
                           "title": "60. Switch back to TradeMate website tab (Tab 1)",
-                          "duration": 23
+                          "duration": 21
                         }
                       ],
-                      "startTime": "2026-05-07T10:08:49.242Z",
+                      "startTime": "2026-05-11T10:16:55.992Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -915,12 +981,12 @@
               ],
               "id": "a07f2d81496fc2903ff4-7c97a40b3f0f1a9f27e6",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 700,
+              "line": 774,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 8: Tradesman re-logs in, reads verification email, views job, quotes, logs out",
-              "ok": false,
+              "title": "➡️ SCENARIO 8: Tradesman re-logs in, reads verification email, quotes job, views quote email, logs out",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -931,29 +997,11 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 32404,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Job Done by:')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Job Done by:')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Job Done by:')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Job Done by:')\u001b[22m\n\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts:945:15)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\common\\testType.js:245:20)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\common\\testType.js:243:18)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts:941:9)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\workerMain.js:323:9)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\testInfo.js:320:11)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\workerMain.js:321:7)",
-                        "location": {
-                          "file": "Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts",
-                          "column": 15,
-                          "line": 945
-                        }
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts",
-                            "column": 15,
-                            "line": 945
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Job Done by:')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Job Done by:')\u001b[22m\n\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts:945:15)\u001b[22m\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\common\\testType.js:245:20)\u001b[22m\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\common\\testType.js:243:18)\u001b[22m\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts:941:9)\u001b[22m\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\workerMain.js:323:9)\u001b[22m\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\testInfo.js:320:11)\u001b[22m\n\u001b[2m    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\workerMain.js:321:7)\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 32554,
+                      "errors": [],
                       "stdout": [
                         {
                           "text": "✅ Tradesman logged back in successfully\n"
@@ -965,7 +1013,7 @@
                           "text": "⏳ Polling Mailsac for \"Account Verified Successfully\" email...\n"
                         },
                         {
-                          "text": "⏳ Polling Mailsac for \"Admin notification / Approve account email\" at trademate_movbob9i@mailsac.com...\n"
+                          "text": "⏳ Polling Mailsac for \"Admin notification / Approve account email\" at trademate_mp11qesq@mailsac.com...\n"
                         },
                         {
                           "text": "✅ Found — Subject: \"Account Verified Successfully.Welcome to our platform Trademate !\"\n"
@@ -987,6 +1035,45 @@
                         },
                         {
                           "text": "✅ Tradesman is back on TradeMate and still logged in\n"
+                        },
+                        {
+                          "text": "✅ Job detail page visible — \"Job Done by:\" confirmed\n"
+                        },
+                        {
+                          "text": "✅ Quote of £1000 submitted successfully!\n"
+                        },
+                        {
+                          "text": "⏳ Waiting 4 seconds on the job page after submitting quote...\n"
+                        },
+                        {
+                          "text": "⏳ Polling Mailsac for \"Quote submitted successfully!\" email...\n"
+                        },
+                        {
+                          "text": "⏳ Polling Mailsac for \"\"Quote submitted successfully!\" email\" at trademate_mp11qesq@mailsac.com...\n"
+                        },
+                        {
+                          "text": "✅ Found — Subject: \"Quote submitted successfully!\"\n"
+                        },
+                        {
+                          "text": "📧 Quote submitted email snippet:\nQuote Submitted\nConfirmation — no customer personal data is included\n\n\nHI NEWTRADEPERSON,\n\nYour quote has been submitted successfully. Below is a short summary for your records.\n\nJob Hiring A Plumber Quote Amount £1,000.00 Submitted 11 May, 2026 10:17\n\nYou will be notified if the homeowner responds \n"
+                        },
+                        {
+                          "text": "✅ Quote email found — Subject: \"Quote submitted successfully!\"\n"
+                        },
+                        {
+                          "text": "👀 Tradesman Mailsac inbox reloaded — quote email should be listed\n"
+                        },
+                        {
+                          "text": "✅ \"Quote submitted successfully!\" email opened — observing for 3 seconds\n"
+                        },
+                        {
+                          "text": "🌐 Back on TradeMate — URL: https://trademate-next-js.vercel.app/job-details/23\n"
+                        },
+                        {
+                          "text": "✅ Tradesman is back on TradeMate\n"
+                        },
+                        {
+                          "text": "✅ Tradesman logged out successfully\n"
                         }
                       ],
                       "stderr": [],
@@ -994,89 +1081,152 @@
                       "steps": [
                         {
                           "title": "61. Tradesman navigates to login page and logs in",
-                          "duration": 8600
+                          "duration": 6487
                         },
                         {
                           "title": "62. Switch to Tradesman Mailsac inbox tab (Tab 3) and reload",
-                          "duration": 2408
+                          "duration": 3427
                         },
                         {
                           "title": "63. Poll Mailsac — wait for \"Account Verified Successfully\" email to arrive",
-                          "duration": 599
+                          "duration": 741
                         },
                         {
                           "title": "64. Reload Tradesman Mailsac inbox so the verified email is listed",
-                          "duration": 2390
+                          "duration": 2392
                         },
                         {
                           "title": "65. Click the \"Account Verified Successfully\" email to open it",
-                          "duration": 3079
+                          "duration": 3114
                         },
                         {
                           "title": "66. Navigate back to TradeMate website (sitePage)",
-                          "duration": 43
+                          "duration": 48
                         },
                         {
                           "title": "67. Click \"View Details\" on the first job in the listing",
-                          "duration": 15098,
-                          "error": {
-                            "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Job Done by:')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Job Done by:')\u001b[22m\n",
-                            "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Job Done by:')\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Job Done by:')\u001b[22m\n\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts:945:15)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\common\\testType.js:245:20)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\common\\testType.js:243:18)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts:941:9)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\workerMain.js:323:9)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\testInfo.js:320:11)\n    at C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\playwright\\lib\\worker\\workerMain.js:321:7)",
-                            "location": {
-                              "file": "Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts",
-                              "column": 15,
-                              "line": 945
-                            }
-                          }
+                          "duration": 3059
+                        },
+                        {
+                          "title": "68. Provide a quote of £1000 for the job",
+                          "duration": 2307
+                        },
+                        {
+                          "title": "69. Wait a few seconds on the job page after quote submission",
+                          "duration": 4019
+                        },
+                        {
+                          "title": "70. Poll Mailsac — wait for \"Quote submitted successfully!\" email",
+                          "duration": 997
+                        },
+                        {
+                          "title": "71. Switch to Tradesman Mailsac tab and reload to show quote email",
+                          "duration": 2432
+                        },
+                        {
+                          "title": "72. Click the \"Quote submitted successfully!\" email to open it",
+                          "duration": 3144
+                        },
+                        {
+                          "title": "73. Return to TradeMate website before logout",
+                          "duration": 52
+                        },
+                        {
+                          "title": "74. Tradesman logs out",
+                          "duration": 324
                         }
                       ],
-                      "startTime": "2026-05-07T10:09:08.709Z",
+                      "startTime": "2026-05-11T10:17:15.382Z",
                       "annotations": [],
                       "attachments": [
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-a1bc8-l-views-job-quotes-logs-out-chromium\\test-failed-4.png"
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-79462--views-quote-email-logs-out-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a07f2d81496fc2903ff4-064bfcd4dd3f3630efae",
+              "file": "1_New_insertion/Email_Test.spec.ts",
+              "line": 943,
+              "column": 9
+            },
+            {
+              "title": "➡️ SCENARIO 9: HomeOwner re-logs in, views applicant, hires Tradesman",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 360000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13735,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "✅ HomeOwner logged back in successfully\n"
                         },
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-a1bc8-l-views-job-quotes-logs-out-chromium\\test-failed-1.png"
+                          "text": "✅ My Posted Jobs page is visible\n"
                         },
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-a1bc8-l-views-job-quotes-logs-out-chromium\\test-failed-2.png"
+                          "text": "✅ Job detail page visible — \"Job Done by:\" confirmed\n"
                         },
                         {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-a1bc8-l-views-job-quotes-logs-out-chromium\\test-failed-3.png"
+                          "text": "✅ Applicant List section visible\n"
                         },
                         {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-a1bc8-l-views-job-quotes-logs-out-chromium\\error-context.md"
+                          "text": "✅ Tradesman hired — Scenario 9 complete ✅\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "75. HomeOwner navigates to login page and logs in",
+                          "duration": 6434
                         },
+                        {
+                          "title": "76. Click \"Posted Jobs\" in the nav bar and verify listing page",
+                          "duration": 1420
+                        },
+                        {
+                          "title": "77. Click \"View Details\" on the first posted job",
+                          "duration": 3342
+                        },
+                        {
+                          "title": "78. Scroll to Applicant List, hire the Tradesman and wait",
+                          "duration": 2536
+                        }
+                      ],
+                      "startTime": "2026-05-11T10:17:49.353Z",
+                      "annotations": [],
+                      "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-a1bc8-l-views-job-quotes-logs-out-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-8b40b-s-applicant-hires-Tradesman-chromium\\trace.zip"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\tests\\1_New_insertion\\Email_Test.spec.ts",
-                        "column": 15,
-                        "line": 945
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-a394e92bfcd602b9408c",
+              "id": "a07f2d81496fc2903ff4-b8f4e252d1f3b15620d3",
               "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 867,
+              "line": 1095,
               "column": 9
             }
           ]
@@ -1086,11 +1236,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-07T10:06:06.420Z",
-    "duration": 216747.2800000012,
-    "expected": 7,
+    "startTime": "2026-05-11T10:14:15.357Z",
+    "duration": 230014.26400000043,
+    "expected": 9,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }

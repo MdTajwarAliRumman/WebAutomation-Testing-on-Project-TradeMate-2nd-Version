@@ -135,6 +135,42 @@ export class EmailHelper {
         return `https://mailsac.com/inbox/${encodeURIComponent(email)}`;
     }
 
+    // ── Scenario 1 registration emails ─────────────────────────────────────
+
+    /**
+     * Polls for the FIRST welcome email sent right after account creation.
+     * Subject is exactly: "Welcome to Our Platform!"
+     * This arrives BEFORE login — shown while user is on the login page.
+     */
+    async fetchRegistrationEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            // Match "Welcome to Our Platform!" but NOT "Welcome to Our Platform - Trademate!"
+            // We do this by requiring the subject NOT to contain a dash/hyphen after "Platform"
+            s => /welcome to our platform/i.test(s) && !/ - trademate/i.test(s),
+            '"Welcome to Our Platform!" registration email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Registration email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    /**
+     * Polls for the SECOND welcome email sent right after the user logs in.
+     * Subject is exactly: "Welcome to Our Platform - Trademate!"
+     * This arrives AFTER the user logs in for the first time.
+     */
+    async fetchWelcomeLoginEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /welcome to our platform - trademate/i.test(s),
+            '"Welcome to Our Platform - Trademate!" post-login email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Post-login welcome email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
     // ── OTP (kept for future — dev bypass used instead currently) ──────────
 
     /**
@@ -259,5 +295,86 @@ export class EmailHelper {
         );
         const body = await getMessageBodyText(email, msg._id);
         return { body };
+    }
+
+    // ── Registration Welcome email — Scenario 1 (post-OTP) ────────────────
+
+    /**
+     * Polls Mailsac until the FIRST welcome email arrives.
+     * Subject: "Welcome to Our Platform!"
+     * Sent immediately after account creation / OTP verification.
+     * Contains a "Go to Login" button.
+     */
+    async fetchRegistrationWelcomeEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            // Match "Welcome to Our Platform!" but NOT the one that also says "Trademate"
+            s => /welcome to our platform/i.test(s) && !/trademate/i.test(s),
+            '"Welcome to Our Platform!" registration email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Registration welcome email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    /**
+     * Returns body for the registration welcome email (URL extraction fallback).
+     */
+    async getLatestRegistrationWelcomeEmailBody(email: string): Promise<{ body: string }> {
+        const msg = await findLatestMessage(
+            email,
+            s => /welcome to our platform/i.test(s) && !/trademate/i.test(s)
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        return { body };
+    }
+
+    // ── Login Welcome email — Scenario 1 (post-login) ─────────────────────
+
+    /**
+     * Polls Mailsac until the SECOND welcome email arrives.
+     * Subject: "Welcome to Our Platform - Trademate!"
+     * Sent after first login. Contains a "Go to Site" button.
+     */
+    async fetchLoginWelcomeEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            // Must match "welcome" AND "trademate" in same subject
+            s => /welcome/i.test(s) && /trademate/i.test(s),
+            '"Welcome to Our Platform - Trademate!" login email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Login welcome email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    /**
+     * Returns body for the login welcome email (URL extraction fallback).
+     */
+    async getLatestLoginWelcomeEmailBody(email: string): Promise<{ body: string }> {
+        const msg = await findLatestMessage(
+            email,
+            s => /welcome/i.test(s) && /trademate/i.test(s)
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        return { body };
+    }
+
+    // ── Quote submitted email (Scenario 8) ───────────────────────────────
+
+    /**
+     * Polls Mailsac until the "Quote submitted successfully!" email arrives.
+     * This email is sent to the Tradesman after they submit a quote for a job.
+     * Subject typically contains: "quote", "submitted", "successfully".
+     */
+    async fetchQuoteSubmittedEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /quote|submitted/i.test(s),
+            '"Quote submitted successfully!" email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Quote submitted email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
     }
 }

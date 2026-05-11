@@ -1,9 +1,0 @@
-
-📬 HomeOwner email : trademate_motuji5c@mailsac.com
-🌐 Owner inbox     : https://mailsac.com/inbox/trademate_motuji5c%40mailsac.com
-
-✅ HomeOwner Mailsac inbox tab is open
-✅ Registration page visible
-✅ OTP screen visible
-✅ OTP accepted — login page showing
-✅ HomeOwner logged in — stays logged in for Scenarios 2, 3, 4

@@ -24,11 +24,15 @@
  *                → switch back to website tab
  *
  * [Tradesman — re-login]
- *   SCENARIO 8 — Tradesman logs back in → switch to Mailsac tab → view 2 emails:
- *                  (a) Admin notification / "Approve account" email → read & wait
- *                  (b) "New Matching Job Available" email → read → click
- *                      "Visit Trademate to Apply" → back on website
- *                → view first job detail → provide quote £1000 → Tradesman logs out
+ *   SCENARIO 8 — Tradesman logs back in → switch to Mailsac tab → view
+ *                "Account Verified Successfully" email → return to website
+ *                → view first job detail → provide quote £1000
+ *                → wait → switch to Mailsac → view "Quote submitted successfully!" email
+ *                → return to website → Tradesman logs out
+ *
+ * [HomeOwner — re-login]
+ *   SCENARIO 9 — HomeOwner logs back in → Posted Jobs → View Details →
+ *                scroll to Applicant List → hire Tradesman → wait → done
  *
  * TAB LAYOUT (shared across every test via module-level variables)
  * ──────────────────────────────────────────────────────────────────
@@ -135,6 +139,41 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
             console.log('✅ OTP accepted — now on login page');
         });
 
+        // ── After OTP: view "Welcome to Our Platform!" registration email ──
+        await test.step('3a. Wait for "Welcome to Our Platform!" registration email to arrive', async () => {
+            console.log('⏳ Waiting 4 seconds then polling for "Welcome to Our Platform!" email...');
+            await sitePage.waitForTimeout(4000);
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchRegistrationEmail(ownerEmail);
+            console.log(`✅ Registration email confirmed in inbox — Subject: "${subject}"`);
+        });
+
+        await test.step('3b. Switch to Mailsac tab and open the "Welcome to Our Platform!" email', async () => {
+            await ownerMailPage.bringToFront();
+            await ownerMailPage.reload();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(1500);
+
+            // Open the email row — subject is exactly "Welcome to Our Platform!"
+            const regEmailRow = ownerMailPage
+                .locator('a, tr, div')
+                .filter({ hasText: /welcome to our platform!/i })
+                .first();
+            await regEmailRow.waitFor({ state: 'visible', timeout: 15000 });
+            await regEmailRow.click();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(3000); // observe the email for 3 seconds
+            console.log('✅ "Welcome to Our Platform!" email opened and observed for 3 seconds');
+        });
+
+        await test.step('3c. Switch back to TradeMate website login page', async () => {
+            await sitePage.bringToFront();
+            await expect(
+                sitePage.getByText('Login your account')
+            ).toBeVisible({ timeout: 10000 });
+            console.log('✅ Back on TradeMate login page — ready to login');
+        });
+
         await test.step('4. Login with the newly registered HomeOwner account', async () => {
             await authPage.EmailInput.fill(ownerEmail);
             await authPage.PasswordInput.fill('12345678');
@@ -143,6 +182,41 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
                 sitePage.getByRole('button', { name: 'Log out' })
             ).toBeVisible({ timeout: 15000 });
             console.log('✅ HomeOwner logged in — stays logged in for Scenarios 2, 3, 4');
+        });
+
+        // ── After login: view "Welcome to Our Platform - Trademate!" email ──
+        await test.step('4a. Wait a few seconds then poll for "Welcome to Our Platform - Trademate!" email', async () => {
+            console.log('⏳ Waiting 4 seconds then polling for "Welcome to Our Platform - Trademate!" email...');
+            await sitePage.waitForTimeout(4000);
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchWelcomeLoginEmail(ownerEmail);
+            console.log(`✅ Post-login welcome email confirmed in inbox — Subject: "${subject}"`);
+        });
+
+        await test.step('4b. Switch to Mailsac tab and open the "Welcome to Our Platform - Trademate!" email', async () => {
+            await ownerMailPage.bringToFront();
+            await ownerMailPage.reload();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(1500);
+
+            // Open the email row — subject is "Welcome to Our Platform - Trademate!"
+            const loginWelcomeRow = ownerMailPage
+                .locator('a, tr, div')
+                .filter({ hasText: /welcome to our platform - trademate/i })
+                .first();
+            await loginWelcomeRow.waitFor({ state: 'visible', timeout: 15000 });
+            await loginWelcomeRow.click();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(3000); // observe the email for 3 seconds
+            console.log('✅ "Welcome to Our Platform - Trademate!" email opened and observed for 3 seconds');
+        });
+
+        await test.step('4c. Switch back to TradeMate website (HomeOwner still logged in)', async () => {
+            await sitePage.bringToFront();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 10000 });
+            console.log('✅ Back on TradeMate — HomeOwner is logged in and Scenario 1 is fully complete');
         });
     });
 
@@ -711,7 +785,7 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
         // ── 7.2  Login to admin panel ──────────────────────────────────────
         await test.step('54. Login to admin panel with admin credentials', async () => {
             // Fill email and password fields
-            await adminPage.getByPlaceholder('Email').fill('admin@admin.com');
+            await adminPage.getByPlaceholder('Email').fill('admin@gmail.com');
             await adminPage.getByPlaceholder('Password').fill('12345678');
             await adminPage.getByRole('button', { name: 'Sign in' }).click();
             // Wait for dashboard / any element that confirms successful login
@@ -862,9 +936,11 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
 
     // ═══════════════════════════════════════════════════════════════════════
     // SCENARIO 8 — Tradesman re-logs in → views "Account Verified" email →
-    //              returns to website → views first job → submits quote → logs out
+    //              returns to website → views first job → submits quote £1000
+    //              → waits → switches to Mailsac → views "Quote submitted" email
+    //              → returns to website → Tradesman logs out
     // ═══════════════════════════════════════════════════════════════════════
-    test('➡️ SCENARIO 8: Tradesman re-logs in, reads verification email, views job, quotes, logs out', async () => {
+    test('➡️ SCENARIO 8: Tradesman re-logs in, reads verification email, quotes job, views quote email, logs out', async () => {
 
         const authPage = new AuthPage(sitePage);
         const basePage = new BasePage(sitePage);
@@ -957,11 +1033,125 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
             console.log('✅ Quote of £1000 submitted successfully!');
         });
 
-        // ── 8.9  Tradesman logs out ───────────────────────────────────────
-        await test.step('69. Tradesman logs out — all scenarios complete', async () => {
+        // ── 8.9  Wait a few seconds on the page after quoting ────────────
+        await test.step('69. Wait a few seconds on the job page after quote submission', async () => {
+            console.log('⏳ Waiting 4 seconds on the job page after submitting quote...');
+            await sitePage.waitForTimeout(4000);
+        });
+
+        // ── 8.10  Poll Mailsac for "Quote submitted successfully!" email ──
+        await test.step('70. Poll Mailsac — wait for "Quote submitted successfully!" email', async () => {
+            console.log('⏳ Polling Mailsac for "Quote submitted successfully!" email...');
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchQuoteSubmittedEmail(tradesmanEmail);
+            console.log(`✅ Quote email found — Subject: "${subject}"`);
+        });
+
+        // ── 8.11  Switch to Mailsac tab and reload ────────────────────────
+        await test.step('71. Switch to Tradesman Mailsac tab and reload to show quote email', async () => {
+            await tsMailPage.bringToFront();
+            await tsMailPage.reload();
+            await tsMailPage.waitForLoadState('domcontentloaded');
+            await tsMailPage.waitForTimeout(2000);
+            console.log('👀 Tradesman Mailsac inbox reloaded — quote email should be listed');
+        });
+
+        // ── 8.12  Open the "Quote submitted successfully!" email ──────────
+        await test.step('72. Click the "Quote submitted successfully!" email to open it', async () => {
+            const quoteEmailRow = tsMailPage
+                .locator('a, tr, div')
+                .filter({ hasText: /quote|submitted|successfully/i })
+                .first();
+            await quoteEmailRow.waitFor({ state: 'visible', timeout: 15000 });
+            await quoteEmailRow.click();
+            await tsMailPage.waitForLoadState('domcontentloaded');
+            await tsMailPage.waitForTimeout(3000);
+            console.log('✅ "Quote submitted successfully!" email opened — observing for 3 seconds');
+        });
+
+        // ── 8.13  Return to TradeMate website ────────────────────────────
+        await test.step('73. Return to TradeMate website before logout', async () => {
+            await sitePage.bringToFront();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 10000 });
+            console.log(`🌐 Back on TradeMate — URL: ${sitePage.url()}`);
+            console.log('✅ Tradesman is back on TradeMate');
+        });
+
+        // ── 8.14  Tradesman logs out ──────────────────────────────────────
+        await test.step('74. Tradesman logs out', async () => {
             await sitePage.getByRole('button', { name: 'Log out' }).click();
             await homePage.logoutButton.click();
-            console.log('✅ Tradesman logged out — all 8 scenarios completed successfully ✅');
+            console.log('✅ Tradesman logged out successfully');
+        });
+    });
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // SCENARIO 9 — HomeOwner re-logs in → Posted Jobs → View Details →
+    //              Applicant List → hire Tradesman → wait
+    // ═══════════════════════════════════════════════════════════════════════
+    test('➡️ SCENARIO 9: HomeOwner re-logs in, views applicant, hires Tradesman', async () => {
+
+        const authPage = new AuthPage(sitePage);
+        const basePage = new BasePage(sitePage);
+        const homePage = new HomePage(sitePage);
+        const jobPage = new JobPage(sitePage);
+
+        // ── 9.1  HomeOwner logs back in ───────────────────────────────────
+        await test.step('75. HomeOwner navigates to login page and logs in', async () => {
+            await sitePage.bringToFront();
+            await basePage.goToURL();
+            await homePage.goToLoginURL();
+            await authPage.EmailInput.fill(ownerEmail);
+            await authPage.PasswordInput.fill('12345678');
+            await sitePage.getByRole('button', { name: 'Log in' }).click();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 15000 });
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(2000);
+            console.log('✅ HomeOwner logged back in successfully');
+        });
+
+        // ── 9.2  Navigate to Posted Jobs ─────────────────────────────────
+        await test.step('76. Click "Posted Jobs" in the nav bar and verify listing page', async () => {
+            await sitePage.getByText('Posted Jobs').first().click();
+            await expect(
+                sitePage.getByText('My Posted Jobs')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ My Posted Jobs page is visible');
+        });
+
+        // ── 9.3  Open the first job's detail page ────────────────────────
+        await test.step('77. Click "View Details" on the first posted job', async () => {
+            await sitePage.getByText('View Details').first().click();
+            await expect(
+                sitePage.getByText('Job Done by:')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ Job detail page visible — "Job Done by:" confirmed');
+        });
+
+        // ── 9.4  Scroll to Applicant List & hire the Tradesman ───────────
+        await test.step('78. Scroll to Applicant List, hire the Tradesman and wait', async () => {
+            const applicantHeading = sitePage
+                .getByText('Applicant List')
+                .or(sitePage.getByText('Applicants'))
+                .first();
+            await applicantHeading.scrollIntoViewIfNeeded();
+            await expect(applicantHeading).toBeVisible({ timeout: 10000 });
+            console.log('✅ Applicant List section visible');
+
+            // Click the hire/action button for the first applicant (the Tradesman)
+            await jobPage.applicantActions.click();
+
+            // Confirm the Applicant List is still visible after the action
+            await expect(applicantHeading).toBeVisible({ timeout: 10000 });
+
+            // Wait 2 seconds — flow completed and passed
+            await sitePage.waitForTimeout(2000);
+            console.log('✅ Tradesman hired — Scenario 9 complete ✅');
         });
     });
 

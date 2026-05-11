@@ -1,6 +1,0 @@
-✅ Services section visible
-✅ Location confirmed
-✅ Title and description filled
-✅ Timeframe selected
-✅ Work type selected
-✅ Image uploaded

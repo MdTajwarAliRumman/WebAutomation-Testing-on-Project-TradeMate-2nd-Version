@@ -1,7 +1,0 @@
-
-📬 Test email : 78537dc8-7ca4-43b6-853e-84ab048f5472.trademate_moqp0onx@testmail.app
-🏷️  Tag        : trademate_moqp0onx
-🌐 Inbox URL  : https://testmail.app/console
-
-✅ testmail.app console tab opened
-✅ Registration page is open

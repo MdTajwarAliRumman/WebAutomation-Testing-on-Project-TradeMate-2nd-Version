@@ -1,4 +1,0 @@
-✅ Admin site opened in Tab 4
-✅ Logged into admin panel
-✅ Navigated to Tradesmen list in admin panel
-ℹ️ No search box found — tradesman should be at the top of the list
