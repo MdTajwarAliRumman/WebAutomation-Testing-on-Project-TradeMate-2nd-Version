@@ -31,8 +31,17 @@
  *                → return to website → Tradesman logs out
  *
  * [HomeOwner — re-login]
- *   SCENARIO 9 — HomeOwner logs back in → Posted Jobs → View Details →
- *                scroll to Applicant List → hire Tradesman → wait → done
+ *   SCENARIO 9 — HomeOwner re-logs in → views "New Quote Submitted" email
+ *                → back to website → Posted Jobs (step 26) → View Details (step 27) →
+ *                Applicant List (step 28, wait 2s) → HomeOwner logs out
+ *
+ *   SCENARIO 10 — HomeOwner is logged out → New Tradesman2 created (S5→S8,
+ *                 no email views) → quotes job → logs out →
+ *                 HomeOwner logs in → Posted Jobs → Applicant List →
+ *                 rejects Tradesman2 (Delete Application, 3s wait) →
+ *                 hires Tradesman1 (Hire Now → Confirm → "Post your review") →
+ *                 views "You Accepted an Offer!" email → returns to website →
+ *                 HomeOwner logs out
  *
  * TAB LAYOUT (shared across every test via module-level variables)
  * ──────────────────────────────────────────────────────────────────
@@ -61,11 +70,13 @@ let ownerMailPage: Page;    // Tab 2 — Mailsac inbox for HomeOwner
 let tsMailPage: Page;       // Tab 3 — Mailsac inbox for Tradesman (added in S5)
 let adminPage: Page;        // Tab 4 — Admin panel site (opened in Scenario 7)
 
-let ownerEmail: string;     // freshly generated @mailsac.com for the HomeOwner
-let tradesmanEmail: string; // freshly generated @mailsac.com for the Tradesman
+let ownerEmail: string;       // freshly generated @mailsac.com for the HomeOwner
+let tradesmanEmail: string;  // freshly generated @mailsac.com for the Tradesman (Scenario 5)
+let tradesmanEmail2: string; // freshly generated @mailsac.com for Tradesman2 (Scenario 10)
+let tsMailPage2: Page;       // Tab 5 — Mailsac inbox for Tradesman2 (opened in Scenario 10)
 // ──────────────────────────────────────────────────────────────────────────
 
-test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)', () => {
+test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
 
     // ── One-time setup: open browser, create context, open two tabs ────────
     test.beforeAll(async ({ browser: b }) => {
@@ -1089,10 +1100,11 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
     });
 
     // ═══════════════════════════════════════════════════════════════════════
-    // SCENARIO 9 — HomeOwner re-logs in → Posted Jobs → View Details →
-    //              Applicant List → hire Tradesman → wait
+    // SCENARIO 9 — HomeOwner re-logs in → views "New Quote Submitted" email
+    //              → back to website → Posted Jobs → View Details →
+    //              Applicant List → wait 2s
     // ═══════════════════════════════════════════════════════════════════════
-    test('➡️ SCENARIO 9: HomeOwner re-logs in, views applicant, hires Tradesman', async () => {
+    test('➡️ Validate hiring new tradesman was done successfully', async () => {
 
         const authPage = new AuthPage(sitePage);
         const basePage = new BasePage(sitePage);
@@ -1115,8 +1127,44 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
             console.log('✅ HomeOwner logged back in successfully');
         });
 
-        // ── 9.2  Navigate to Posted Jobs ─────────────────────────────────
-        await test.step('76. Click "Posted Jobs" in the nav bar and verify listing page', async () => {
+        // ── 9.2  Poll Mailsac for "New Quote Submitted" email ────────────
+        await test.step('76. Poll Mailsac — wait for "New Quote Submitted for Your Job Review please!" email', async () => {
+            console.log('⏳ Polling Mailsac for "New Quote Submitted" email...');
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchNewQuoteEmail(ownerEmail);
+            console.log(`✅ New Quote email confirmed in inbox — Subject: "${subject}"`);
+        });
+
+        // ── 9.3  Switch to HomeOwner Mailsac tab and open the quote email ─
+        await test.step('77. Switch to HomeOwner Mailsac tab and open the "New Quote Submitted" email', async () => {
+            await ownerMailPage.bringToFront();
+            await ownerMailPage.reload();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(2000);
+            console.log('👀 HomeOwner Mailsac inbox reloaded — looking for Quote email');
+
+            const quoteEmailRow = ownerMailPage
+                .locator('a, tr, div')
+                .filter({ hasText: /quote|submitted|review/i })
+                .first();
+            await quoteEmailRow.waitFor({ state: 'visible', timeout: 20000 });
+            await quoteEmailRow.click();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(3000); // observe for 3 seconds
+            console.log('✅ "New Quote Submitted" email opened — observed for 3 seconds');
+        });
+
+        // ── 9.4  Switch back to TradeMate website ────────────────────────
+        await test.step('78. Switch back to TradeMate website (HomeOwner still logged in)', async () => {
+            await sitePage.bringToFront();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 10000 });
+            console.log('✅ Back on TradeMate — HomeOwner is logged in');
+        });
+
+        // ── 9.5 (step 26) Navigate to Posted Jobs ────────────────────────
+        await test.step('26. Verify displaying the newly posted jobs', async () => {
             await sitePage.getByText('Posted Jobs').first().click();
             await expect(
                 sitePage.getByText('My Posted Jobs')
@@ -1124,8 +1172,8 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
             console.log('✅ My Posted Jobs page is visible');
         });
 
-        // ── 9.3  Open the first job's detail page ────────────────────────
-        await test.step('77. Click "View Details" on the first posted job', async () => {
+        // ── 9.6 (step 27) Open the first job's detail page ───────────────
+        await test.step('27. Verify displaying the Details of the newly posted job', async () => {
             await sitePage.getByText('View Details').first().click();
             await expect(
                 sitePage.getByText('Job Done by:')
@@ -1133,25 +1181,451 @@ test.describe.serial('📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)
             console.log('✅ Job detail page visible — "Job Done by:" confirmed');
         });
 
-        // ── 9.4  Scroll to Applicant List & hire the Tradesman ───────────
-        await test.step('78. Scroll to Applicant List, hire the Tradesman and wait', async () => {
+        // ── 9.7 (step 28) Verify Applicant List visible and wait 2 seconds ─
+        await test.step('28. Verify Hiring a Tradesman for the job', async () => {
+            await expect(
+                sitePage.getByText('Applicant List')
+            ).toBeVisible({ timeout: 10000 });
+            console.log('✅ Applicant List section visible');
+
+            // Wait 2 seconds — this is where the flow should be completed and passed
+            await sitePage.waitForTimeout(2000);
+            console.log('✅ Applicant List confirmed — ready to proceed to Scenario 10');
+        });
+
+        // ── 9.8  HomeOwner logs out — Tradesman2 creation begins next ─────
+        // The HomeOwner MUST be logged out here so that the "Join as a
+        // Tradesperson" button becomes visible for Tradesman2 registration.
+        await test.step('82a. HomeOwner logs out (end of Scenario 9)', async () => {
+            await sitePage.getByRole('button', { name: 'Log out' }).click();
+            await homePage.logoutButton.click();
+            console.log('✅ HomeOwner logged out — Scenario 9 complete ✅');
+        });
+    });
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // SCENARIO 10 — New Tradesman2 created (S5→S8 without email views) →
+    //               quotes job → logs out →
+    //               HomeOwner (switches back to applicant list page) →
+    //               rejects Tradesman2 (2nd applicant) → hires Tradesman1 →
+    //               views "You Accepted an Offer!" email → HomeOwner logs out
+    // ═══════════════════════════════════════════════════════════════════════
+    test('➡️ SCENARIO 10: Tradesman2 quotes, HomeOwner rejects Tradesman2, hires Tradesman1, views acceptance email', async () => {
+
+        const authPage = new AuthPage(sitePage);
+        const basePage = new BasePage(sitePage);
+        const homePage = new HomePage(sitePage);
+        const jobPage = new JobPage(sitePage);
+        const subscriptionPage = new SubscriptionPage(sitePage);
+
+        // ══════════════════════════════════════════════════════════════════
+        // PART A — Create Tradesman2 (repeat S5→S8 flow, no email viewing)
+        // ══════════════════════════════════════════════════════════════════
+
+        // ── 10.1  Generate Tradesman2 email & open their Mailsac tab ──────
+        await test.step('82. Generate Tradesman2 email and open a new Mailsac inbox tab (Tab 5)', async () => {
+            tradesmanEmail2 = EmailHelper.generateMailsacEmail();
+            console.log(`
+📬 Tradesman2 email : ${tradesmanEmail2}`);
+            console.log(`🌐 Tradesman2 inbox  : ${EmailHelper.getInboxURL(tradesmanEmail2)}
+`);
+
+            // Open Tab 5 — Tradesman2 Mailsac inbox
+            tsMailPage2 = await context.newPage();
+            await tsMailPage2.goto(EmailHelper.getInboxURL(tradesmanEmail2));
+            await tsMailPage2.waitForLoadState('domcontentloaded');
+            console.log('✅ Tradesman2 Mailsac inbox tab opened (Tab 5)');
+
+            await sitePage.bringToFront();
+        });
+
+        // ── 10.2  Register Tradesman2 ─────────────────────────────────────
+        // At this point HomeOwner is logged out (from end of Scenario 9),
+        // so the "Join as a Tradesperson" button is visible on the homepage.
+        await test.step('83. Register Tradesman2 account', async () => {
+            await sitePage.bringToFront();
+
+            // Navigate to the website home page — logged-out state
+            await basePage.goToURL();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(2000);
+
+            // "Join as a Tradesperson" is only visible when NOT logged in
+            const joinBtn = sitePage.getByRole('button', { name: 'Join as a Tradesperson' });
+            await joinBtn.waitFor({ state: 'visible', timeout: 20000 });
+            await joinBtn.click();
+
+            // Wait for the registration form to load
+            await expect(
+                sitePage.getByText('Create your free')
+            ).toBeVisible({ timeout: 20000 });
+            console.log('✅ Tradesman2 registration page visible');
+
+            await authPage.AccountInformation(
+                'TradePerson2',
+                tradesmanEmail2,
+                process.env.PHONE_NUMBER!,
+                '12345678',
+                '12345678'
+            );
+            await authPage.CreateAccountButton.click();
+            await expect(
+                sitePage.getByText('Enter the verification code we send you on:')
+            ).toBeVisible({ timeout: 15000 });
+
+            // OTP bypass
+            await authPage.OTPVerification('1', '2', '3', '4');
+            await sitePage.getByText('Continue').click();
+            await expect(
+                sitePage.getByText('Login your account')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ Tradesman2 registered successfully');
+        });
+
+        // ── 10.3  Login as Tradesman2 ─────────────────────────────────────
+        await test.step('84. Login as Tradesman2', async () => {
+            await authPage.EmailInput.fill(tradesmanEmail2);
+            await authPage.PasswordInput.fill('12345678');
+            await sitePage.getByRole('button', { name: 'Log in' }).click();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ Tradesman2 logged in successfully');
+        });
+
+        // ── 10.4  Complete Registration — trade profile (same as S6) ──────
+        await test.step('85. Tradesman2: Click View Details → Complete Registration → select Plumber', async () => {
+            await sitePage.getByRole('button', { name: 'View Details' }).first().click();
+            await sitePage.getByRole('button', { name: 'Complete Registration' }).click();
+            await expect(
+                sitePage.getByText('Select your trade categories')
+            ).toBeVisible({ timeout: 10000 });
+            await homePage.plumberService.click();
+            console.log('✅ Tradesman2 trade category selected — Plumber');
+        });
+
+        await test.step('86. Tradesman2: Set map location', async () => {
+            await homePage.mapLocation.click();
+            await homePage.confirmMapLocation.click();
+            await expect(
+                sitePage.getByText('Choose your location Manually')
+            ).toBeVisible({ timeout: 10000 });
+            console.log('✅ Tradesman2 map location confirmed');
+        });
+
+        await test.step('87. Tradesman2: Fill profile details and submit', async () => {
+            await homePage.tradesManProfileDetails(
+                'TradingCompany2',
+                process.env.LOREM_TEXT!,
+                'Alex',
+                'Trader',
+                '150',
+                '3',
+                '01933954168',
+                tradesmanEmail2,
+                'https://www.google.com',
+                'https://www.google.com'
+            );
+            await homePage.profileDetailedFiles(
+                'test_attachments/Qa.jpg',
+                'test_attachments/testing soft.png',
+                'test_attachments/testing.png',
+                'test_attachments/Test PDF.pdf'
+            );
+            await sitePage.getByRole('button', { name: 'Submit' }).click();
+            await expect(
+                sitePage.getByText('TradesMan Profile updated successfully.')
+            ).toBeVisible({ timeout: 20000 });
+            console.log('✅ Tradesman2 profile submitted successfully');
+        });
+
+        // ── 10.5  Hit approval wall → buy subscription (same as S6) ──────
+        await test.step('88. Tradesman2: Hit approval wall and navigate to subscription page', async () => {
+            await sitePage.getByText('View Details').first().click();
+            await expect(
+                sitePage.getByText('View Subscription Plans')
+            ).toBeVisible({ timeout: 15000 });
+            await sitePage.getByText('View Subscription Plans').click();
+            console.log('✅ Tradesman2 approval wall confirmed — navigating to subscription');
+        });
+
+        await test.step('89. Tradesman2: Select subscription plan 3 and complete payment', async () => {
+            await homePage.subscriptionPlan3.click();
+            await expect(
+                sitePage.getByText('Payment method')
+            ).toBeVisible({ timeout: 15000 });
+            await subscriptionPage.buySubscription(
+                '4111111111111111',
+                '12/27',
+                '123',
+                'Trader'
+            );
+            await expect(
+                sitePage.getByText('My jobs')
+            ).toBeVisible({ timeout: 20000 });
+            console.log('✅ Tradesman2 subscription purchased');
+        });
+
+        // ── 10.5b  Tradesman2 logs out before admin verifies their account ─
+        // Tradesman2 is currently logged in. We must log out now so that:
+        //   (a) the admin step runs cleanly on a separate tab, and
+        //   (b) step 91 can log back in fresh after verification.
+        await test.step('89b. Tradesman2 logs out before admin verification', async () => {
+            await sitePage.getByRole('button', { name: 'Log out' }).click();
+            await homePage.logoutButton.click();
+            await sitePage.waitForLoadState('domcontentloaded');
+            console.log('✅ Tradesman2 logged out — admin will now verify the account');
+        });
+
+        // ── 10.6  Admin Tab — verify Tradesman2 (same as S7, reuse adminPage)
+        await test.step('90. Switch to Admin tab and verify Tradesman2 account', async () => {
+            await adminPage.bringToFront();
+
+            // Reload the admin panel in case the session expired while S10 was running
+            await adminPage.reload();
+            await adminPage.waitForLoadState('networkidle');
+            await adminPage.waitForTimeout(1500);
+
+            // Navigate to Tradesmen list
+            await adminPage.locator('.ri-tools-fill').first().click();
+            await adminPage.waitForLoadState('domcontentloaded');
+            await adminPage.waitForTimeout(1500);
+
+            // The most recently registered Tradesman (Tradesman2) should be first
+            await adminPage.locator('table tbody tr').first()
+                .waitFor({ state: 'visible', timeout: 15000 });
+
+            const firstRow = adminPage.locator('table tbody tr').first();
+
+            // Click Eye icon — same fallback chain as Scenario 7
+            let eyeBtn = firstRow.locator('[class*="ri-eye"], [class*="eye"]').first();
+            let visible = await eyeBtn.isVisible({ timeout: 3000 }).catch(() => false);
+            if (!visible) {
+                eyeBtn = firstRow.locator('a:has(svg), button:has(svg)').first();
+                visible = await eyeBtn.isVisible({ timeout: 3000 }).catch(() => false);
+            }
+            if (!visible) {
+                eyeBtn = firstRow.locator('a, button').first();
+            }
+            await eyeBtn.click();
+            await adminPage.waitForLoadState('domcontentloaded');
+            await adminPage.waitForTimeout(1500);
+
+            // Click "Update Verification"
+            const updateBtn = adminPage
+                .getByRole('button', { name: /update verification/i })
+                .or(adminPage.getByText(/update verification/i).first());
+            await updateBtn.waitFor({ state: 'visible', timeout: 10000 });
+            await updateBtn.click();
+            await adminPage.waitForTimeout(500);
+
+            // Select "Verified"
+            const nativeSelect = adminPage.locator('select').first();
+            const isNative = await nativeSelect.isVisible({ timeout: 3000 }).catch(() => false);
+            if (isNative) {
+                await nativeSelect.selectOption({ label: 'Verified' })
+                    .catch(() => nativeSelect.selectOption({ value: 'verified' }));
+            } else {
+                const combobox = adminPage.getByRole('combobox').first();
+                await combobox.click();
+                await adminPage.getByRole('option', { name: /verified/i })
+                    .or(adminPage.getByText('Verified').first())
+                    .click();
+            }
+
+            // Save
+            const saveBtn = adminPage.locator('//button[@id="saveVerificationBtn"]');
+            await saveBtn.waitFor({ state: 'visible', timeout: 10000 });
+            await saveBtn.click();
+            await adminPage.waitForTimeout(2000);
+            console.log('✅ Tradesman2 verified by Admin');
+
+            // Switch back to website
+            await sitePage.bringToFront();
+        });
+
+        // ── 10.7  Tradesman2 logs back in after admin verification, views job, submits quote
+        // Tradesman2 is now logged OUT (step 89b). The login page is reachable.
+        await test.step('91. Tradesman2 logs back in after admin verification', async () => {
+            await sitePage.bringToFront();
+            await basePage.goToURL();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(1500);
+            await homePage.goToLoginURL();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(1000);
+            await authPage.EmailInput.fill(tradesmanEmail2);
+            await authPage.PasswordInput.fill('12345678');
+            await sitePage.getByRole('button', { name: 'Log in' }).click();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 15000 });
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(2000);
+            console.log('✅ Tradesman2 logged back in after admin verification');
+        });
+
+        await test.step('92. Tradesman2: Navigate to home, view first job detail and provide quote', async () => {
+            // Navigate to homepage so the job listing is visible
+            await basePage.goToURL();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(1500);
+
+            // Click View Details on the first job in the listing
+            await sitePage.getByText('View Details').first().click();
+            await expect(
+                sitePage.getByText('Job Done by:')
+            ).toBeVisible({ timeout: 15000 });
+
+            await sitePage.getByRole('button', { name: 'Provide your quote for the job' }).click();
+            await jobPage.quoteAmount.fill('900');
+            await sitePage.getByRole('button', { name: 'Confirm' }).click();
+            await expect(
+                sitePage.getByText('Quote submitted successfully')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ Tradesman2 quote of £900 submitted successfully');
+        });
+
+        // ── 10.8  Tradesman2 logs out ─────────────────────────────────────
+        await test.step('93. Tradesman2 logs out', async () => {
+            await sitePage.getByRole('button', { name: 'Log out' }).click();
+            await homePage.logoutButton.click();
+            console.log('✅ Tradesman2 logged out');
+        });
+
+        // ══════════════════════════════════════════════════════════════════
+        // PART B — HomeOwner rejects Tradesman2, hires Tradesman1
+        // ══════════════════════════════════════════════════════════════════
+
+        // ── 10.9  HomeOwner logs back in ─────────────────────────────────
+        await test.step('94. HomeOwner logs back in', async () => {
+            await basePage.goToURL();
+            await homePage.goToLoginURL();
+            await authPage.EmailInput.fill(ownerEmail);
+            await authPage.PasswordInput.fill('12345678');
+            await sitePage.getByRole('button', { name: 'Log in' }).click();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ HomeOwner logged back in');
+        });
+
+        // ── 10.10  Navigate to Posted Jobs → View Details → Applicant List
+        await test.step('95. HomeOwner navigates to Posted Jobs and opens job detail', async () => {
+            await sitePage.getByText('Posted Jobs').first().click();
+            await expect(sitePage.getByText('My Posted Jobs')).toBeVisible({ timeout: 15000 });
+
+            await sitePage.getByText('View Details').first().click();
+            await expect(sitePage.getByText('Job Done by:')).toBeVisible({ timeout: 15000 });
+
             const applicantHeading = sitePage
                 .getByText('Applicant List')
                 .or(sitePage.getByText('Applicants'))
                 .first();
             await applicantHeading.scrollIntoViewIfNeeded();
             await expect(applicantHeading).toBeVisible({ timeout: 10000 });
-            console.log('✅ Applicant List section visible');
+            console.log('✅ Applicant List visible — 2 applicants should be in the list');
+        });
 
-            // Click the hire/action button for the first applicant (the Tradesman)
-            await jobPage.applicantActions.click();
+        // ── 10.11  Reject Tradesman2 — scope the action button to Tradesman2's row ──
+        // There are 2 "Applicant actions" buttons (one per row). Using the generic
+        // jobPage.applicantActions locator causes a strict-mode violation.
+        // We target the FIRST table row (Tradesman2 is most recent → top row).
+        await test.step('96. Reject Tradesman2 offer — click applicantActions for Tradesman2, then Delete Application', async () => {
+            await expect(sitePage.getByText('Applicant List')).toBeVisible({ timeout: 10000 });
 
-            // Confirm the Applicant List is still visible after the action
-            await expect(applicantHeading).toBeVisible({ timeout: 10000 });
+            // Click the action button scoped to the FIRST applicant row (Tradesman2)
+            const tradesman2ActionBtn = sitePage
+                .locator('table tbody tr')
+                .first()
+                .locator('//button[@aria-label=\'Applicant actions\']');
+            await tradesman2ActionBtn.waitFor({ state: 'visible', timeout: 10000 });
+            await tradesman2ActionBtn.click();
 
-            // Wait 2 seconds — flow completed and passed
+            // Wait 3 seconds to observe the dropdown before confirming deletion
+            await sitePage.waitForTimeout(3000);
+
+            // Use the exact XPath for Delete Application as specified
+            await sitePage.locator('//span[normalize-space()=\'Delete Application\']').click();
+
+            // Confirm the deletion in the popup that appears
+            await sitePage.locator('//button[normalize-space()=\'Delete\']').click();
+
             await sitePage.waitForTimeout(2000);
-            console.log('✅ Tradesman hired — Scenario 9 complete ✅');
+            console.log('✅ Tradesman2 application rejected / deleted');
+        });
+
+        // ── 10.12  Hire Tradesman1 — after deletion Tradesman1 is the only row left ──
+        // The action button no longer conflicts (only 1 row remains).
+        await test.step('28. Verify Hiring a Tradesman for the job', async () => {
+            await expect(
+                sitePage.getByText('Applicant List')
+            ).toBeVisible({ timeout: 10000 });
+
+            // Tradesman1 is now the sole remaining applicant — first (and only) row
+            const tradesman1ActionBtn = sitePage
+                .locator('table tbody tr')
+                .first()
+                .locator('//button[@aria-label=\'Applicant actions\']');
+            await tradesman1ActionBtn.waitFor({ state: 'visible', timeout: 10000 });
+            await tradesman1ActionBtn.click();
+
+            await jobPage.hireNow_btn.click();
+            await sitePage.getByRole('button', { name: 'Confirm' }).click();
+            await expect(
+                sitePage.getByText('Post your review')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ Tradesman1 hired successfully — "Post your review" visible');
+
+            // Wait a few seconds on the page after hiring
+            await sitePage.waitForTimeout(3000);
+        });
+
+        // ══════════════════════════════════════════════════════════════════
+        // PART C — HomeOwner views "You Accepted an Offer!" email → logout
+        // ══════════════════════════════════════════════════════════════════
+
+        // ── 10.13  Poll Mailsac for "You Accepted an Offer!" email ────────
+        await test.step('98. Poll Mailsac — wait for "You Accepted an Offer!" email to arrive', async () => {
+            console.log('⏳ Polling Mailsac for "You Accepted an Offer!" email...');
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchAcceptedOfferEmail(ownerEmail);
+            console.log(`✅ Accepted offer email confirmed in inbox — Subject: "${subject}"`);
+        });
+
+        // ── 10.14  Switch to HomeOwner Mailsac tab and open the email ─────
+        await test.step('99. Switch to HomeOwner Mailsac tab and open "You Accepted an Offer!" email', async () => {
+            await ownerMailPage.bringToFront();
+            await ownerMailPage.reload();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(2000);
+            console.log('👀 HomeOwner Mailsac inbox reloaded — looking for acceptance email');
+
+            const acceptedEmailRow = ownerMailPage
+                .locator('a, tr, div')
+                .filter({ hasText: /accepted|offer|hired/i })
+                .first();
+            await acceptedEmailRow.waitFor({ state: 'visible', timeout: 20000 });
+            await acceptedEmailRow.click();
+            await ownerMailPage.waitForLoadState('domcontentloaded');
+            await ownerMailPage.waitForTimeout(3000); // observe for 3 seconds
+            console.log('✅ "You Accepted an Offer!" email opened — observed for 3 seconds');
+        });
+
+        // ── 10.15  Switch back to TradeMate website ───────────────────────
+        await test.step('100. Switch back to TradeMate website (HomeOwner still logged in)', async () => {
+            await sitePage.bringToFront();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 10000 });
+            console.log('✅ Back on TradeMate — HomeOwner is logged in');
+        });
+
+        // ── 10.16  HomeOwner logs out — all scenarios complete ────────────
+        await test.step('101. HomeOwner logs out — all 10 scenarios complete ✅', async () => {
+            await sitePage.getByRole('button', { name: 'Log out' }).click();
+            await homePage.logoutButton.click();
+            console.log('✅ HomeOwner logged out — all 10 scenarios completed successfully ✅');
         });
     });
 

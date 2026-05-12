@@ -360,21 +360,57 @@ export class EmailHelper {
         return { body };
     }
 
-    // ── Quote submitted email (Scenario 8) ───────────────────────────────
+    // ── Scenario 8 — "Quote submitted successfully!" (sent to Tradesman) ──────
 
     /**
      * Polls Mailsac until the "Quote submitted successfully!" email arrives.
-     * This email is sent to the Tradesman after they submit a quote for a job.
-     * Subject typically contains: "quote", "submitted", "successfully".
+     * Sent to the Tradesman when they submit a quote on a job.
+     * Subject typically contains: "quote submitted".
      */
     async fetchQuoteSubmittedEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
-            s => /quote|submitted/i.test(s),
+            s => /quote submitted/i.test(s),
             '"Quote submitted successfully!" email'
         );
         const body = await getMessageBodyText(email, msg._id);
         console.log(`📧 Quote submitted email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    // ── Scenario 9 — "New Quote Submitted" notification (sent to HomeOwner) ──
+
+    /**
+     * Polls Mailsac until the "New Quote Submitted for Your Job Review please!" email arrives.
+     * Sent to the HomeOwner when a Tradesman submits a quote on their job.
+     * Subject typically contains: "quote submitted", "new quote", or "job review".
+     */
+    async fetchNewQuoteEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /quote submitted|new quote|job review/i.test(s),
+            '"New Quote Submitted for Your Job Review please!" email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 New Quote email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    // ── Scenario 10 — "You Accepted an Offer!" email (sent to HomeOwner) ──
+
+    /**
+     * Polls Mailsac until the "You Accepted an Offer!" email arrives.
+     * Sent to the HomeOwner after they hire a Tradesman ("Hire Now" confirmed).
+     * Subject typically contains: "accepted", "offer", or "hired".
+     */
+    async fetchAcceptedOfferEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /accepted|offer|hired/i.test(s),
+            '"You Accepted an Offer!" email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Accepted offer email snippet:\n${body.slice(0, 300)}`);
         return { subject: msg.subject, body, messageId: msg._id };
     }
 }
