@@ -101,6 +101,10 @@ export class HomePage {
         await this.page.goto(`https://trademate-next-js.vercel.app/homeowner/profile`);
     }
 
+    async goToAdminLoginURL() {
+        await this.page.goto(`https://jbtrade.thesyndicates.team/`);
+    }
+
     async homeOwnerLogin() {
         await this.EmailInput.fill(process.env.HOME_OWNER_EMAIL!);
         await this.PasswordInput.fill('12345678');
@@ -137,11 +141,11 @@ export class HomePage {
 
 
     OwnerEmail() {
-        return `user_${Date.now().toString(36)}@testmail.com`;
+        return `HomeOwner_${Date.now().toString(36)}@testemail.com`;
     }
 
     TradesmanEmail() {
-        return `user_${Date.now().toString(34)}@testmail.com`;
+        return `TradeMan_${Date.now().toString(34)}@testemail.com`;
     }
 
     async E2EOwnerLogin(email: string) {
@@ -152,6 +156,12 @@ export class HomePage {
 
     async E2ETradesManLogin(email: string) {
         await this.EmailInput.fill(email);
+        await this.PasswordInput.fill('12345678');
+        await this.page.getByRole('button', { name: 'Log in' }).click();
+    }
+
+    async tradesManLogin2nd() {
+        await this.EmailInput.fill(process.env.TRADES_MAN_EMAIL2!);
         await this.PasswordInput.fill('12345678');
         await this.page.getByRole('button', { name: 'Log in' }).click();
     }

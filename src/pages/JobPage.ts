@@ -14,6 +14,7 @@ export class JobPage {
     readonly writeReview: Locator;
     readonly inProgressJobs: Locator;
     readonly starRating: Locator;
+    readonly delete_btn: Locator;
 
 
     constructor(page: Page) {
@@ -23,7 +24,7 @@ export class JobPage {
         this.quoteAmount = page.locator("//input[@placeholder='Enter your price']");
         this.applicantActions = page.locator("//button[@aria-label='Applicant actions']");
         this.profileView_btn = page.locator("//span[normalize-space()='View Profile']");
-        this.deleteApplication_btn = page.locator("//span[normalize-space()='Delete Application']");
+        // this.deleteApplication_btn = page.locator("//span[normalize-space()='Delete Application']");
         this.hireNow_option = page.locator("//span[normalize-space()='Hire Now']");
         this.reviewsAndRatings_header = page.locator("//h3[normalize-space()='Reviews and Ratings']");
         this.hireNow_btn = page.locator("//button[normalize-space()='Hire Now']");
@@ -31,6 +32,8 @@ export class JobPage {
         this.writeReview = page.locator("//textarea[@placeholder='Enter text here']");
         this.inProgressJobs = page.locator("//button[normalize-space()='Jobs In Progress']");
         this.starRating = page.locator("#star-4");
+        this.deleteApplication_btn = page.locator("//span[normalize-space()='Delete Application']");
+        this.delete_btn = page.locator("//button[normalize-space()='Delete']");
 
 
 

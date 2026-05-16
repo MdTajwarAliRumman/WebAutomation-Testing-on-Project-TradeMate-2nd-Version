@@ -43,6 +43,17 @@
  *                 views "You Accepted an Offer!" email → returns to website →
  *                 HomeOwner logs out
  *
+ * [Tradesman2 — re-login]
+ *   SCENARIO 11 — Tradesman2 logs back in → wait → switch to Mailsac →
+ *                 view "Your Offer Was Not Accepted" email → wait →
+ *                 return to website → logout
+ *
+ * [Tradesman1 — re-login]
+ *   SCENARIO 12 — Tradesman1 logs back in → wait → switch to Mailsac →
+ *                 view "Your Offer Has Been Accepted!" email → wait →
+ *                 return to website → Job Board → In Progress Jobs →
+ *                 View Details → observe "This job is in progress" → logout
+ *
  * TAB LAYOUT (shared across every test via module-level variables)
  * ──────────────────────────────────────────────────────────────────
  *   sitePage      = Tab 1  — TradeMate website        (reused by every scenario)
@@ -73,7 +84,7 @@ let adminPage: Page;        // Tab 4 — Admin panel site (opened in Scenario 7)
 let ownerEmail: string;       // freshly generated @mailsac.com for the HomeOwner
 let tradesmanEmail: string;  // freshly generated @mailsac.com for the Tradesman (Scenario 5)
 let tradesmanEmail2: string; // freshly generated @mailsac.com for Tradesman2 (Scenario 10)
-let tsMailPage2: Page;       // Tab 5 — Mailsac inbox for Tradesman2 (opened in Scenario 10)
+let ts2MailPage: Page;       // Tab 5 — Mailsac inbox for Tradesman2 (opened in Scenario 10)
 // ──────────────────────────────────────────────────────────────────────────
 
 test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
@@ -1231,9 +1242,9 @@ test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
 `);
 
             // Open Tab 5 — Tradesman2 Mailsac inbox
-            tsMailPage2 = await context.newPage();
-            await tsMailPage2.goto(EmailHelper.getInboxURL(tradesmanEmail2));
-            await tsMailPage2.waitForLoadState('domcontentloaded');
+            ts2MailPage = await context.newPage();
+            await ts2MailPage.goto(EmailHelper.getInboxURL(tradesmanEmail2));
+            await ts2MailPage.waitForLoadState('domcontentloaded');
             console.log('✅ Tradesman2 Mailsac inbox tab opened (Tab 5)');
 
             await sitePage.bringToFront();
@@ -1534,7 +1545,7 @@ test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
         await test.step('96. Reject Tradesman2 offer — click applicantActions for Tradesman2, then Delete Application', async () => {
             await expect(sitePage.getByText('Applicant List')).toBeVisible({ timeout: 10000 });
 
-            // Click the action button scoped to the FIRST applicant row (Tradesman2)
+            // Click the action button scoped to the FIRST applicant row (Tradesman2 — most recent, top row)
             const tradesman2ActionBtn = sitePage
                 .locator('table tbody tr')
                 .first()
@@ -1542,27 +1553,36 @@ test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
             await tradesman2ActionBtn.waitFor({ state: 'visible', timeout: 10000 });
             await tradesman2ActionBtn.click();
 
-            // Wait 3 seconds to observe the dropdown before confirming deletion
+            // Wait 3 seconds so the dropdown is clearly visible before acting
             await sitePage.waitForTimeout(3000);
 
-            // Use the exact XPath for Delete Application as specified
+            // Click Delete Application from the dropdown
             await sitePage.locator('//span[normalize-space()=\'Delete Application\']').click();
 
-            // Confirm the deletion in the popup that appears
+            // Confirm the deletion in the confirmation popup
             await sitePage.locator('//button[normalize-space()=\'Delete\']').click();
 
-            await sitePage.waitForTimeout(2000);
-            console.log('✅ Tradesman2 application rejected / deleted');
-        });
+            // ── IMPORTANT: wait for the page to settle after deletion ──────
+            // Give the UI time to remove Tradesman2's row and re-render the list
+            // before we attempt to interact with Tradesman1's row.
+            await sitePage.waitForTimeout(4000);
 
-        // ── 10.12  Hire Tradesman1 — after deletion Tradesman1 is the only row left ──
-        // The action button no longer conflicts (only 1 row remains).
-        await test.step('28. Verify Hiring a Tradesman for the job', async () => {
+            // Confirm the Applicant List is still visible (now with only 1 row)
             await expect(
                 sitePage.getByText('Applicant List')
             ).toBeVisible({ timeout: 10000 });
 
-            // Tradesman1 is now the sole remaining applicant — first (and only) row
+            console.log('✅ Tradesman2 application deleted — waited 4s for UI to settle');
+        });
+
+        // ── 10.12  Hire Tradesman1 — after deletion Tradesman1 is the only row left ──
+        await test.step('97. Hire Tradesman1 — the sole remaining applicant', async () => {
+            // Confirm Applicant List is visible with exactly 1 remaining row
+            await expect(
+                sitePage.getByText('Applicant List')
+            ).toBeVisible({ timeout: 10000 });
+
+            // Tradesman1 is now the ONLY remaining applicant in the first (and only) row
             const tradesman1ActionBtn = sitePage
                 .locator('table tbody tr')
                 .first()
@@ -1570,15 +1590,18 @@ test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
             await tradesman1ActionBtn.waitFor({ state: 'visible', timeout: 10000 });
             await tradesman1ActionBtn.click();
 
+            // Wait 1 second for the action dropdown to fully open
+            await sitePage.waitForTimeout(1000);
+
             await jobPage.hireNow_btn.click();
             await sitePage.getByRole('button', { name: 'Confirm' }).click();
             await expect(
                 sitePage.getByText('Post your review')
             ).toBeVisible({ timeout: 15000 });
-            console.log('✅ Tradesman1 hired successfully — "Post your review" visible');
 
-            // Wait a few seconds on the page after hiring
+            // Wait 3 seconds to clearly observe the success state
             await sitePage.waitForTimeout(3000);
+            console.log('✅ Tradesman1 hired successfully — "Post your review" visible ✅');
         });
 
         // ══════════════════════════════════════════════════════════════════
@@ -1626,6 +1649,196 @@ test.describe.serial('📧 End-to-End Flows (HomeOwner + Tradesman)', () => {
             await sitePage.getByRole('button', { name: 'Log out' }).click();
             await homePage.logoutButton.click();
             console.log('✅ HomeOwner logged out — all 10 scenarios completed successfully ✅');
+        });
+    });
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // SCENARIO 11 — Tradesman2 re-logs in → wait → switch to Mailsac →
+    //               view "Your Offer Was Not Accepted" email → wait →
+    //               return to website → logout
+    // ═══════════════════════════════════════════════════════════════════════
+    test('➡️ SCENARIO 11: Tradesman2 views "Your Offer Was Not Accepted" email in Mailsac, then logs out', async () => {
+
+        const authPage = new AuthPage(sitePage);
+        const basePage = new BasePage(sitePage);
+        const homePage = new HomePage(sitePage);
+
+        // ── 11.1  Tradesman2 logs back in ─────────────────────────────────
+        await test.step('102. Tradesman2 navigates to login page and logs in', async () => {
+            await sitePage.bringToFront();
+            await basePage.goToURL();
+            await homePage.goToLoginURL();
+            await authPage.EmailInput.fill(tradesmanEmail2);
+            await authPage.PasswordInput.fill('12345678');
+            await sitePage.getByRole('button', { name: 'Log in' }).click();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 15000 });
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(3000); // wait 3 seconds on the site first
+            console.log('✅ Tradesman2 logged back in — waited 3 seconds on site');
+        });
+
+        // ── 11.2  Switch to Tradesman2 Mailsac tab and wait for the specific email ─
+        // ── 11.2  API-poll to confirm "Your Offer Was Not Accepted" has arrived ─
+        await test.step('103. Poll Mailsac API — confirm "Your Offer Was Not Accepted" email has arrived', async () => {
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchOfferRejectedEmail(tradesmanEmail2);
+            console.log(`✅ Rejection email confirmed in Tradesman2 inbox — Subject: "${subject}"`);
+        });
+
+        // ── 11.3  Switch to Tab 5 and click the 2nd row (rejection email) ─
+        // Row 0 = Welcome login email (arrives first when Tradesman2 re-logged in).
+        // Row 1 = "Your Offer Was Not Accepted" email — this is what we click.
+        await test.step('104. Open "Your Offer Was Not Accepted" email in Mailsac and observe for 3 seconds', async () => {
+            await ts2MailPage.bringToFront();
+            await ts2MailPage.reload();
+            await ts2MailPage.waitForLoadState('domcontentloaded');
+            await ts2MailPage.waitForTimeout(2000);
+
+            // nth(1) = second row = "Your Offer Was Not Accepted"
+            // nth(0) = first row  = Welcome login email — we skip this one
+            const targetRow = ts2MailPage
+                .locator('table tbody tr')
+                .nth(1)
+                .locator('a')
+                .first();
+
+            await targetRow.waitFor({ state: 'visible', timeout: 15000 });
+            const subjectText = await targetRow.textContent();
+            console.log(`📧 Clicking email row: "${subjectText?.trim().slice(0, 80)}"`);
+            await targetRow.click();
+            await ts2MailPage.waitForLoadState('domcontentloaded');
+            await ts2MailPage.waitForTimeout(3000); // observe for 3 seconds
+            console.log('✅ "Your Offer Was Not Accepted" email opened and observed for 3 seconds');
+        });
+
+        // ── 11.4  Return to TradeMate website ────────────────────────────
+        await test.step('105. Return to TradeMate website (Tradesman2 still logged in)', async () => {
+            await sitePage.bringToFront();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 10000 });
+            console.log(`🌐 Back on TradeMate — URL: ${sitePage.url()}`);
+            console.log('✅ Tradesman2 is back on TradeMate');
+        });
+
+        // ── 11.5  Tradesman2 logs out ─────────────────────────────────────
+        await test.step('106. Tradesman2 logs out — Scenario 11 complete', async () => {
+            await sitePage.getByRole('button', { name: 'Log out' }).click();
+            await homePage.logoutButton.click();
+            console.log('✅ Tradesman2 logged out — ready for Scenario 12 ✅');
+        });
+    });
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // SCENARIO 12 — Tradesman1 re-logs in → wait → Mailsac →
+    //               view "Your Offer Has Been Accepted!" email → wait →
+    //               return to website → Job Board → In Progress →
+    //               View Details → observe "This job is in progress" → logout
+    // ═══════════════════════════════════════════════════════════════════════
+    test('➡️ SCENARIO 12: Tradesman1 views acceptance email, checks In Progress job, logs out', async () => {
+
+        const authPage = new AuthPage(sitePage);
+        const basePage = new BasePage(sitePage);
+        const homePage = new HomePage(sitePage);
+        const jobPage = new JobPage(sitePage);
+
+        // ── 12.1  Tradesman1 logs back in ─────────────────────────────────
+        await test.step('108. Tradesman1 navigates to login page and logs in', async () => {
+            await sitePage.bringToFront();
+            await basePage.goToURL();
+            await homePage.goToLoginURL();
+            await authPage.EmailInput.fill(tradesmanEmail);
+            await authPage.PasswordInput.fill('12345678');
+            await sitePage.getByRole('button', { name: 'Log in' }).click();
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 15000 });
+            await sitePage.waitForLoadState('domcontentloaded');
+            await sitePage.waitForTimeout(3000); // wait a few seconds on the site
+            console.log('✅ Tradesman1 logged back in — waited 3 seconds on site');
+        });
+
+        // ── 12.2  API-poll to confirm "Your Offer Has Been Accepted!" has arrived ─
+        await test.step('109. Poll Mailsac API — confirm "Your Offer Has Been Accepted!" email has arrived', async () => {
+            const helper = new EmailHelper();
+            const { subject } = await helper.fetchOfferAcceptedEmail(tradesmanEmail);
+            console.log(`✅ Acceptance email confirmed in Tradesman1 inbox — Subject: "${subject}"`);
+        });
+
+        // ── 12.3  Switch to Tab 3 and click the 2nd row (acceptance email) ─
+        // Tradesman1's inbox has emails from S5/S8 AND a new Welcome login email
+        // from step 108. Mailsac lists newest first, so the inbox order is:
+        //   Row 0 = Welcome login email  (just triggered by re-login)
+        //   Row 1 = "Your Offer Has Been Accepted!"  ← this is what we click
+        await test.step('110. Open "Your Offer Has Been Accepted!" email in Mailsac and observe for 3 seconds', async () => {
+            await tsMailPage.bringToFront();
+            await tsMailPage.reload();
+            await tsMailPage.waitForLoadState('domcontentloaded');
+            await tsMailPage.waitForTimeout(2000);
+
+            // nth(1) = second row = "Your Offer Has Been Accepted!"
+            // nth(0) = first row  = Welcome login email — we skip this one
+            const targetRow = tsMailPage
+                .locator('table tbody tr')
+                .nth(1)
+                .locator('a')
+                .first();
+
+            await targetRow.waitFor({ state: 'visible', timeout: 15000 });
+            const subjectText = await targetRow.textContent();
+            console.log(`📧 Clicking email row: "${subjectText?.trim().slice(0, 80)}"`);
+            await targetRow.click();
+            await tsMailPage.waitForLoadState('domcontentloaded');
+            await tsMailPage.waitForTimeout(3000); // observe for 3 seconds
+            console.log('✅ "Your Offer Has Been Accepted!" email opened and observed for 3 seconds');
+        });
+
+        // ── 12.5  Return to TradeMate website ────────────────────────────
+        await test.step('112. Return to TradeMate website (Tradesman1 still logged in)', async () => {
+            await sitePage.bringToFront();
+            await sitePage.waitForLoadState('domcontentloaded');
+            await expect(
+                sitePage.getByRole('button', { name: 'Log out' })
+            ).toBeVisible({ timeout: 10000 });
+            console.log(`🌐 Back on TradeMate — URL: ${sitePage.url()}`);
+            console.log('✅ Tradesman1 is back on TradeMate');
+        });
+
+        // ── 12.6  Click "Job Board" in the nav ───────────────────────────
+        await test.step('113. Click "Job Board" in the navigation', async () => {
+            await sitePage.getByText('Job Board').first().click();
+            await sitePage.waitForLoadState('domcontentloaded');
+            console.log('✅ Job Board page loaded');
+        });
+
+        // ── 12.7  Click "In Progress Jobs" tab ───────────────────────────
+        await test.step('114. Click "In Progress Jobs" to see jobs in progress', async () => {
+            await jobPage.inProgressJobs.click();
+            await expect(
+                sitePage.getByText('View Details')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ In Progress Jobs visible — "View Details" button confirmed');
+        });
+
+        // ── 12.8  Click "View Details" on the first in-progress job ──────
+        await test.step('115. Click "View Details" on the first in-progress job', async () => {
+            await sitePage.getByText('View Details').first().click();
+            await expect(
+                sitePage.getByText('This job is in progress')
+            ).toBeVisible({ timeout: 15000 });
+            console.log('✅ Job detail visible — "This job is in progress" confirmed');
+            // Wait 3 seconds to observe the job detail page
+            await sitePage.waitForTimeout(3000);
+            console.log('✅ Observed job detail for 3 seconds');
+        });
+
+        // ── 12.9  Tradesman1 logs out ─────────────────────────────────────
+        await test.step('116. Tradesman1 logs out — all 12 scenarios complete ✅', async () => {
+            await homePage.logout();
+            console.log('✅ Tradesman1 logged out — ALL 12 SCENARIOS COMPLETED SUCCESSFULLY ✅');
         });
     });
 

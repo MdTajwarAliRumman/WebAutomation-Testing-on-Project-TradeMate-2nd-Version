@@ -2,37 +2,32 @@
  * EmailHelper.ts
  * ──────────────────────────────────────────────────────────────────────────
  * Uses Mailsac (https://mailsac.com) — a FREE public test email service.
- * Any email ending in @mailsac.com is a valid inbox — no signup required
- * to receive, but an API key is needed to read via the REST API.
  *
  * Environment variable needed in your .env:
  *   MAILSAC_API_KEY=<your free key from https://mailsac.com/api-keys>
  *
  * Free plan: 50 API calls/day — plenty for daily test runs.
- *
- * Methods available:
- *   EmailHelper.generateMailsacEmail()   — generate a unique @mailsac.com address
- *   EmailHelper.getInboxURL(email)       — get the visual Mailsac inbox URL
- *   helper.fetchOTP(email)               — wait for & extract OTP (kept for future)
- *   helper.fetchWelcomeEmail(email)      — wait for & return the Welcome email
- *   helper.getLatestWelcomeEmailBody()   — get Welcome email body (for URL extraction)
- *   helper.fetchJobEmail(email)              — wait for & return the Job email
- *   helper.getLatestJobEmailBody()           — get Job email body (for URL extraction)
- *   helper.fetchAdminNotificationEmail()     — wait for admin notify / approve email (S8)
- *   helper.fetchMatchingJobEmail()           — wait for "New Matching Job" email (S8)
- *   helper.getLatestMatchingJobEmailBody()   — get matching job email body (URL fallback)
  * ──────────────────────────────────────────────────────────────────────────
  */
 
 import dotenv from 'dotenv';
 dotenv.config();
 
-const MAILSAC_API_KEY = process.env.MAILSAC_API_KEY ?? '';
+// .trim() strips accidental trailing spaces/newlines from the .env value.
+// A trailing space causes every API request to return 401 Unauthorized.
+const MAILSAC_API_KEY = (process.env.MAILSAC_API_KEY ?? '').trim();
 const BASE_URL = 'https://mailsac.com/api';
 
+if (!MAILSAC_API_KEY) {
+    throw new Error(
+        '❌ MAILSAC_API_KEY is not set or is empty in your .env file!\n' +
+        '   Get a free key at https://mailsac.com/api-keys'
+    );
+}
+
 // Polling configuration
-const POLL_INTERVAL_MS = 4000;   // check every 4 seconds
-const MAX_WAIT_MS = 90000;  // wait up to 90 seconds total
+const POLL_INTERVAL_MS = 5000;   // check every 5 seconds
+const MAX_WAIT_MS = 120000; // wait up to 120 seconds total
 
 // ─── Internal types ───────────────────────────────────────────────────────
 
@@ -51,7 +46,8 @@ async function listMessages(email: string): Promise<MailsacMessage[]> {
         { headers: { 'Mailsac-Key': MAILSAC_API_KEY } }
     );
     if (!res.ok) {
-        throw new Error(`Mailsac list error: ${res.status} — ${await res.text()}`);
+        const body = await res.text();
+        throw new Error(`Mailsac list error ${res.status}: ${body}`);
     }
     return res.json() as Promise<MailsacMessage[]>;
 }
@@ -74,6 +70,48 @@ async function deleteMessage(email: string, messageId: string): Promise<void> {
     );
 }
 
+// ─── Diagnostic dump — called on timeout to show exactly what went wrong ──
+
+async function dumpInboxDiagnostics(email: string): Promise<void> {
+    console.log('\n══════════════ MAILSAC INBOX DIAGNOSTICS ══════════════');
+    console.log(`📬 Inbox address : ${email}`);
+    console.log(`🔑 API key used  : ${MAILSAC_API_KEY.slice(0, 8)}...${MAILSAC_API_KEY.slice(-4)}`);
+    console.log(`🌐 View online   : https://mailsac.com/inbox/${encodeURIComponent(email)}`);
+    try {
+        const messages = await listMessages(email);
+        if (messages.length === 0) {
+            console.log('');
+            console.log('📭 INBOX IS COMPLETELY EMPTY.');
+            console.log('   The app has NOT sent any email to this address.');
+            console.log('');
+            console.log('   Most likely causes:');
+            console.log('   1. The app email provider BLOCKS @mailsac.com as a disposable domain.');
+            console.log('      → Ask your dev team to whitelist mailsac.com in the email service.');
+            console.log('      → Or use a real Gmail/Outlook address + Gmail API for polling instead.');
+            console.log('   2. The app backend is in a mode that SUPPRESSES all outbound email.');
+            console.log('      → Check with your dev team whether the staging env sends real emails.');
+            console.log('   3. The app SMTP / SendGrid / SES / Mailgun config is broken in this env.');
+            console.log('      → Check the backend logs for email-sending errors after registration.');
+            console.log('');
+            console.log('   QUICKEST TEST: Register manually on the site with this same mailsac');
+            console.log(`   address (${email}) and check if any email ever arrives.`);
+            console.log('   If nothing arrives → the problem is 100% on the app side, not this code.');
+        } else {
+            console.log(`\n📬 INBOX HAS ${messages.length} MESSAGE(S) — but none matched the subject filter.`);
+            console.log('   Subjects currently in the inbox:');
+            messages.forEach((m, i) => {
+                console.log(`   [${i + 1}] "${m.subject}"  (from: ${m.from?.[0]?.address ?? 'unknown'}, received: ${m.receivedAt})`);
+            });
+            console.log('\n   ► The subject filter regex did not match any of the above subjects.');
+            console.log('   ► Update the subject filter in EmailHelper to match the actual subject.');
+        }
+    } catch (err) {
+        console.log(`\n❌ Mailsac API call itself FAILED: ${err}`);
+        console.log('   ► Double-check that MAILSAC_API_KEY in .env is correct with no spaces.');
+    }
+    console.log('═══════════════════════════════════════════════════════\n');
+}
+
 // ─── Generic poll helper ──────────────────────────────────────────────────
 
 async function waitForEmail(
@@ -84,19 +122,54 @@ async function waitForEmail(
     const deadline = Date.now() + MAX_WAIT_MS;
     console.log(`⏳ Polling Mailsac for "${label}" at ${email}...`);
 
-    while (Date.now() < deadline) {
-        const messages = await listMessages(email);
-        const match = messages.find(m => subjectFilter(m.subject ?? ''));
-        if (match) {
-            console.log(`✅ Found — Subject: "${match.subject}"`);
-            return match;
+    // ── Pre-flight: verify the API key works before we waste 120s polling ──
+    try {
+        const preflight = await listMessages(email);
+        console.log(`✅ Mailsac API key OK. Inbox currently has ${preflight.length} message(s).`);
+        if (preflight.length > 0) {
+            console.log('   Existing subjects:');
+            preflight.forEach(m => console.log(`   • "${m.subject}"`));
         }
+    } catch (err) {
+        throw new Error(
+            `❌ Mailsac API pre-flight failed — cannot read inbox for ${email}.\n` +
+            `   Error: ${err}\n` +
+            `   Fix: Check MAILSAC_API_KEY in your .env (no trailing spaces, correct key).`
+        );
+    }
+
+    let pollCount = 0;
+    while (Date.now() < deadline) {
+        try {
+            const messages = await listMessages(email);
+            pollCount++;
+            const elapsed = Math.round((Date.now() - (deadline - MAX_WAIT_MS)) / 1000);
+            console.log(`   [+${elapsed}s] Inbox has ${messages.length} message(s). Looking for: "${label}"`);
+
+            // On first poll that finds messages, print all subjects so you can see them
+            if (messages.length > 0 && pollCount <= 2) {
+                messages.forEach(m => console.log(`   • "${m.subject}"`));
+            }
+
+            const match = messages.find(m => subjectFilter(m.subject ?? ''));
+            if (match) {
+                console.log(`✅ Found — Subject: "${match.subject}"`);
+                return match;
+            }
+        } catch (err) {
+            console.warn(`⚠️  Mailsac API error (retrying in ${POLL_INTERVAL_MS / 1000}s): ${err}`);
+        }
+
         await new Promise(r => setTimeout(r, POLL_INTERVAL_MS));
     }
 
+    // Timed out — run diagnostics to explain WHY before throwing
+    await dumpInboxDiagnostics(email);
+
     throw new Error(
         `❌ Timed out after ${MAX_WAIT_MS / 1000}s waiting for "${label}" at ${email}.\n` +
-        `   Check MAILSAC_API_KEY in .env and view inbox: ${EmailHelper.getInboxURL(email)}`
+        `   See DIAGNOSTICS printed above for the root cause.\n` +
+        `   View inbox: ${EmailHelper.getInboxURL(email)}`
     );
 }
 
@@ -137,16 +210,9 @@ export class EmailHelper {
 
     // ── Scenario 1 registration emails ─────────────────────────────────────
 
-    /**
-     * Polls for the FIRST welcome email sent right after account creation.
-     * Subject is exactly: "Welcome to Our Platform!"
-     * This arrives BEFORE login — shown while user is on the login page.
-     */
     async fetchRegistrationEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
-            // Match "Welcome to Our Platform!" but NOT "Welcome to Our Platform - Trademate!"
-            // We do this by requiring the subject NOT to contain a dash/hyphen after "Platform"
             s => /welcome to our platform/i.test(s) && !/ - trademate/i.test(s),
             '"Welcome to Our Platform!" registration email'
         );
@@ -155,11 +221,6 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    /**
-     * Polls for the SECOND welcome email sent right after the user logs in.
-     * Subject is exactly: "Welcome to Our Platform - Trademate!"
-     * This arrives AFTER the user logs in for the first time.
-     */
     async fetchWelcomeLoginEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -171,19 +232,13 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    // ── OTP (kept for future — dev bypass used instead currently) ──────────
+    // ── OTP ────────────────────────────────────────────────────────────────
 
-    /**
-     * Polls until the OTP/verification email arrives and extracts the code.
-     * Currently not needed because the dev environment accepts 1-2-3-4.
-     */
     async fetchOTP(email: string): Promise<{ digits: string[]; raw: string }> {
         const msg = await waitForEmail(email, s => /otp|verif|code/i.test(s), 'OTP email');
         const body = await getMessageBodyText(email, msg._id);
-
         const match = body.match(/\b(\d{4,6})\b/);
         if (!match) throw new Error(`No 4-6 digit OTP found in email body:\n${body.slice(0, 400)}`);
-
         const raw = match[1];
         console.log(`🔑 OTP: ${raw}`);
         await deleteMessage(email, msg._id);
@@ -192,11 +247,6 @@ export class EmailHelper {
 
     // ── Welcome email ──────────────────────────────────────────────────────
 
-    /**
-     * Polls Mailsac until the Welcome email arrives.
-     * Used in Scenario 2 to confirm the email is in the inbox before
-     * switching tabs to view it visually.
-     */
     async fetchWelcomeEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(email, s => /welcome/i.test(s), 'Welcome email');
         const body = await getMessageBodyText(email, msg._id);
@@ -204,10 +254,6 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    /**
-     * Returns the body of the most recent Welcome email without deleting it.
-     * Used by Strategy C (URL extraction fallback) in the test.
-     */
     async getLatestWelcomeEmailBody(email: string): Promise<{ body: string }> {
         const msg = await findLatestMessage(email, s => /welcome/i.test(s));
         const body = await getMessageBodyText(email, msg._id);
@@ -216,12 +262,6 @@ export class EmailHelper {
 
     // ── Job confirmation email ─────────────────────────────────────────────
 
-    /**
-     * Polls Mailsac until the Job confirmation email arrives.
-     * The subject may contain words like "job", "posted", "confirmation",
-     * "trademate" etc. — the filter covers all common patterns.
-     * Used in Scenario 3 step 3.8.
-     */
     async fetchJobEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -233,10 +273,6 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    /**
-     * Returns the body of the most recent Job email without deleting it.
-     * Used by Strategy C (URL extraction fallback) in the test.
-     */
     async getLatestJobEmailBody(email: string): Promise<{ body: string }> {
         const msg = await findLatestMessage(
             email,
@@ -248,12 +284,6 @@ export class EmailHelper {
 
     // ── Admin notification email (Scenario 8) ─────────────────────────────
 
-    /**
-     * Polls Mailsac until the Admin notification / "Approve account" email arrives.
-     * This email is sent to the Tradesman after admin reviews their registration.
-     * Subject typically contains: "admin", "approve", "verify", "registered",
-     * "compliance", or "review".
-     */
     async fetchAdminNotificationEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -267,12 +297,6 @@ export class EmailHelper {
 
     // ── Matching Job email (Scenario 8) ───────────────────────────────────
 
-    /**
-     * Polls Mailsac until the "New Matching Job Available" email arrives.
-     * This email is sent to Tradesman when a HomeOwner posts a job matching
-     * the Tradesman's trade category.
-     * Subject typically contains: "job", "matching", "available", "apply".
-     */
     async fetchMatchingJobEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -284,10 +308,6 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    /**
-     * Returns the body of the most recent Matching Job email without deleting it.
-     * Used by Strategy C (URL extraction fallback) when clicking "Visit Trademate to Apply".
-     */
     async getLatestMatchingJobEmailBody(email: string): Promise<{ body: string }> {
         const msg = await findLatestMessage(
             email,
@@ -299,16 +319,9 @@ export class EmailHelper {
 
     // ── Registration Welcome email — Scenario 1 (post-OTP) ────────────────
 
-    /**
-     * Polls Mailsac until the FIRST welcome email arrives.
-     * Subject: "Welcome to Our Platform!"
-     * Sent immediately after account creation / OTP verification.
-     * Contains a "Go to Login" button.
-     */
     async fetchRegistrationWelcomeEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
-            // Match "Welcome to Our Platform!" but NOT the one that also says "Trademate"
             s => /welcome to our platform/i.test(s) && !/trademate/i.test(s),
             '"Welcome to Our Platform!" registration email'
         );
@@ -317,9 +330,6 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    /**
-     * Returns body for the registration welcome email (URL extraction fallback).
-     */
     async getLatestRegistrationWelcomeEmailBody(email: string): Promise<{ body: string }> {
         const msg = await findLatestMessage(
             email,
@@ -331,15 +341,9 @@ export class EmailHelper {
 
     // ── Login Welcome email — Scenario 1 (post-login) ─────────────────────
 
-    /**
-     * Polls Mailsac until the SECOND welcome email arrives.
-     * Subject: "Welcome to Our Platform - Trademate!"
-     * Sent after first login. Contains a "Go to Site" button.
-     */
     async fetchLoginWelcomeEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
-            // Must match "welcome" AND "trademate" in same subject
             s => /welcome/i.test(s) && /trademate/i.test(s),
             '"Welcome to Our Platform - Trademate!" login email'
         );
@@ -348,9 +352,6 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    /**
-     * Returns body for the login welcome email (URL extraction fallback).
-     */
     async getLatestLoginWelcomeEmailBody(email: string): Promise<{ body: string }> {
         const msg = await findLatestMessage(
             email,
@@ -360,13 +361,8 @@ export class EmailHelper {
         return { body };
     }
 
-    // ── Scenario 8 — "Quote submitted successfully!" (sent to Tradesman) ──────
+    // ── Scenario 8 — "Quote submitted successfully!" ──────────────────────
 
-    /**
-     * Polls Mailsac until the "Quote submitted successfully!" email arrives.
-     * Sent to the Tradesman when they submit a quote on a job.
-     * Subject typically contains: "quote submitted".
-     */
     async fetchQuoteSubmittedEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -378,13 +374,8 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    // ── Scenario 9 — "New Quote Submitted" notification (sent to HomeOwner) ──
+    // ── Scenario 9 — "New Quote Submitted" notification ───────────────────
 
-    /**
-     * Polls Mailsac until the "New Quote Submitted for Your Job Review please!" email arrives.
-     * Sent to the HomeOwner when a Tradesman submits a quote on their job.
-     * Subject typically contains: "quote submitted", "new quote", or "job review".
-     */
     async fetchNewQuoteEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -396,13 +387,8 @@ export class EmailHelper {
         return { subject: msg.subject, body, messageId: msg._id };
     }
 
-    // ── Scenario 10 — "You Accepted an Offer!" email (sent to HomeOwner) ──
+    // ── Scenario 10 — "You Accepted an Offer!" ────────────────────────────
 
-    /**
-     * Polls Mailsac until the "You Accepted an Offer!" email arrives.
-     * Sent to the HomeOwner after they hire a Tradesman ("Hire Now" confirmed).
-     * Subject typically contains: "accepted", "offer", or "hired".
-     */
     async fetchAcceptedOfferEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
         const msg = await waitForEmail(
             email,
@@ -411,6 +397,32 @@ export class EmailHelper {
         );
         const body = await getMessageBodyText(email, msg._id);
         console.log(`📧 Accepted offer email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    // ── Scenario 11 — "Your Offer Was Not Accepted" ───────────────────────
+
+    async fetchOfferRejectedEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /offer was not accepted|your offer was not/i.test(s),
+            '"Your Offer Was Not Accepted" email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Offer rejected email snippet:\n${body.slice(0, 300)}`);
+        return { subject: msg.subject, body, messageId: msg._id };
+    }
+
+    // ── Scenario 12 — "Your Offer Has Been Accepted!" ─────────────────────
+
+    async fetchOfferAcceptedEmail(email: string): Promise<{ subject: string; body: string; messageId: string }> {
+        const msg = await waitForEmail(
+            email,
+            s => /offer has been accepted|your offer has been/i.test(s),
+            '"Your Offer Has Been Accepted!" email'
+        );
+        const body = await getMessageBodyText(email, msg._id);
+        console.log(`📧 Offer accepted email snippet:\n${body.slice(0, 300)}`);
         return { subject: msg.subject, body, messageId: msg._id };
     }
 }

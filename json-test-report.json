@@ -43,14 +43,6 @@
         {
           "outputFile": "json-test-report.json"
         }
-      ],
-      [
-        "line",
-        null
-      ],
-      [
-        "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\node_modules\\allure-playwright\\dist\\cjs\\index.js",
-        null
       ]
     ],
     "reportSlowTests": {
@@ -68,20 +60,20 @@
   },
   "suites": [
     {
-      "title": "1_New_insertion\\Email_Test.spec.ts",
-      "file": "1_New_insertion/Email_Test.spec.ts",
+      "title": "End_to_End_Test_MainFlow\\FinalFlow.spec.ts",
+      "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "📧 TradeMate – Full Email Flow (HomeOwner + Tradesman)",
-          "file": "1_New_insertion/Email_Test.spec.ts",
-          "line": 79,
+          "title": "End-to-End Test",
+          "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+          "line": 10,
           "column": 15,
           "specs": [
             {
-              "title": "➡️ SCENARIO 1: Register as HomeOwner and verify with hardcoded OTP",
+              "title": "➡️ Validate the HomeOwner registration and Login was done successfully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -93,127 +85,39 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 34128,
+                      "duration": 14216,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "\n📬 HomeOwner email : trademate_mp2830i9@mailsac.com\n"
-                        },
-                        {
-                          "text": "🌐 Owner inbox     : https://mailsac.com/inbox/trademate_mp2830i9%40mailsac.com\n\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner Mailsac inbox tab is open (Tab 2)\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner registration page visible\n"
-                        },
-                        {
-                          "text": "✅ OTP screen visible\n"
-                        },
-                        {
-                          "text": "✅ OTP accepted — now on login page\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 4 seconds then polling for \"Welcome to Our Platform!\" email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"\"Welcome to Our Platform!\" registration email\" at trademate_mp2830i9@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Welcome to Our Platform!\"\n"
-                        },
-                        {
-                          "text": "📧 Registration email snippet:\n🎉 Welcome, Tajwar! Your Registration is Complete\n\n\nHELLO, TAJWAR!\n\nGreat news! Your email has been successfully verified. Your account is now fully active and ready to go.\n\nAccount Type: Homeowner\n\nHi Tajwar, your Homeowner account is all set! Post your first project today and connect with skilled \n"
-                        },
-                        {
-                          "text": "✅ Registration email confirmed in inbox — Subject: \"Welcome to Our Platform!\"\n"
-                        },
-                        {
-                          "text": "✅ \"Welcome to Our Platform!\" email opened and observed for 3 seconds\n"
-                        },
-                        {
-                          "text": "✅ Back on TradeMate login page — ready to login\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner logged in — stays logged in for Scenarios 2, 3, 4\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 4 seconds then polling for \"Welcome to Our Platform - Trademate!\" email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"\"Welcome to Our Platform - Trademate!\" post-login email\" at trademate_mp2830i9@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Welcome to Our Platform - Trademate!\"\n"
-                        },
-                        {
-                          "text": "📧 Post-login welcome email snippet:\nWellcome to our platform Trademate!\n\n\nWELCOME,TAJWAR!\n\nThank you for logging in to Trademate.\n\nWe are excited to have you as a Homeowner.Job Post your first project today and connect with skilled professionals to get your\nrepair or renovation done quickly and reliably.\n\nGo to Site [https://trademate\n"
-                        },
-                        {
-                          "text": "✅ Post-login welcome email confirmed in inbox — Subject: \"Welcome to Our Platform - Trademate!\"\n"
-                        },
-                        {
-                          "text": "✅ \"Welcome to Our Platform - Trademate!\" email opened and observed for 3 seconds\n"
-                        },
-                        {
-                          "text": "✅ Back on TradeMate — HomeOwner is logged in and Scenario 1 is fully complete\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "1. Open TradeMate and navigate to HomeOwner registration",
-                          "duration": 3667
+                          "title": "1. Validate the create account page is visible",
+                          "duration": 1127
                         },
                         {
-                          "title": "2. Fill registration form with Mailsac email and submit",
-                          "duration": 4155
+                          "title": "2. Validate the creating a HomeOwner account",
+                          "duration": 3200
                         },
                         {
-                          "title": "3. Fill hardcoded OTP (1,2,3,4) — dev environment bypass",
-                          "duration": 2004
+                          "title": "3. Validate the OTP verification",
+                          "duration": 2070
                         },
                         {
-                          "title": "3a. Wait for \"Welcome to Our Platform!\" registration email to arrive",
-                          "duration": 5248
-                        },
-                        {
-                          "title": "3b. Switch to Mailsac tab and open the \"Welcome to Our Platform!\" email",
-                          "duration": 5036
-                        },
-                        {
-                          "title": "3c. Switch back to TradeMate website login page",
-                          "duration": 20
-                        },
-                        {
-                          "title": "4. Login with the newly registered HomeOwner account",
-                          "duration": 4034
-                        },
-                        {
-                          "title": "4a. Wait a few seconds then poll for \"Welcome to Our Platform - Trademate!\" email",
-                          "duration": 4999
-                        },
-                        {
-                          "title": "4b. Switch to Mailsac tab and open the \"Welcome to Our Platform - Trademate!\" email",
-                          "duration": 4929
-                        },
-                        {
-                          "title": "4c. Switch back to TradeMate website (HomeOwner still logged in)",
-                          "duration": 29
+                          "title": "4. Verify Login with valid credentials",
+                          "duration": 3060
                         }
                       ],
-                      "startTime": "2026-05-12T06:01:18.190Z",
+                      "startTime": "2026-05-16T10:07:36.626Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-fab52-d-verify-with-hardcoded-OTP-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-fc30e-Login-was-done-successfully-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -221,13 +125,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-d90ec00752bc2fc30539",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 116,
+              "id": "cef79649a64391eae539-6a412743cb9251fc33ea",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 29,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 2: View HomeOwner Welcome email and click \"Go to Site\"",
+              "title": "➡️ Validate the HomeOwner post a job was done successfully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -239,77 +143,55 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 9630,
+                      "duration": 21213,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_mp2830i9@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Welcome to Our Platform - Trademate!\"\n"
-                        },
-                        {
-                          "text": "📧 Welcome email snippet:\nWellcome to our platform Trademate!\n\n\nWELCOME,TAJWAR!\n\nThank you for logging in to Trademate.\n\nWe are excited to have you as a Homeowner.Job Post your first project today and connect with skilled professionals to get your\nrepair or renovation done quickly and reliably.\n\nGo to Site [https://trademate\n"
-                        },
-                        {
-                          "text": "✅ Welcome email in inbox — Subject: \"Welcome to Our Platform - Trademate!\"\n"
-                        },
-                        {
-                          "text": "👀 Owner inbox visible — Welcome email should be in the list\n"
-                        },
-                        {
-                          "text": "✅ Welcome email opened in Mailsac\n"
-                        },
-                        {
-                          "text": "🔄 Strategy C — fetching email body via API to extract URL...\n"
-                        },
-                        {
-                          "text": "🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app\n"
-                        },
-                        {
-                          "text": "✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app\n"
-                        },
-                        {
-                          "text": "🌐 URL after \"Go to Site\": https://trademate-next-js.vercel.app/homeowner\n"
-                        },
-                        {
-                          "text": "✅ Back on TradeMate — HomeOwner is still logged in\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "5. Poll Mailsac API until Welcome email arrives",
-                          "duration": 515
+                          "title": "4. Verify Login with valid credentials",
+                          "duration": 4107
                         },
                         {
-                          "title": "6. Switch to HomeOwner Mailsac tab and reload inbox",
-                          "duration": 2363
+                          "title": "5. Verify all the services are visible",
+                          "duration": 126
                         },
                         {
-                          "title": "7. Click on the Welcome email to open it",
-                          "duration": 2066
+                          "title": "6. Verify clicking on specific service and entering details",
+                          "duration": 3328
                         },
                         {
-                          "title": "8. Click \"Go to Site\" inside the Welcome email",
-                          "duration": 1683
+                          "title": "7. Verify filling up the title and job description with valid details",
+                          "duration": 1644
                         },
                         {
-                          "title": "9. Confirm we are back on TradeMate (HomeOwner still logged in)",
-                          "duration": 2999
+                          "title": "8. Verify Selecting the job timeframe",
+                          "duration": 2149
+                        },
+                        {
+                          "title": "9. Verify inserting details into What type of work is needed field",
+                          "duration": 1446
+                        },
+                        {
+                          "title": "10. Verify inserting image files into the job post",
+                          "duration": 439
+                        },
+                        {
+                          "title": "11. Verify inserting video files into the job post",
+                          "duration": 5047
                         }
                       ],
-                      "startTime": "2026-05-12T06:01:56.001Z",
+                      "startTime": "2026-05-16T10:07:51.417Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-b09b8-email-and-click-Go-to-Site--chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-27e94-a-job-was-done-successfully-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -317,13 +199,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-27ce4aa1107b2600db24",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 237,
+              "id": "cef79649a64391eae539-dae8a44be297867aa163",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 64,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 3: HomeOwner posts a job and views job live email in Mailsac",
+              "title": "➡️ Validate the Tradesman Signup was done successfully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -335,146 +217,43 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 31918,
+                      "duration": 14936,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Home page — Services section visible\n"
-                        },
-                        {
-                          "text": "✅ Location confirmed — continued\n"
-                        },
-                        {
-                          "text": "✅ Title and description filled\n"
-                        },
-                        {
-                          "text": "✅ Timeframe selected\n"
-                        },
-                        {
-                          "text": "✅ Work type selected\n"
-                        },
-                        {
-                          "text": "✅ Image uploaded\n"
-                        },
-                        {
-                          "text": "✅ Job posted successfully!\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 5 seconds for the job email to be generated...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"Job confirmation email\" at trademate_mp2830i9@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Your Job Post Is Live on Trademate site!\"\n"
-                        },
-                        {
-                          "text": "📧 Job email snippet:\nYour Job Is Live Trademate !\n\n\nHI TAJWAR,\n\nYour job post has been published and is now live.\n\nHow you'll receive quotes: Tradesmen who match your job category and postcode are notified immediately. They will review your job\ndetails and submit quotes through the Trademate platform. You will receive i\n"
-                        },
-                        {
-                          "text": "✅ Job email in inbox — Subject: \"Your Job Post Is Live on Trademate site!\"\n"
-                        },
-                        {
-                          "text": "👀 Owner inbox reloaded — looking for job live email\n"
-                        },
-                        {
-                          "text": "✅ Job email opened in Mailsac\n"
-                        },
-                        {
-                          "text": "✅ \"live\" keyword confirmed in email body via Mailsac API\n"
-                        },
-                        {
-                          "text": "🔄 Strategy C — fetching email body via API to extract URL...\n"
-                        },
-                        {
-                          "text": "🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app\n"
-                        },
-                        {
-                          "text": "✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app\n"
-                        },
-                        {
-                          "text": "🌐 URL after \"Visit Trademate\": https://trademate-next-js.vercel.app/homeowner\n"
-                        },
-                        {
-                          "text": "✅ Back on TradeMate — HomeOwner still logged in\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 3 seconds on TradeMate before logout...\n"
-                        },
-                        {
-                          "text": "✅ Wait complete — ready for Scenario 4\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "10. Navigate to home page — user is already logged in",
-                          "duration": 1073
+                          "title": "15. Validate the create account page is visible",
+                          "duration": 1006
                         },
                         {
-                          "title": "11. Click Plumber service and confirm map location",
-                          "duration": 3482
+                          "title": "16. Validate the creating a Tradesman account",
+                          "duration": 3217
                         },
                         {
-                          "title": "12. Fill job title and description",
-                          "duration": 374
+                          "title": "17. Validate the OTP verification",
+                          "duration": 2013
                         },
                         {
-                          "title": "13. Select job timeframe",
-                          "duration": 2057
+                          "title": "18. Verify Login with valid credentials",
+                          "duration": 124
                         },
                         {
-                          "title": "14. Select type of work required",
-                          "duration": 1939
-                        },
-                        {
-                          "title": "15. Upload job image",
-                          "duration": 483
-                        },
-                        {
-                          "title": "16. Upload job video and submit the job post",
-                          "duration": 4990
-                        },
-                        {
-                          "title": "17. Wait a few seconds for the job live email to be generated",
-                          "duration": 5024
-                        },
-                        {
-                          "title": "18. Poll Mailsac API until job live email arrives",
-                          "duration": 979
-                        },
-                        {
-                          "title": "19. Switch to Mailsac tab and open the job email",
-                          "duration": 4431
-                        },
-                        {
-                          "title": "20. Verify \"Your Job Post Is Live on Trademate site!\" text in email",
-                          "duration": 594
-                        },
-                        {
-                          "title": "21. Click \"Visit Trademate\" button inside the job email",
-                          "duration": 1480
-                        },
-                        {
-                          "title": "22. Confirm we are back on TradeMate (HomeOwner still logged in)",
-                          "duration": 1978
-                        },
-                        {
-                          "title": "23. Wait a few moments on the site before proceeding to logout",
-                          "duration": 3027
+                          "title": "19. Verify Job posts are being visible and clickable",
+                          "duration": 5325
                         }
                       ],
-                      "startTime": "2026-05-12T06:02:05.934Z",
+                      "startTime": "2026-05-16T10:08:13.046Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-f902c-s-job-live-email-in-Mailsac-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-2fb10-ignup-was-done-successfully-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -482,13 +261,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-9cf48d3ab0da125b7ae3",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 289,
+              "id": "cef79649a64391eae539-e4ade70f613e065c9410",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 125,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 4: HomeOwner views Posted Jobs, opens job detail, then logs out",
+              "title": "➡️ Validate the Tradesman Profile Updated was done successfully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -500,59 +279,43 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5144,
+                      "duration": 19250,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ HomeOwner confirmed still logged in — no extra login needed\n"
-                        },
-                        {
-                          "text": "✅ My Posted Jobs page is visible\n"
-                        },
-                        {
-                          "text": "✅ Job detail page visible — \"Job Done by:\" heading found\n"
-                        },
-                        {
-                          "text": "✅ Applicant List section is now visible on screen\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner logged out successfully\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "24. Verify that HomeOwner is still logged in",
-                          "duration": 30
+                          "title": "18. Verify Login with valid credentials",
+                          "duration": 144
                         },
                         {
-                          "title": "25. Click \"Posted Jobs\" in the nav bar and verify listing page",
-                          "duration": 426
+                          "title": "19. Verify Job posts are being visible and clickable",
+                          "duration": 5421
                         },
                         {
-                          "title": "26. Click \"View Details\" on the first posted job",
-                          "duration": 4296
+                          "title": "20. Verify selecting specific trade category",
+                          "duration": 4260
                         },
                         {
-                          "title": "27. Scroll down to the Applicant List section",
-                          "duration": 33
+                          "title": "21. Validate inserting TradeMan Profile Information Into The Form",
+                          "duration": 1320
                         },
                         {
-                          "title": "28. HomeOwner logs out",
-                          "duration": 357
+                          "title": "22. Validate inserting TradeMans detailed papers Into The Form",
+                          "duration": 5180
                         }
                       ],
-                      "startTime": "2026-05-12T06:02:38.693Z",
+                      "startTime": "2026-05-16T10:08:28.437Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-7859f-ns-job-detail-then-logs-out-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-c3175-dated-was-done-successfully-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -560,13 +323,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-c5f734295e0921bffbc5",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 466,
+              "id": "cef79649a64391eae539-0e24317f54e82cfc3d6f",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 164,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 5: Tradesman registers, logs in, views Welcome email, returns to site",
+              "title": "➡️ Validate the Tradesman Subscription was done successfully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -578,135 +341,31 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 26242,
+                      "duration": 36911,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "\n📬 Tradesman email : trademate_mp284uqd@mailsac.com\n"
-                        },
-                        {
-                          "text": "🌐 Tradesman inbox  : https://mailsac.com/inbox/trademate_mp284uqd%40mailsac.com\n\n"
-                        },
-                        {
-                          "text": "✅ Tradesman Mailsac inbox tab opened (Tab 3)\n"
-                        },
-                        {
-                          "text": "✅ Tradesperson registration page visible\n"
-                        },
-                        {
-                          "text": "✅ OTP screen visible for Tradesman\n"
-                        },
-                        {
-                          "text": "✅ OTP accepted — Tradesman login page showing\n"
-                        },
-                        {
-                          "text": "✅ Tradesman logged in successfully\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 5 seconds for the Tradesman welcome email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"Welcome email\" at trademate_mp284uqd@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Welcome to Our Platform - Trademate!\"\n"
-                        },
-                        {
-                          "text": "📧 Welcome email snippet:\nWellcome to our platform Trademate!\n\n\nWELCOME,NEWTRADEPERSON!\n\nThank you for logging in to Trademate.\n\nWe are excited to have you as a Tradesman. Join our community, showcase your skills, subscribe to opportunities, apply for jobs,\nand earn profile badges as you grow your reputation.\n\nGo to Site [ht\n"
-                        },
-                        {
-                          "text": "✅ Tradesman Welcome email confirmed — Subject: \"Welcome to Our Platform - Trademate!\"\n"
-                        },
-                        {
-                          "text": "👀 Tradesman Mailsac inbox visible — Welcome email should be in the list\n"
-                        },
-                        {
-                          "text": "✅ Tradesman Welcome email opened in Mailsac\n"
-                        },
-                        {
-                          "text": "🔄 Strategy C — fetching email body via API to extract URL...\n"
-                        },
-                        {
-                          "text": "🔗 Strategy C — extracted URL: https://trademate-next-js.vercel.app\n"
-                        },
-                        {
-                          "text": "✅ Strategy C — sitePage navigated to: https://trademate-next-js.vercel.app\n"
-                        },
-                        {
-                          "text": "🌐 URL after Tradesman \"Go to Site\": https://trademate-next-js.vercel.app/tradesman\n"
-                        },
-                        {
-                          "text": "✅ Tradesman is back on TradeMate and still logged in\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 3 seconds on TradeMate site...\n"
-                        },
-                        {
-                          "text": "✅ Scenario 5 complete — Tradesman flow finished ✅\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "29. Generate Tradesman email and open a new Mailsac inbox tab",
-                          "duration": 947
+                          "title": "18. Verify Login with valid credentials",
+                          "duration": 163
                         },
                         {
-                          "title": "30. Navigate to TradeMate home and go to Tradesperson registration",
-                          "duration": 1224
-                        },
-                        {
-                          "title": "31. Fill Tradesman registration form and submit",
-                          "duration": 2093
-                        },
-                        {
-                          "title": "32. Fill hardcoded OTP (1,2,3,4) — dev bypass",
-                          "duration": 1986
-                        },
-                        {
-                          "title": "33. Login with the newly registered Tradesman account",
-                          "duration": 3018
-                        },
-                        {
-                          "title": "34. Wait a few seconds for Tradesman welcome email to be generated",
-                          "duration": 5016
-                        },
-                        {
-                          "title": "35. Poll Mailsac API until Tradesman Welcome email arrives",
-                          "duration": 975
-                        },
-                        {
-                          "title": "36. Switch to Tradesman Mailsac tab and reload inbox",
-                          "duration": 2369
-                        },
-                        {
-                          "title": "37. Click on the Tradesman Welcome email to open it",
-                          "duration": 2075
-                        },
-                        {
-                          "title": "38. Click \"Go to Site\" inside the Tradesman Welcome email",
-                          "duration": 1492
-                        },
-                        {
-                          "title": "39. Confirm we are back on TradeMate (Tradesman logged in)",
-                          "duration": 2016
-                        },
-                        {
-                          "title": "40. Stay on TradeMate for a few moments before finishing",
-                          "duration": 3027
+                          "title": "23. Verify purchasing subscription plan",
+                          "duration": 34037
                         }
                       ],
-                      "startTime": "2026-05-12T06:02:44.232Z",
+                      "startTime": "2026-05-16T10:08:48.201Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-27079-lcome-email-returns-to-site-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-75620-ption-was-done-successfully-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -714,13 +373,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-983687cff3095a1c72d7",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 520,
+              "id": "cef79649a64391eae539-1ae11a94708b03efc9d9",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 199,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 6: Tradesman completes profile, hits approval wall, buys subscription",
+              "title": "➡️ Admin approve",
               "ok": true,
               "tags": [],
               "tests": [
@@ -732,108 +391,35 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 37336,
+                      "duration": 16658,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Tradesman confirmed still logged in\n"
-                        },
-                        {
-                          "text": "✅ Clicked \"View Details\" on first job\n"
-                        },
-                        {
-                          "text": "✅ Trade category selected — Plumber\n"
-                        },
-                        {
-                          "text": "✅ Map location confirmed\n"
-                        },
-                        {
-                          "text": "✅ Tradesman profile details filled\n"
-                        },
-                        {
-                          "text": "✅ Tradesman profile submitted successfully\n"
-                        },
-                        {
-                          "text": "✅ Approval wall confirmed — \"View Subscription Plans\" is visible\n"
-                        },
-                        {
-                          "text": "✅ Navigated to subscription plans page\n"
-                        },
-                        {
-                          "text": "✅ Subscription plan 3 selected — payment screen visible\n"
-                        },
-                        {
-                          "text": "✅ Subscription purchased — \"My jobs\" page visible ✅\n"
-                        },
-                        {
-                          "text": "✅ Tradesman navigated back to home page\n"
-                        },
-                        {
-                          "text": "✅ Tradesman logged out — ready for Admin verification in Scenario 7\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "41. Verify Tradesman is still logged in on TradeMate",
-                          "duration": 36
+                          "title": "18. Verify Login Admin panel with valid credentials",
+                          "duration": 1578
                         },
                         {
-                          "title": "42. Click \"View Details\" on the first job in the listing",
-                          "duration": 70
+                          "title": "24. Verify selecting tradesperson to approve",
+                          "duration": 6952
                         },
                         {
-                          "title": "43. Click \"Complete Registration\" and select trade category (Plumber)",
-                          "duration": 2380
-                        },
-                        {
-                          "title": "44. Set map location for the Tradesman profile",
-                          "duration": 494
-                        },
-                        {
-                          "title": "45. Fill in Tradesman profile information",
-                          "duration": 396
-                        },
-                        {
-                          "title": "46. Upload profile documents and submit the profile form",
-                          "duration": 3214
-                        },
-                        {
-                          "title": "47. Attempt to view job details — expect \"View Subscriptions Plans\" (unapproved wall)",
-                          "duration": 2783
-                        },
-                        {
-                          "title": "48. Click \"View Subscription Plans\" to navigate to subscription page",
-                          "duration": 273
-                        },
-                        {
-                          "title": "49. Select subscription plan 3",
-                          "duration": 5317
-                        },
-                        {
-                          "title": "50. Fill in payment details and complete subscription purchase",
-                          "duration": 19443
-                        },
-                        {
-                          "title": "51. Navigate back to TradeMate home page after subscription",
-                          "duration": 1111
-                        },
-                        {
-                          "title": "52. Tradesman logs out (will be re-used in Scenario 8)",
-                          "duration": 1812
+                          "title": "25. Verify admin logout",
+                          "duration": 3413
                         }
                       ],
-                      "startTime": "2026-05-12T06:03:11.450Z",
+                      "startTime": "2026-05-16T10:09:25.610Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-ae7ee-oval-wall-buys-subscription-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-ec428-o-End-Test-➡️-Admin-approve-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -841,13 +427,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-6361c412e91a9ea5ea8b",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 655,
+              "id": "cef79649a64391eae539-e5274315dfd30acde987",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 221,
               "column": 9
             },
             {
-              "title": "➡️ SCENARIO 7: Admin verifies the Tradesman account in the admin panel",
+              "title": "➡️ Validate the Tradesman Quotes for a job was done successfully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -859,119 +445,35 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 77,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 18048,
+                      "duration": 13415,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Admin site opened in Tab 4\n"
-                        },
-                        {
-                          "text": "✅ Logged into admin panel\n"
-                        },
-                        {
-                          "text": "✅ Navigated to Tradesmen list in admin panel\n"
-                        },
-                        {
-                          "text": "✅ Tradesmen table loaded — first row (recently created Tradesman) is visible\n"
-                        },
-                        {
-                          "text": "✅ Eye icon clicked — Tradesman record opened\n"
-                        },
-                        {
-                          "text": "\n🔍 DIAGNOSTIC — buttons on Tradesman detail page:\n"
-                        },
-                        {
-                          "text": "  btn: \"About Page\"\n"
-                        },
-                        {
-                          "text": "  btn: \"FAQ\"\n"
-                        },
-                        {
-                          "text": "  btn: \"Settings\"\n"
-                        },
-                        {
-                          "text": "  btn: \"Admin\"\n"
-                        },
-                        {
-                          "text": "  btn: \"Update Verification\"\n"
-                        },
-                        {
-                          "text": "  btn: \"Print Profile\"\n"
-                        },
-                        {
-                          "text": "  btn: \"Close\"\n"
-                        },
-                        {
-                          "text": "  btn: \"Save changes\"\n"
-                        },
-                        {
-                          "text": "✅ \"Update Verification\" button clicked\n"
-                        },
-                        {
-                          "text": "\n🔍 DIAGNOSTIC — dropdowns/selects visible:\n"
-                        },
-                        {
-                          "text": "  select/combo: name=\"status\" text=\"Pending Review\n                                \n                                \n                   \"\n"
-                        },
-                        {
-                          "text": "✅ Selected \"Verified\" from native <select>\n"
-                        },
-                        {
-                          "text": "✅ \"Save Changes\" clicked — Tradesman Verification Status set to \"Verified\"\n"
-                        },
-                        {
-                          "text": "🌐 Back on TradeMate website: https://trademate-next-js.vercel.app/sign-in\n"
-                        },
-                        {
-                          "text": "✅ Scenario 7 complete — Tradesman is now Verified by Admin ✅\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
                       "steps": [
                         {
-                          "title": "53. Open admin panel in a new tab (Tab 4)",
-                          "duration": 3208
+                          "title": "18. Verify Login with valid credentials",
+                          "duration": 150
                         },
                         {
-                          "title": "54. Login to admin panel with admin credentials",
-                          "duration": 5987
+                          "title": "24. Verify that Tradesman can view job details after purchasing subscription plan and registration",
+                          "duration": 8499
                         },
                         {
-                          "title": "55. Click \"Tradesmen\" in the admin sidebar menu",
-                          "duration": 2494
-                        },
-                        {
-                          "title": "56. Observe the Tradesmen table and confirm the list is loaded",
-                          "duration": 14
-                        },
-                        {
-                          "title": "57. Click the Eye-view icon in the first row to open the Tradesman record",
-                          "duration": 2451
-                        },
-                        {
-                          "title": "58. Click \"Update Verification\" button",
-                          "duration": 1248
-                        },
-                        {
-                          "title": "59. Select \"Verified\" from the Verification Status dropdown",
-                          "duration": 2632
-                        },
-                        {
-                          "title": "60. Switch back to TradeMate website tab (Tab 1)",
-                          "duration": 10
+                          "title": "25. Verify providing a quote for the job",
+                          "duration": 2325
                         }
                       ],
-                      "startTime": "2026-05-12T06:03:50.200Z",
+                      "startTime": "2026-05-16T10:09:42.518Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "trace",
                           "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-88e1a--account-in-the-admin-panel-chromium\\trace.zip"
+                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-af223-a-job-was-done-successfully-chromium\\trace.zip"
                         }
                       ]
                     }
@@ -979,511 +481,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "a07f2d81496fc2903ff4-7c97a40b3f0f1a9f27e6",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 785,
-              "column": 9
-            },
-            {
-              "title": "➡️ SCENARIO 8: Tradesman re-logs in, reads verification email, quotes job, views quote email, logs out",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 360000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 6,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 31324,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ Tradesman logged back in successfully\n"
-                        },
-                        {
-                          "text": "👀 Tradesman Mailsac inbox tab is now in focus (Tab 3)\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"Account Verified Successfully\" email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"Admin notification / Approve account email\" at trademate_mp284uqd@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Account Verified Successfully.Welcome to our platform Trademate !\"\n"
-                        },
-                        {
-                          "text": "📧 Admin notification email snippet:\nWelcome to Trademate — your account is live\nSoftwareTestingCompany\n\n\nHI NEWTRADEPERSON,\n\nCongratulations — your tradesman account has been approved and is now visible to homeowners on Trademate.\n\nWhat to expect next\n\n * Your profile is searchable by homeowners in your service area.\n * Relevant job l\n"
-                        },
-                        {
-                          "text": "✅ Verification email found — Subject: \"Account Verified Successfully.Welcome to our platform Trademate !\"\n"
-                        },
-                        {
-                          "text": "👀 Tradesman Mailsac inbox reloaded — verification email should be visible\n"
-                        },
-                        {
-                          "text": "✅ \"Account Verified Successfully\" email opened — observing for 3 seconds\n"
-                        },
-                        {
-                          "text": "🌐 Back on TradeMate — URL: https://trademate-next-js.vercel.app/tradesman/home\n"
-                        },
-                        {
-                          "text": "✅ Tradesman is back on TradeMate and still logged in\n"
-                        },
-                        {
-                          "text": "✅ Job detail page visible — \"Job Done by:\" confirmed\n"
-                        },
-                        {
-                          "text": "✅ Quote of £1000 submitted successfully!\n"
-                        },
-                        {
-                          "text": "⏳ Waiting 4 seconds on the job page after submitting quote...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"Quote submitted successfully!\" email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"\"Quote submitted successfully!\" email\" at trademate_mp284uqd@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"Quote submitted successfully!\"\n"
-                        },
-                        {
-                          "text": "📧 Quote submitted email snippet:\nQuote Submitted\nConfirmation — no customer personal data is included\n\n\nHI NEWTRADEPERSON,\n\nYour quote has been submitted successfully. Below is a short summary for your records.\n\nJob Hiring A Plumber Quote Amount £1,000.00 Submitted 12 May, 2026 06:04\n\nYou will be notified if the homeowner responds \n"
-                        },
-                        {
-                          "text": "✅ Quote email found — Subject: \"Quote submitted successfully!\"\n"
-                        },
-                        {
-                          "text": "👀 Tradesman Mailsac inbox reloaded — quote email should be listed\n"
-                        },
-                        {
-                          "text": "✅ \"Quote submitted successfully!\" email opened — observing for 3 seconds\n"
-                        },
-                        {
-                          "text": "🌐 Back on TradeMate — URL: https://trademate-next-js.vercel.app/job-details/31\n"
-                        },
-                        {
-                          "text": "✅ Tradesman is back on TradeMate\n"
-                        },
-                        {
-                          "text": "✅ Tradesman logged out successfully\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "61. Tradesman navigates to login page and logs in",
-                          "duration": 6384
-                        },
-                        {
-                          "title": "62. Switch to Tradesman Mailsac inbox tab (Tab 3) and reload",
-                          "duration": 3437
-                        },
-                        {
-                          "title": "63. Poll Mailsac — wait for \"Account Verified Successfully\" email to arrive",
-                          "duration": 526
-                        },
-                        {
-                          "title": "64. Reload Tradesman Mailsac inbox so the verified email is listed",
-                          "duration": 2334
-                        },
-                        {
-                          "title": "65. Click the \"Account Verified Successfully\" email to open it",
-                          "duration": 3055
-                        },
-                        {
-                          "title": "66. Navigate back to TradeMate website (sitePage)",
-                          "duration": 30
-                        },
-                        {
-                          "title": "67. Click \"View Details\" on the first job in the listing",
-                          "duration": 2966
-                        },
-                        {
-                          "title": "68. Provide a quote of £1000 for the job",
-                          "duration": 2241
-                        },
-                        {
-                          "title": "69. Wait a few seconds on the job page after quote submission",
-                          "duration": 4015
-                        },
-                        {
-                          "title": "70. Poll Mailsac — wait for \"Quote submitted successfully!\" email",
-                          "duration": 537
-                        },
-                        {
-                          "title": "71. Switch to Tradesman Mailsac tab and reload to show quote email",
-                          "duration": 2365
-                        },
-                        {
-                          "title": "72. Click the \"Quote submitted successfully!\" email to open it",
-                          "duration": 3064
-                        },
-                        {
-                          "title": "73. Return to TradeMate website before logout",
-                          "duration": 39
-                        },
-                        {
-                          "title": "74. Tradesman logs out",
-                          "duration": 328
-                        }
-                      ],
-                      "startTime": "2026-05-12T06:04:09.139Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-79462--views-quote-email-logs-out-chromium\\trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "a07f2d81496fc2903ff4-064bfcd4dd3f3630efae",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 954,
-              "column": 9
-            },
-            {
-              "title": "➡️ Validate hiring new tradesman was done successfully",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 360000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 6,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 19409,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "✅ HomeOwner logged back in successfully\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"New Quote Submitted\" email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"\"New Quote Submitted for Your Job Review please!\" email\" at trademate_mp2830i9@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"New Quote Submitted for Your Job Review please!\"\n"
-                        },
-                        {
-                          "text": "📧 New Quote email snippet:\nNew Quote Submitted for Your Job!\n\n\nHI TAJWAR,\n\nGreat news! You’ve just received a new quote for your job post: Hiring A Plumber.\n\nTake a moment to review the details below and connect directly with the tradesman to discuss your project, ask questions, or\nnegotiate terms. We’re here to help you get \n"
-                        },
-                        {
-                          "text": "✅ New Quote email confirmed in inbox — Subject: \"New Quote Submitted for Your Job Review please!\"\n"
-                        },
-                        {
-                          "text": "👀 HomeOwner Mailsac inbox reloaded — looking for Quote email\n"
-                        },
-                        {
-                          "text": "✅ \"New Quote Submitted\" email opened — observed for 3 seconds\n"
-                        },
-                        {
-                          "text": "✅ Back on TradeMate — HomeOwner is logged in\n"
-                        },
-                        {
-                          "text": "✅ My Posted Jobs page is visible\n"
-                        },
-                        {
-                          "text": "✅ Job detail page visible — \"Job Done by:\" confirmed\n"
-                        },
-                        {
-                          "text": "✅ Applicant List section visible\n"
-                        },
-                        {
-                          "text": "✅ Applicant List confirmed — ready to proceed to Scenario 10\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner logged out — Scenario 9 complete ✅\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "75. HomeOwner navigates to login page and logs in",
-                          "duration": 6375
-                        },
-                        {
-                          "title": "76. Poll Mailsac — wait for \"New Quote Submitted for Your Job Review please!\" email",
-                          "duration": 984
-                        },
-                        {
-                          "title": "77. Switch to HomeOwner Mailsac tab and open the \"New Quote Submitted\" email",
-                          "duration": 5437
-                        },
-                        {
-                          "title": "78. Switch back to TradeMate website (HomeOwner still logged in)",
-                          "duration": 37
-                        },
-                        {
-                          "title": "26. Verify displaying the newly posted jobs",
-                          "duration": 470
-                        },
-                        {
-                          "title": "27. Verify displaying the Details of the newly posted job",
-                          "duration": 3781
-                        },
-                        {
-                          "title": "28. Verify Hiring a Tradesman for the job",
-                          "duration": 2024
-                        },
-                        {
-                          "title": "82a. HomeOwner logs out (end of Scenario 9)",
-                          "duration": 297
-                        }
-                      ],
-                      "startTime": "2026-05-12T06:04:41.724Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-4f618-esman-was-done-successfully-chromium\\trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "a07f2d81496fc2903ff4-987d61c4d6986f01ce44",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 1107,
-              "column": 9
-            },
-            {
-              "title": "➡️ SCENARIO 10: Tradesman2 quotes, HomeOwner rejects Tradesman2, hires Tradesman1, views acceptance email",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 360000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 6,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 110740,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "\n📬 Tradesman2 email : trademate_mp287t89@mailsac.com\n"
-                        },
-                        {
-                          "text": "🌐 Tradesman2 inbox  : https://mailsac.com/inbox/trademate_mp287t89%40mailsac.com\n\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 Mailsac inbox tab opened (Tab 5)\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 registration page visible\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 registered successfully\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 logged in successfully\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 trade category selected — Plumber\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 map location confirmed\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 profile submitted successfully\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 approval wall confirmed — navigating to subscription\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 subscription purchased\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 logged out — admin will now verify the account\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 verified by Admin\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 logged back in after admin verification\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 quote of £900 submitted successfully\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 logged out\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner logged back in\n"
-                        },
-                        {
-                          "text": "✅ Applicant List visible — 2 applicants should be in the list\n"
-                        },
-                        {
-                          "text": "✅ Tradesman2 application rejected / deleted\n"
-                        },
-                        {
-                          "text": "✅ Tradesman1 hired successfully — \"Post your review\" visible\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"You Accepted an Offer!\" email...\n"
-                        },
-                        {
-                          "text": "⏳ Polling Mailsac for \"\"You Accepted an Offer!\" email\" at trademate_mp2830i9@mailsac.com...\n"
-                        },
-                        {
-                          "text": "✅ Found — Subject: \"You Accepted an Offer!\"\n"
-                        },
-                        {
-                          "text": "📧 Accepted offer email snippet:\nYou Accepted an Offer!\n\n\nHI TAJWAR,\n\nYou have successfully accepted the offer from NewTradePerson for your job Hiring A Plumber.\n\nTradesman Details:\n * Name: NewTradePerson\n * Email: trademate_mp284uqd@mailsac.com\n * Phone: 01933954168\n * Company: N/A\n * Location: N/A\n\nLog in to view job details [ht\n"
-                        },
-                        {
-                          "text": "✅ Accepted offer email confirmed in inbox — Subject: \"You Accepted an Offer!\"\n"
-                        },
-                        {
-                          "text": "👀 HomeOwner Mailsac inbox reloaded — looking for acceptance email\n"
-                        },
-                        {
-                          "text": "✅ \"You Accepted an Offer!\" email opened — observed for 3 seconds\n"
-                        },
-                        {
-                          "text": "✅ Back on TradeMate — HomeOwner is logged in\n"
-                        },
-                        {
-                          "text": "✅ HomeOwner logged out — all 10 scenarios completed successfully ✅\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "82. Generate Tradesman2 email and open a new Mailsac inbox tab (Tab 5)",
-                          "duration": 970
-                        },
-                        {
-                          "title": "83. Register Tradesman2 account",
-                          "duration": 7628
-                        },
-                        {
-                          "title": "84. Login as Tradesman2",
-                          "duration": 3019
-                        },
-                        {
-                          "title": "85. Tradesman2: Click View Details → Complete Registration → select Plumber",
-                          "duration": 4846
-                        },
-                        {
-                          "title": "86. Tradesman2: Set map location",
-                          "duration": 508
-                        },
-                        {
-                          "title": "87. Tradesman2: Fill profile details and submit",
-                          "duration": 3648
-                        },
-                        {
-                          "title": "88. Tradesman2: Hit approval wall and navigate to subscription page",
-                          "duration": 2015
-                        },
-                        {
-                          "title": "89. Tradesman2: Select subscription plan 3 and complete payment",
-                          "duration": 25864
-                        },
-                        {
-                          "title": "89b. Tradesman2 logs out before admin verification",
-                          "duration": 2210
-                        },
-                        {
-                          "title": "90. Switch to Admin tab and verify Tradesman2 account",
-                          "duration": 11329
-                        },
-                        {
-                          "title": "91. Tradesman2 logs back in after admin verification",
-                          "duration": 8777
-                        },
-                        {
-                          "title": "92. Tradesman2: Navigate to home, view first job detail and provide quote",
-                          "duration": 6978
-                        },
-                        {
-                          "title": "93. Tradesman2 logs out",
-                          "duration": 322
-                        },
-                        {
-                          "title": "94. HomeOwner logs back in",
-                          "duration": 4329
-                        },
-                        {
-                          "title": "95. HomeOwner navigates to Posted Jobs and opens job detail",
-                          "duration": 6879
-                        },
-                        {
-                          "title": "96. Reject Tradesman2 offer — click applicantActions for Tradesman2, then Delete Application",
-                          "duration": 5696
-                        },
-                        {
-                          "title": "28. Verify Hiring a Tradesman for the job",
-                          "duration": 8818
-                        },
-                        {
-                          "title": "98. Poll Mailsac — wait for \"You Accepted an Offer!\" email to arrive",
-                          "duration": 1117
-                        },
-                        {
-                          "title": "99. Switch to HomeOwner Mailsac tab and open \"You Accepted an Offer!\" email",
-                          "duration": 5448
-                        },
-                        {
-                          "title": "100. Switch back to TradeMate website (HomeOwner still logged in)",
-                          "duration": 26
-                        },
-                        {
-                          "title": "101. HomeOwner logs out — all 10 scenarios complete ✅",
-                          "duration": 302
-                        }
-                      ],
-                      "startTime": "2026-05-12T06:05:02.242Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\1_New_insertion-Email_Test-0af20-man1-views-acceptance-email-chromium\\trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "a07f2d81496fc2903ff4-953984b88b11cb149d5c",
-              "file": "1_New_insertion/Email_Test.spec.ts",
-              "line": 1213,
+              "id": "cef79649a64391eae539-68773f82471d061f8360",
+              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
+              "line": 246,
               "column": 9
             }
           ]
@@ -1493,9 +493,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-12T06:01:16.203Z",
-    "duration": 341898.3539999984,
-    "expected": 10,
+    "startTime": "2026-05-16T10:07:34.606Z",
+    "duration": 141964.9750000015,
+    "expected": 7,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0
