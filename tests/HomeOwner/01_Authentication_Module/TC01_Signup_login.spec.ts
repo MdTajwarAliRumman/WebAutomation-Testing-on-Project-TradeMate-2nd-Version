@@ -44,6 +44,12 @@ test.describe.serial('HomeOwner Auth Flow', () => {
             await authPage.PasswordInput.fill('12345678');
             await page.getByRole('button', { name: 'Log in' }).click();
             await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible();
+            await page.waitForTimeout(5000);
+
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await homePage.TrashBin.click();
+            await page.waitForTimeout(2000);
         })
 
     })

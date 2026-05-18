@@ -42,6 +42,9 @@ export class HomePage {
     readonly profileIcon: Locator;
     readonly profileUser: Locator;
 
+    readonly notificationIcon: Locator;
+    readonly TrashBin: Locator;
+
     constructor(page: Page) {
         this.page = page
 
@@ -90,6 +93,9 @@ export class HomePage {
 
         this.profileIcon = page.locator('#user-avatar-trigger')
         this.profileUser = page.locator("//span[normalize-space()='Profile']")
+
+        this.notificationIcon = page.locator("//a[@id='notifications-icon']")
+        this.TrashBin = page.locator("//button[@id='notification-item-0']")
     }
 
     // <-------- Methods -------->

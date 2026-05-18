@@ -85,10 +85,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 77,
+                      "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14216,
+                      "duration": 17481,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
@@ -96,22 +96,26 @@
                       "steps": [
                         {
                           "title": "1. Validate the create account page is visible",
-                          "duration": 1127
+                          "duration": 1122
                         },
                         {
                           "title": "2. Validate the creating a HomeOwner account",
-                          "duration": 3200
+                          "duration": 3248
                         },
                         {
                           "title": "3. Validate the OTP verification",
-                          "duration": 2070
+                          "duration": 2043
                         },
                         {
                           "title": "4. Verify Login with valid credentials",
-                          "duration": 3060
+                          "duration": 3064
+                        },
+                        {
+                          "title": "5. Verify the notification",
+                          "duration": 5069
                         }
                       ],
-                      "startTime": "2026-05-16T10:07:36.626Z",
+                      "startTime": "2026-05-18T05:09:39.360Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -143,10 +147,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 77,
+                      "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 21213,
+                      "duration": 39769,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
@@ -154,38 +158,50 @@
                       "steps": [
                         {
                           "title": "4. Verify Login with valid credentials",
-                          "duration": 4107
+                          "duration": 4151
                         },
                         {
                           "title": "5. Verify all the services are visible",
-                          "duration": 126
+                          "duration": 110
                         },
                         {
                           "title": "6. Verify clicking on specific service and entering details",
-                          "duration": 3328
+                          "duration": 2952
                         },
                         {
                           "title": "7. Verify filling up the title and job description with valid details",
-                          "duration": 1644
+                          "duration": 153
                         },
                         {
                           "title": "8. Verify Selecting the job timeframe",
-                          "duration": 2149
+                          "duration": 2069
                         },
                         {
                           "title": "9. Verify inserting details into What type of work is needed field",
-                          "duration": 1446
+                          "duration": 1502
                         },
                         {
                           "title": "10. Verify inserting image files into the job post",
-                          "duration": 439
+                          "duration": 533
                         },
                         {
                           "title": "11. Verify inserting video files into the job post",
-                          "duration": 5047
+                          "duration": 6086
+                        },
+                        {
+                          "title": "13. Verify dsiplaying the newly posted jobs",
+                          "duration": 4755
+                        },
+                        {
+                          "title": "14. Verify dsiplaying the Details of the newly posted job",
+                          "duration": 4392
+                        },
+                        {
+                          "title": "12. Verify the notification",
+                          "duration": 9964
                         }
                       ],
-                      "startTime": "2026-05-16T10:07:51.417Z",
+                      "startTime": "2026-05-18T05:09:57.401Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -201,7 +217,7 @@
               ],
               "id": "cef79649a64391eae539-dae8a44be297867aa163",
               "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
-              "line": 64,
+              "line": 73,
               "column": 9
             },
             {
@@ -217,10 +233,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 77,
+                      "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 14936,
+                      "duration": 25003,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
@@ -228,26 +244,30 @@
                       "steps": [
                         {
                           "title": "15. Validate the create account page is visible",
-                          "duration": 1006
+                          "duration": 1073
                         },
                         {
                           "title": "16. Validate the creating a Tradesman account",
-                          "duration": 3217
+                          "duration": 3139
                         },
                         {
                           "title": "17. Validate the OTP verification",
-                          "duration": 2013
+                          "duration": 2023
                         },
                         {
                           "title": "18. Verify Login with valid credentials",
-                          "duration": 124
+                          "duration": 113
                         },
                         {
                           "title": "19. Verify Job posts are being visible and clickable",
-                          "duration": 5325
+                          "duration": 5348
+                        },
+                        {
+                          "title": "20. Verify the notification",
+                          "duration": 10406
                         }
                       ],
-                      "startTime": "2026-05-16T10:08:13.046Z",
+                      "startTime": "2026-05-18T05:10:37.794Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -263,7 +283,7 @@
               ],
               "id": "cef79649a64391eae539-e4ade70f613e065c9410",
               "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
-              "line": 125,
+              "line": 153,
               "column": 9
             },
             {
@@ -279,10 +299,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 77,
+                      "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 19250,
+                      "duration": 61662,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
@@ -290,26 +310,38 @@
                       "steps": [
                         {
                           "title": "18. Verify Login with valid credentials",
-                          "duration": 144
+                          "duration": 156
                         },
                         {
                           "title": "19. Verify Job posts are being visible and clickable",
-                          "duration": 5421
+                          "duration": 5382
                         },
                         {
                           "title": "20. Verify selecting specific trade category",
-                          "duration": 4260
+                          "duration": 4200
                         },
                         {
                           "title": "21. Validate inserting TradeMan Profile Information Into The Form",
-                          "duration": 1320
+                          "duration": 811
                         },
                         {
                           "title": "22. Validate inserting TradeMans detailed papers Into The Form",
-                          "duration": 5180
+                          "duration": 5302
+                        },
+                        {
+                          "title": "23. Verify purchasing subscription plan",
+                          "duration": 30492
+                        },
+                        {
+                          "title": "24. Verify that Tradesman can view job details after purchasing subscription plan and registration",
+                          "duration": 2036
+                        },
+                        {
+                          "title": "24. Verify the notification",
+                          "duration": 9948
                         }
                       ],
-                      "startTime": "2026-05-16T10:08:28.437Z",
+                      "startTime": "2026-05-18T05:11:03.268Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -325,57 +357,7 @@
               ],
               "id": "cef79649a64391eae539-0e24317f54e82cfc3d6f",
               "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
-              "line": 164,
-              "column": 9
-            },
-            {
-              "title": "➡️ Validate the Tradesman Subscription was done successfully",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 360000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 77,
-                      "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 36911,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "steps": [
-                        {
-                          "title": "18. Verify Login with valid credentials",
-                          "duration": 163
-                        },
-                        {
-                          "title": "23. Verify purchasing subscription plan",
-                          "duration": 34037
-                        }
-                      ],
-                      "startTime": "2026-05-16T10:08:48.201Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\Tajwar (Day Shift)\\Desktop\\All Important docs\\Automation tests\\Project_TradeMate_AutomationTest_2ndVersion\\test-results\\End_to_End_Test_MainFlow-F-75620-ption-was-done-successfully-chromium\\trace.zip"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "cef79649a64391eae539-1ae11a94708b03efc9d9",
-              "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
-              "line": 199,
+              "line": 197,
               "column": 9
             },
             {
@@ -391,10 +373,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 77,
+                      "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 16658,
+                      "duration": 16521,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
@@ -402,18 +384,18 @@
                       "steps": [
                         {
                           "title": "18. Verify Login Admin panel with valid credentials",
-                          "duration": 1578
+                          "duration": 1565
                         },
                         {
                           "title": "24. Verify selecting tradesperson to approve",
-                          "duration": 6952
+                          "duration": 7040
                         },
                         {
                           "title": "25. Verify admin logout",
-                          "duration": 3413
+                          "duration": 3347
                         }
                       ],
-                      "startTime": "2026-05-16T10:09:25.610Z",
+                      "startTime": "2026-05-18T05:12:05.796Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -429,7 +411,7 @@
               ],
               "id": "cef79649a64391eae539-e5274315dfd30acde987",
               "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
-              "line": 221,
+              "line": 279,
               "column": 9
             },
             {
@@ -445,10 +427,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 77,
+                      "workerIndex": 14,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13415,
+                      "duration": 32256,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
@@ -456,18 +438,26 @@
                       "steps": [
                         {
                           "title": "18. Verify Login with valid credentials",
-                          "duration": 150
+                          "duration": 139
                         },
                         {
-                          "title": "24. Verify that Tradesman can view job details after purchasing subscription plan and registration",
-                          "duration": 8499
+                          "title": "19. Verify the notification",
+                          "duration": 13391
+                        },
+                        {
+                          "title": "20. Verify that Tradesman can view job details after purchasing subscription plan and registration",
+                          "duration": 4409
                         },
                         {
                           "title": "25. Verify providing a quote for the job",
-                          "duration": 2325
+                          "duration": 2290
+                        },
+                        {
+                          "title": "26. Verify the notification",
+                          "duration": 9423
                         }
                       ],
-                      "startTime": "2026-05-16T10:09:42.518Z",
+                      "startTime": "2026-05-18T05:12:22.568Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -483,7 +473,7 @@
               ],
               "id": "cef79649a64391eae539-68773f82471d061f8360",
               "file": "End_to_End_Test_MainFlow/FinalFlow.spec.ts",
-              "line": 246,
+              "line": 304,
               "column": 9
             }
           ]
@@ -493,9 +483,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-05-16T10:07:34.606Z",
-    "duration": 141964.9750000015,
-    "expected": 7,
+    "startTime": "2026-05-18T05:09:37.426Z",
+    "duration": 198152.62399999984,
+    "expected": 6,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

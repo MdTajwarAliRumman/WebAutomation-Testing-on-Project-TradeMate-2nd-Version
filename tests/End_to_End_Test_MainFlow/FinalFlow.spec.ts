@@ -57,6 +57,15 @@ test.describe.serial('End-to-End Test', () => {
             await page.getByRole('button', { name: 'Log in' }).click();
             await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible();
         })
+
+        await test.step('5. Verify the notification', async () => {
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await page.waitForTimeout(2000);
+            await homePage.TrashBin.click();
+            await page.waitForTimeout(2000);
+        })
+
     });
 
     // ============================================ HomeOwner Post Job =====================================================
@@ -118,16 +127,32 @@ test.describe.serial('End-to-End Test', () => {
             await homePage.jobSubmitButton.click();
             await expect(page.getByText('Job Posted Successfully')).toBeVisible();
         });
+
+        await test.step('13. Verify dsiplaying the newly posted jobs', async () => {
+            await page.getByText('Posted Jobs').first().click();
+            await expect(page.getByText('My Posted Jobs')).toBeVisible();
+        })
+
+        await test.step('14. Verify dsiplaying the Details of the newly posted job', async () => {
+            await page.getByText('View Details').first().click();
+            await expect(page.getByText('Job Done by:')).toBeVisible();
+        })
+
+
+        await test.step('12. Verify the notification', async () => {
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await page.waitForTimeout(9000);
+            homePage.logout();
+        })
     });
+
 
     // ============================================ Tradesman Signup =====================================================
 
     test('➡️ Validate the Tradesman Signup was done successfully', async ({ page }) => {
         await basePage.goToURL();
 
-        // ✅ Mirrors ownerEmail pattern exactly — assigned at the very top of
-        //    the test body before any await, so test 4 can safely read it from
-        //    the describe-level variable just like test 2 reads ownerEmail.
         tradesmanEmail = homePage.TradesmanEmail();
 
         await test.step('15. Validate the create account page is visible', async () => {
@@ -157,9 +182,17 @@ test.describe.serial('End-to-End Test', () => {
             await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible();
             await page.getByRole('button', { name: 'View Details' }).first().click();
         })
+
+        await test.step('20. Verify the notification', async () => {
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await page.waitForTimeout(9000);
+            homePage.logout();
+
+        })
     });
 
-    // ============================================ Tradesman Update Profile =====================================================
+    // ============================================ Tradesman Update Profile and subscription =====================================================
 
     test('➡️ Validate the Tradesman Profile Updated was done successfully', async ({ page }) => {
         await homePage.goToLoginURL();
@@ -184,7 +217,7 @@ test.describe.serial('End-to-End Test', () => {
             await homePage.mapLocation.click();
             await homePage.confirmMapLocation.click();
             await expect(page.getByText('Choose your location Manually')).toBeVisible();
-            await homePage.tradesManProfileDetails('SoftwareTestingCompany', process.env.LOREM_TEXT!, 'Milo', 'TradeGuy', '100', '5', '01933954168', tradesmanEmail, 'https://www.google.com', 'https://www.google.com');
+            await homePage.tradesManProfileDetails('SoftwareTestingCompany', process.env.LOREM_TEXT!, 'Milo', 'TradeGuy', '10', '5', '01933954168', tradesmanEmail, 'https://www.google.com', 'https://www.google.com');
         })
 
         await test.step('22. Validate inserting TradeMans detailed papers Into The Form', async () => {
@@ -192,18 +225,7 @@ test.describe.serial('End-to-End Test', () => {
             await page.getByRole('button', { name: 'Submit' }).click();
             await expect(page.getByText('TradesMan Profile updated successfully.')).toBeVisible();
         })
-    });
 
-
-    // ============================================ Tradesman Subscription =====================================================
-    test('➡️ Validate the Tradesman Subscription was done successfully', async ({ page }) => {
-        await homePage.goToLoginURL();
-
-        await test.step('18. Verify Login with valid credentials', async () => {
-            await authPage.EmailInput.fill(tradesmanEmail);
-            await authPage.PasswordInput.fill('12345678');
-            await page.getByRole('button', { name: 'Log in' }).click();
-        })
         await test.step('23. Verify purchasing subscription plan', async () => {
             await homePage.subscriptionPlan3.click();
             await expect(page.getByText('Payment method')).toBeVisible();
@@ -211,11 +233,47 @@ test.describe.serial('End-to-End Test', () => {
             await page.waitForTimeout(2000);
             await expect(page.getByText('My jobs')).toBeVisible();
             await page.waitForTimeout(5000);
-
-            homePage.logout();
         })
 
+        await test.step('24. Verify that Tradesman can view job details after purchasing subscription plan and registration', async () => {
+            await (page.getByText('View Details')).first().click();
+            await expect(page.getByText('Job Done by:')).toBeVisible();
+        })
+
+        await test.step('24. Verify the notification', async () => {
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await page.waitForTimeout(9000);
+            homePage.logout();
+        })
     });
+
+
+    // // ============================================ Tradesman Subscription =====================================================
+    // test('➡️ Validate the Tradesman Subscription was done successfully', async ({ page }) => {
+    //     await homePage.goToLoginURL();
+
+    //     await test.step('18. Verify Login with valid credentials', async () => {
+    //         await authPage.EmailInput.fill(tradesmanEmail);
+    //         await authPage.PasswordInput.fill('12345678');
+    //         await page.getByRole('button', { name: 'Log in' }).click();
+    //     })
+    //     await test.step('23. Verify purchasing subscription plan', async () => {
+    //         await homePage.subscriptionPlan3.click();
+    //         await expect(page.getByText('Payment method')).toBeVisible();
+    //         await subscriptionPage.buySubscription('4111111111111111', '12/27', '123', 'Tajwar');
+    //         await page.waitForTimeout(2000);
+    //         await expect(page.getByText('My jobs')).toBeVisible();
+    //         await page.waitForTimeout(5000);
+    //     })
+
+    //     await test.step('24. Verify the notification', async () => {
+    //         await homePage.notificationIcon.click();
+    //         await expect(page.getByText('Notification').first()).toBeVisible();
+    //         await page.waitForTimeout(9000);
+    //         homePage.logout();
+    //     })
+    // });
 
     // // ============================================ admin approval =====================================================
     test('➡️ Admin approve', async ({ page }) => {
@@ -252,8 +310,15 @@ test.describe.serial('End-to-End Test', () => {
             await page.getByRole('button', { name: 'Log in' }).click();
         })
 
+        await test.step('19. Verify the notification', async () => {
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await page.waitForTimeout(9000);
+        })
 
-        await test.step('24. Verify that Tradesman can view job details after purchasing subscription plan and registration', async () => {
+        await test.step('20. Verify that Tradesman can view job details after purchasing subscription plan and registration', async () => {
+            await (page.getByText('Home')).first().click();
+
             await (page.getByText('View Details')).first().click();
             await expect(page.getByText('Job Done by:')).toBeVisible();
         })
@@ -263,11 +328,18 @@ test.describe.serial('End-to-End Test', () => {
             await jobPage.quoteAmount.fill('1000');
             await page.getByRole('button', { name: 'Confirm' }).click();
             await expect(page.getByText('Quote submitted successfully')).toBeVisible();
+
+        })
+
+        await test.step('26. Verify the notification', async () => {
+            await homePage.notificationIcon.click();
+            await expect(page.getByText('Notification').first()).toBeVisible();
+            await page.waitForTimeout(9000);
             homePage.logout();
         })
     });
 
-    // // ============================================ 2nd Tradesman Subscription =====================================================
+    // // ============================================ 2nd Tradesman quote for job =====================================================
     // test('➡️ Validate 2nd tradesman login succcessfully', async ({ page }) => {
     //     await homePage.goToLoginURL();
 
@@ -329,6 +401,43 @@ test.describe.serial('End-to-End Test', () => {
     //         await page.getByRole('button', { name: 'Confirm' }).click();
     //         await expect(page.getByText('Post your review')).toBeVisible();
     //         await page.waitForTimeout(5000);
+    //         ///mail check
+    //     })
+    //     await test.step('29. Verify the notification', async () => {
+    //         await homePage.notificationIcon.click();
+    //         await expect(page.getByText('Notification').first()).toBeVisible();
+    //         await page.waitForTimeout(9000);
+    //         homePage.logout();
+    //     })
+    // });
+
+    // // ============================================ 2nd Tradesman Login =====================================================
+    // test('➡️ Validate 2nd Tradesman viewing a job post(Rejected)', async ({ page }) => {
+    //     await homePage.goToLoginURL();
+
+    //     await test.step('18. Verify Login with valid credentials', async () => {
+    //         await authPage.EmailInput.fill(process.env.TRADES_MAN_EMAIL!);
+    //         await authPage.PasswordInput.fill('12345678');
+    //         await page.getByRole('button', { name: 'Log in' }).click();
+    //         await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible();
+    //     })
+
+    //     await test.step('29. Verify viewing a job post', async () => {
+    //         await (page.getByText('Job Board').first()).click();
+    //         await jobPage.inProgressJobs.click();
+    //         await expect(page.getByText('View Details')).toBeVisible();
+    //     })
+
+    //     await test.step('30. Verify Observing the details of the job', async () => {
+    //         await page.getByText('View Details').click();
+    //         await expect(page.getByText('This job is in progress')).toBeVisible();
+    //         await page.waitForTimeout(5000);
+
+    //     })
+    //     await test.step('31. Verify the notification', async () => {
+    //         await homePage.notificationIcon.click();
+    //         await expect(page.getByText('Notification').first()).toBeVisible();
+    //         await page.waitForTimeout(9000);
     //         homePage.logout();
     //     })
     // });
@@ -354,14 +463,25 @@ test.describe.serial('End-to-End Test', () => {
     //         await page.getByText('View Details').click();
     //         await expect(page.getByText('This job is in progress')).toBeVisible();
     //         await page.waitForTimeout(5000);
-
-    //         await homePage.logout();
+    //     })
+    //     await test.step('31. Verify the notification', async () => {
+    //         await homePage.notificationIcon.click();
+    //         await expect(page.getByText('Notification').first()).toBeVisible();
+    //         await page.waitForTimeout(9000);
+    //         homePage.logout();
     //     })
     // });
 
-    // ============================================ HomeOwner Mark Job Done =====================================================
+    // // ============================================ HomeOwner Mark Job Done =====================================================
     // test('➡️ Validate Owner confirming job completion was done successfully', async ({ page }) => {
-    //     await homePage.E2EOwnerLogin(ownerEmail);
+    //     await homePage.goToLoginURL();
+
+    //     await test.step('4. Verify Login with valid credentials', async () => {
+    //         await authPage.EmailInput.fill(ownerEmail);
+    //         await authPage.PasswordInput.fill('12345678');
+    //         await page.getByRole('button', { name: 'Log in' }).click();
+    //         await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible();
+    //     })
 
     //     await test.step('31. Verify viewing a job post', async () => {
     //         await page.getByText('Posted Jobs').first().click();
@@ -378,13 +498,26 @@ test.describe.serial('End-to-End Test', () => {
     //         await jobPage.markAsDone.click();
     //         await page.getByRole('button', { name: 'Continue' }).click();
     //         await expect(page.getByText('Mark As Done completed successfully.')).toBeVisible();
-    //         await homePage.logout();
+    //     })
+
+    //     await test.step('33. Verify the notification', async () => {
+    //         await homePage.notificationIcon.click();
+    //         await expect(page.getByText('Notification').first()).toBeVisible();
+    //         await page.waitForTimeout(9000);
+    //         homePage.logout();
     //     })
     // });
 
-    // ============================================ Tradesman Review =====================================================
+    // // ============================================ Tradesman Review =====================================================
     // test('➡️ Validate Tradesman reviews the completed job', async ({ page }) => {
-    //     await homePage.E2ETradesManLogin(tradesmanEmail);
+    //     await homePage.goToLoginURL();
+
+    //     await test.step('4. Verify Login with valid credentials', async () => {
+    //         await authPage.EmailInput.fill(tradesmanEmail);
+    //         await authPage.PasswordInput.fill('12345678');
+    //         await page.getByRole('button', { name: 'Log in' }).click();
+    //         await expect(page.getByRole('button', { name: 'Log out' })).toBeVisible();
+    //     })
 
     //     await test.step('33. Verify Tradesman Can View Completed job post', async () => {
     //         await (page.getByText('Job Board').first()).click();
@@ -392,6 +525,12 @@ test.describe.serial('End-to-End Test', () => {
     //         await expect(page.getByText('Completed on')).toBeVisible();
     //     })
 
+    //     await test.step('31. Verify the notification', async () => {
+    //         await homePage.notificationIcon.click();
+    //         await expect(page.getByText('Notification').first()).toBeVisible();
+    //         await page.waitForTimeout(9000);
+
+    //     })
     //     await test.step('Validate Logout From the whole process', async () => {
     //         await homePage.logout();
     //     })
